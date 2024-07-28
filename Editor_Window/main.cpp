@@ -149,11 +149,11 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
 
-            HBRUSH brush = CreateSolidBrush(RGB(255, 0, 0));
+            HBRUSH brush = CreateSolidBrush(RGB(0, 0, 255));
 
             // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
             Rectangle(hdc, 100, 100, 200, 200);
-            Ellipse(hdc, 100, 100, 200, 200);
+            Ellipse(hdc, 200, 200, 300, 300);
 
             EndPaint(hWnd, &ps);
         }
