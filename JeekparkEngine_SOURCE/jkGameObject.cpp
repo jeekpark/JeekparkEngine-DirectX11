@@ -16,22 +16,22 @@ namespace jk
 
     void GameObject::Update()
     {
-        if (Input::GetKey(eKeyCode::A))
+        if (Input::GetKey(eKeyCode::Left))
         {
             mX -= 0.01f;
         }
 
-        if (Input::GetKey(eKeyCode::D))
+        if (Input::GetKey(eKeyCode::Right))
         {
             mX += 0.01f;
         }
 
-        if (Input::GetKey(eKeyCode::W))
+        if (Input::GetKey(eKeyCode::Up))
         {
             mY -= 0.01f;
         }
 
-        if (Input::GetKey(eKeyCode::S))
+        if (Input::GetKey(eKeyCode::Down))
         {
             mY += 0.01f;
         }
