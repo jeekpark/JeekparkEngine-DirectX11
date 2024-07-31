@@ -5,6 +5,10 @@ VisualStudioVersion = 17.9.34723.18
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Editor_Window", "Editor_Window\Editor_Window.vcxproj", "{07F210F4-114A-4E4A-BA31-9BC987C1E073}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JeekparkEngine_Window", "JeekparkEngine_Window\JeekparkEngine_Window.vcxproj", "{4401AA7D-85C2-44B4-A28C-870255BA4A1F}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JeekparkEngine_SOURCE", "JeekparkEngine_SOURCE\JeekparkEngine_SOURCE.vcxitems", "{B6572C50-035A-47CC-91B1-F55FFB28AF0A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,11 +25,23 @@ Global
 		{07F210F4-114A-4E4A-BA31-9BC987C1E073}.Release|x64.Build.0 = Release|x64
 		{07F210F4-114A-4E4A-BA31-9BC987C1E073}.Release|x86.ActiveCfg = Release|Win32
 		{07F210F4-114A-4E4A-BA31-9BC987C1E073}.Release|x86.Build.0 = Release|Win32
+		{4401AA7D-85C2-44B4-A28C-870255BA4A1F}.Debug|x64.ActiveCfg = Debug|x64
+		{4401AA7D-85C2-44B4-A28C-870255BA4A1F}.Debug|x64.Build.0 = Debug|x64
+		{4401AA7D-85C2-44B4-A28C-870255BA4A1F}.Debug|x86.ActiveCfg = Debug|Win32
+		{4401AA7D-85C2-44B4-A28C-870255BA4A1F}.Debug|x86.Build.0 = Debug|Win32
+		{4401AA7D-85C2-44B4-A28C-870255BA4A1F}.Release|x64.ActiveCfg = Release|x64
+		{4401AA7D-85C2-44B4-A28C-870255BA4A1F}.Release|x64.Build.0 = Release|x64
+		{4401AA7D-85C2-44B4-A28C-870255BA4A1F}.Release|x86.ActiveCfg = Release|Win32
+		{4401AA7D-85C2-44B4-A28C-870255BA4A1F}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {C0950E15-1A9B-4447-80A6-0AB44385D88D}
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		JeekparkEngine_SOURCE\JeekparkEngine_SOURCE.vcxitems*{4401aa7d-85c2-44b4-a28c-870255ba4a1f}*SharedItemsImports = 4
+		JeekparkEngine_SOURCE\JeekparkEngine_SOURCE.vcxitems*{b6572c50-035a-47cc-91b1-f55ffb28af0a}*SharedItemsImports = 9
 	EndGlobalSection
 EndGlobal
