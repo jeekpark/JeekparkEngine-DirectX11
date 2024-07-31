@@ -1,4 +1,5 @@
 #include "jkApplication.h"
+#include "jkInput.h"
 
 namespace jk
 {
@@ -19,6 +20,7 @@ namespace jk
         mHdc = GetDC(hwnd);
 
         mPlayer.SetPosition(0.f, 0.f);
+        Input::Initialize();
     }
 
     void Application::Run()
@@ -31,6 +33,7 @@ namespace jk
     void Application::Update()
     {
         mPlayer.Update();
+        Input::Update();
     }
 
     void Application::LateUpdate()

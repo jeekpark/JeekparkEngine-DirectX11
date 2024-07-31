@@ -1,6 +1,8 @@
 #pragma once
 #include "CommonInclude.h"
 
+
+
 namespace jk
 {
     class GameObject
@@ -21,7 +23,6 @@ namespace jk
 
         float GetPostionX() { return mX; }
         float GetPostionY() { return mY; }
-
     private:
         float mX;
         float mY;
