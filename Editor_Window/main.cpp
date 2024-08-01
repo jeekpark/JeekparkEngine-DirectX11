@@ -117,10 +117,14 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
 BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 {
    hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
+
+   const UINT width = 1920;
+   const UINT height = 1080;
+
    SetProcessDPIAware();
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
-      0, 0, 1920, 1080, nullptr, nullptr, hInstance, nullptr);
-   app.Initialize(hWnd);
+      0, 0, width, height, nullptr, nullptr, hInstance, nullptr);
+   app.Initialize(hWnd, width, height);
    if (!hWnd)
    {
       return FALSE;
