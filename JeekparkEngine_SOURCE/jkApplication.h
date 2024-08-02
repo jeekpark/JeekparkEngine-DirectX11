@@ -18,6 +18,7 @@ namespace jk
         void LateUpdate();
         void Render();
     private:
+        void clearRenderTarget();
         HWND mHwnd;
         HDC mHdc;
 

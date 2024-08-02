@@ -74,11 +74,16 @@ namespace jk
 
     void Application::Render()
     {
-        Rectangle(mBackHdc, 0, 0, 1920, 1080);
+        clearRenderTarget();
         Time::Render(mBackHdc);
         mPlayer.Render(mBackHdc);
 
         BitBlt(mHdc, 0, 0, mWidth, mHeight, mBackHdc, 0, 0, SRCCOPY);
     }
 
+
+    void Application::clearRenderTarget()
+    {
+        Rectangle(mBackHdc, -1, -1, 1921, 1081);
+    }
 }
