@@ -4,7 +4,7 @@
 
 namespace jk
 {
-    jk::Application::Application()
+    Application::Application()
         : mHwnd(nullptr)
         , mHdc(nullptr)
         , mWidth(0U)
@@ -14,42 +14,17 @@ namespace jk
     {
     }
 
-    jk::Application::~Application()
+    Application::~Application()
     {
     }
 
     void Application::Initialize(HWND hwnd, UINT width, UINT height)
     {
-        mHwnd = hwnd;
-        mHdc = GetDC(hwnd);
-        
-        RECT rect = { 0, 0, width, height };
-        mWidth = rect.right - rect.left;
-        mHeight = rect.bottom - rect.top;
-        AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
-        SetWindowPos(
-            mHwnd,
-            nullptr,
-            100,
-            100,
-            mWidth,
-            mHeight,
-            0U
-        );
-
-        ShowWindow(mHwnd, true);
-
-        mBackBitmap = CreateCompatibleBitmap(mHdc, width, height);
-
-        mBackHdc = CreateCompatibleDC(mHdc);
-
-        HBITMAP oldBitmap = (HBITMAP)SelectObject(mBackHdc, mBackBitmap);
-        DeleteObject(oldBitmap);
-
+        adjustWindowRect(hwnd, width, height);
+        createBuffer(width, height);
+        initializeETC();
 
         mPlayer.SetPosition(0.f, 0.f);
-        Input::Initialize();
-        Time::Initialize();
     }
 
     void Application::Run()
@@ -65,7 +40,6 @@ namespace jk
         Time::Update();
 
         mPlayer.Update();
-        
     }
 
     void Application::LateUpdate()
@@ -74,16 +48,56 @@ namespace jk
 
     void Application::Render()
     {
-        clearRenderTarget();
+        clearRenderTarget(mBackHdc);
+
         Time::Render(mBackHdc);
         mPlayer.Render(mBackHdc);
 
-        BitBlt(mHdc, 0, 0, mWidth, mHeight, mBackHdc, 0, 0, SRCCOPY);
+        copyRenderTarget(mBackHdc, mHdc);
     }
 
 
-    void Application::clearRenderTarget()
+    void Application::clearRenderTarget(HDC target)
     {
-        Rectangle(mBackHdc, -1, -1, 1921, 1081);
+        Rectangle(target, -1, -1, 1921, 1081);
+    }
+
+    void Application::copyRenderTarget(HDC source, HDC dest)
+    {
+        BitBlt(dest, 0, 0, mWidth, mHeight, source, 0, 0, SRCCOPY);
+    }
+
+    void Application::adjustWindowRect(HWND hwnd, UINT width, UINT height)
+    {
+        mHwnd = hwnd;
+        mHdc = GetDC(hwnd);
+        RECT rect = { 0, 0, width, height };
+        mWidth = rect.right - rect.left;
+        mHeight = rect.bottom - rect.top;
+        AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
+        SetWindowPos(
+            hwnd,
+            nullptr,
+            0,
+            0,
+            mWidth,
+            mHeight,
+            0U
+        );
+        ShowWindow(hwnd, true);
+    }
+
+    void Application::createBuffer(UINT width, UINT height)
+    {
+        mBackBitmap = CreateCompatibleBitmap(mHdc, width, height);
+        mBackHdc = CreateCompatibleDC(mHdc);
+        HBITMAP oldBitmap = (HBITMAP)SelectObject(mBackHdc, mBackBitmap);
+        DeleteObject(oldBitmap);
+    }
+
+    void Application::initializeETC()
+    {
+        Input::Initialize();
+        Time::Initialize();
     }
 }

@@ -18,7 +18,12 @@ namespace jk
         void LateUpdate();
         void Render();
     private:
-        void clearRenderTarget();
+        void clearRenderTarget(HDC targ et);
+        void copyRenderTarget(HDC source, HDC dest);
+        void adjustWindowRect(HWND hwnd, UINT width, UINT height);
+        void createBuffer(UINT width, UINT height);
+        void initializeETC();
+
         HWND mHwnd;
         HDC mHdc;
 
