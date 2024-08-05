@@ -10,8 +10,10 @@
       <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="jkPlayScene.h" />
+    <ClInclude Include="jkPlayer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="jkPlayScene.cpp" />
+    <ClCompile Include="jkPlayer.cpp" />
   </ItemGroup>
 </Project>

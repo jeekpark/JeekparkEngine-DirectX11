@@ -6,50 +6,47 @@
 namespace jk
 {
     GameObject::GameObject()
-        : mX(0.f)
-        , mY(0.f)
     {
     }
 
     GameObject::~GameObject()
     {
+        for (Component* comp : mComponents)
+        {
+            delete comp;
+            comp = nullptr;
+        }
+    }
+
+    void GameObject::Initialize()
+    {
+        for (Component* comp : mComponents)
+        {
+            comp->Initialize();
+        }
     }
 
     void GameObject::Update()
     {
-        const float speed = 200.f;
-        if (Input::GetKey(eKeyCode::Left))
+        for (Component* comp : mComponents)
         {
-            mX -= speed * Time::DeltaTime();
-        }
-
-        if (Input::GetKey(eKeyCode::Right))
-        {
-            mX += speed * Time::DeltaTime();
-        }
-
-        if (Input::GetKey(eKeyCode::Up))
-        {
-            mY -= speed * Time::DeltaTime();
-        }
-
-        if (Input::GetKey(eKeyCode::Down))
-        {
-            mY += speed * Time::DeltaTime();
+            comp->Update();
         }
     }
 
     void GameObject::LateUpdate()
     {
+        for (Component* comp : mComponents)
+        {
+            comp->LateUpdate();
+        }
     }
 
     void GameObject::Render(HDC hdc)
     {
-        HBRUSH blueBrush = CreateSolidBrush(RGB(rand() % 255, 100, 200));
-        HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, blueBrush);
-
-        Ellipse(hdc, (int)mX, (int)mY, 100 + (int)mX, 100 + (int)mY);
-        SelectObject(hdc, oldBrush);
-        DeleteObject(blueBrush);
+        for (Component* comp : mComponents)
+        {
+            comp->Render(hdc);
+        }
     }
 }

@@ -56,7 +56,7 @@ namespace jk
 
         Time::Render(mBackHdc);
         SceneManager::Render(mBackHdc);
-
+        
         copyRenderTarget(mBackHdc, mHdc);
     }
 

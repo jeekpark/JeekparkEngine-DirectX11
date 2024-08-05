@@ -131,9 +131,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="jkLoadScenes.h" />
+    <ClInclude Include="jkPlayer.h" />
     <ClInclude Include="jkPlayScene.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="jkPlayer.cpp" />
     <ClCompile Include="jkPlayScene.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

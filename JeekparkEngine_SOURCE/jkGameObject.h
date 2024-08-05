@@ -1,7 +1,7 @@
 #pragma once
 #include "CommonInclude.h"
 
-
+#include "jkComponent.h"
 
 namespace jk
 {
@@ -11,21 +11,38 @@ namespace jk
         GameObject();
         ~GameObject();
 
-        void Update();
-        void LateUpdate();
-        void Render(HDC hdc);
+        virtual void Initialize();
+        virtual void Update();
+        virtual void LateUpdate();
+        virtual void Render(HDC hdc);
 
-        void SetPosition(float x, float y)
+        template<typename T>
+        T* AddComponent()
         {
-            mX = x;
-            mY = y;
+            T* comp = new T();
+            comp->SetOwner(this);
+            mComponents.push_back(comp);
+            return comp;
         }
 
-        float GetPostionX() { return mX; }
-        float GetPostionY() { return mY; }
+        template<typename T>
+        T* GetComponent()
+        {
+            T* res = nullptr;
+            for (Component* comp : mComponents)
+            {
+                res = dynamic_cast<T*>(comp);
+                if (res)
+                {
+                    break;
+                }
+            }
+            return res;
+        }
+
+
     private:
-        float mX;
-        float mY;
+        std::vector<Component*> mComponents;
     };
 
 }

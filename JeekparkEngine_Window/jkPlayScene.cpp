@@ -1,6 +1,9 @@
 #include "jkPlayScene.h"
 
 #include "jkGameObject.h"
+#include "jkSpriteRenderer.h"
+#include "jkTransform.h"
+#include "jkPlayer.h"
 
 namespace jk
 {
@@ -12,12 +15,16 @@ namespace jk
     }
     void PlayScene::Initialize()
     {
-        for (size_t i = 0; i < 100; ++i)
-        {
-            GameObject* obj = new GameObject();
-            obj->SetPosition(rand() % 1920, rand() % 1080);
-            Scene::AddGameObject(obj);
-        }
+        Player* player = new Player();
+        
+        Transform* tr = player->AddComponent<Transform>();
+        tr->SetPos(300, 300);
+        tr->SetName(L"TR");
+
+        SpriteRenderer* sp = player->AddComponent<SpriteRenderer>();
+        sp->SetName(L"SR");
+
+        AddGameObject(player);
     }
     void PlayScene::Update()
     {
