@@ -1,7 +1,7 @@
 #pragma once
 
 
-namespace jk
+namespace jk::enums
 {
     enum class eLayerType
     {

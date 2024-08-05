@@ -21,4 +21,22 @@ namespace jk
     {
         mActiveScene->Render(hdc);
     }
+
+    Scene* SceneManager::LoadScene(const std::wstring& name)
+    {
+        if (mActiveScene)
+        {
+            mActiveScene->OnExit();
+        }
+        auto iter = mScene.find(name);
+
+        if (iter == mScene.end())
+        {
+            return nullptr;
+        }
+
+        mActiveScene = iter->second;
+        mActiveScene->OnEnter();
+        return iter->second;
+    }
 }

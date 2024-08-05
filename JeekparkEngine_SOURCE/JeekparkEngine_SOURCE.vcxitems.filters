@@ -81,6 +81,9 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)jkResource.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkResources.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jkObject.h">
+      <Filter>Common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">

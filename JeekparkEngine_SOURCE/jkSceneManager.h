@@ -12,28 +12,14 @@ namespace jk
         {
             T* scene = new T();
             scene->SetName(name);
+            mActiveScene = scene;
             scene->Initialize();
             mScene.insert(std::make_pair(name, scene));
             return scene;
         }
 
-        static Scene* LoadScene(const std::wstring& name)
-        {
-            if (mActiveScene)
-            {
-                mActiveScene->OnExit();
-            }
-            auto iter = mScene.find(name);
-
-            if (iter == mScene.end())
-            {
-                return nullptr;
-            }
-
-            mActiveScene = iter->second;
-            mActiveScene->OnEnter();
-            return iter->second;
-        }
+        static Scene* LoadScene(const std::wstring& name);
+        static Scene* GetActiveScene() { return mActiveScene; }
 
         static void Initialize();
         static void Update();

@@ -7,6 +7,8 @@
 #include "jkInput.h"
 #include "jkTitleScene.h"
 #include "jkSceneManager.h"
+#include "jkObject.h"
+
 namespace jk
 {
     PlayScene::PlayScene()
@@ -17,7 +19,7 @@ namespace jk
     }
     void PlayScene::Initialize()
     {
-        bg = new Player();
+        /*bg = new Player();
         Transform* tr = bg->AddComponent<Transform>();
         tr->SetName(L"TR");
         tr->SetPosition(Vector2(0, 0));
@@ -26,7 +28,17 @@ namespace jk
         sr->SetName(L"SR");
         sr->ImageLoad(L"C:\\Users\\9001\\Desktop\\CloudOcean.png");
         
-        AddGameObject(bg, eLayerType::Backgorund);
+        AddGameObject(bg, enums::eLayerType::Backgorund);*/
+
+        bg = object::Instantiate<Player>(
+            enums::eLayerType::Backgorund,
+            math::Vector2(100, 100)
+        );
+
+        SpriteRenderer* sr = bg->AddComponent<SpriteRenderer>();
+        sr->SetName(L"SR");
+        sr->ImageLoad(L"C:\\Users\\9001\\Desktop\\CloudOcean.png");
+
     }
     void PlayScene::Update()
     {
@@ -51,7 +63,5 @@ namespace jk
     }
     void PlayScene::OnExit()
     {
-        Transform* tr = bg->GetComponent<Transform>();
-        tr->SetPosition(Vector2(0, 0));
     }
 }

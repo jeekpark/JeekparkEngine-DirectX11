@@ -2,11 +2,13 @@
 
 #include "jkInput.h"
 #include "jkTime.h"
+#include "jkTransform.h"
 
 namespace jk
 {
     GameObject::GameObject()
     {
+        initializeTransform();
     }
 
     GameObject::~GameObject()
@@ -48,5 +50,10 @@ namespace jk
         {
             comp->Render(hdc);
         }
+    }
+
+    void GameObject::initializeTransform()
+    {
+        AddComponent<Transform>();
     }
 }

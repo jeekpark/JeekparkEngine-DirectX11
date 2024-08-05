@@ -40,6 +40,8 @@ namespace jk
             return res;
         }
 
+    private:
+        void initializeTransform();
 
     private:
         std::vector<Component*> mComponents;

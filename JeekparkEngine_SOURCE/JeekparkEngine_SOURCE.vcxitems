@@ -23,6 +23,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)jkInput.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkLayer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkMath.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jkObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkResource.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkResources.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkScene.h" />
