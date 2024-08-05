@@ -4,16 +4,33 @@
     <Filter Include="Scenes">
       <UniqueIdentifier>{7391cd2c-97b3-4cbd-8bd5-524692283ecd}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Contents">
+      <UniqueIdentifier>{7b8c869b-d701-46d2-b46d-b91f965859ba}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="jkLoadScenes.h">
       <Filter>Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="jkPlayScene.h" />
-    <ClInclude Include="jkPlayer.h" />
+    <ClInclude Include="jkPlayer.h">
+      <Filter>Contents</Filter>
+    </ClInclude>
+    <ClInclude Include="jkPlayScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="jkTitleScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="jkPlayScene.cpp" />
-    <ClCompile Include="jkPlayer.cpp" />
+    <ClCompile Include="jkPlayer.cpp">
+      <Filter>Contents</Filter>
+    </ClCompile>
+    <ClCompile Include="jkPlayScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="jkTitleScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

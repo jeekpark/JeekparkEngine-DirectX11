@@ -133,10 +133,12 @@
     <ClInclude Include="jkLoadScenes.h" />
     <ClInclude Include="jkPlayer.h" />
     <ClInclude Include="jkPlayScene.h" />
+    <ClInclude Include="jkTitleScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="jkPlayer.cpp" />
     <ClCompile Include="jkPlayScene.cpp" />
+    <ClCompile Include="jkTitleScene.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

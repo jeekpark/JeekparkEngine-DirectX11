@@ -19,6 +19,10 @@ namespace jk
 
         static Scene* LoadScene(const std::wstring& name)
         {
+            if (mActiveScene)
+            {
+                mActiveScene->OnExit();
+            }
             auto iter = mScene.find(name);
 
             if (iter == mScene.end())
@@ -27,6 +31,7 @@ namespace jk
             }
 
             mActiveScene = iter->second;
+            mActiveScene->OnEnter();
             return iter->second;
         }
 

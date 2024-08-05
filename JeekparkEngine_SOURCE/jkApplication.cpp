@@ -47,7 +47,7 @@ namespace jk
 
     void Application::LateUpdate()
     {
-        
+        SceneManager::LateUpdate();
     }
 
     void Application::Render()

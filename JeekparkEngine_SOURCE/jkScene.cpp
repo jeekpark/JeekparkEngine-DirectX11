@@ -3,38 +3,54 @@
 namespace jk
 {
     Scene::Scene()
-        : mGameObjects{}
+        : mLayers{}
     {
+        mLayers.resize((UINT)eLayerType::Max);
+        for (size_t i = 0; i < (UINT)eLayerType::Max; ++i)
+        {
+            mLayers[i] = new Layer();
+        }
     }
     Scene::~Scene()
     {
     }
     void Scene::Initialize()
     {
+        for (Layer* layer : mLayers)
+        {
+            layer->Initialize();
+        }
     }
     void Scene::Update()
     {
-        for (GameObject* obj : mGameObjects)
+        for (Layer* layer : mLayers)
         {
-            obj->Update();
+            layer->Update();
         }
     }
     void Scene::LateUpdate()
     {
-        for (GameObject* obj : mGameObjects)
+        for (Layer* layer : mLayers)
         {
-            obj->LateUpdate();
+            layer->LateUpdate();
         }
     }
     void Scene::Render(HDC hdc)
     {
-        for (GameObject* obj : mGameObjects)
+        for (Layer* layer : mLayers)
         {
-            obj->Render(hdc);
+            layer->Render(hdc);
         }
     }
-    void Scene::AddGameObject(GameObject* gameObject)
+    void Scene::OnEnter()
     {
-        mGameObjects.push_back(gameObject);
     }
+    void Scene::OnExit()
+    {
+    }
+    void Scene::AddGameObject(GameObject* gameObject, eLayerType type)
+    {
+        mLayers[(UINT)type]->AddGameObject(gameObject);
+    }
+
 }

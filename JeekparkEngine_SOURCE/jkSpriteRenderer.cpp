@@ -6,6 +6,9 @@
 namespace jk
 {
     SpriteRenderer::SpriteRenderer()
+        : mImage(nullptr)
+        , mWidth(0U)
+        , mHeight(0U)
     {
     }
     SpriteRenderer::~SpriteRenderer()
@@ -22,22 +25,18 @@ namespace jk
     }
     void SpriteRenderer::Render(HDC hdc)
     {
-        HBRUSH blueBrush = CreateSolidBrush(RGB(0, 0, 200));
-        HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, blueBrush);
-
-        HPEN redPen = CreatePen(PS_SOLID, 3,
-            RGB(rand() % 200, 0, 0));
-        HPEN oldPen = (HPEN)SelectObject(hdc, redPen);
-        
         Transform* tr = GetOwner()->GetComponent<Transform>();
 
-        Rectangle(hdc,
-            tr->GetX(), tr->GetY(),
-            tr->GetX() + 100, tr->GetY() + 100);
+        const Vector2& pos = tr->GetPosition();
 
-        SelectObject(hdc, oldBrush);
-        SelectObject(hdc, oldPen);
-        DeleteObject(blueBrush);
-        DeleteObject(redPen);
+        Gdiplus::Graphics graphics(hdc);
+        graphics.DrawImage(mImage, Gdiplus::Rect(pos.x, pos.y, mWidth, mHeight));
+
+    }
+    void SpriteRenderer::ImageLoad(const std::wstring& path)
+    {
+        mImage = Gdiplus::Image::FromFile(path.c_str());
+        mWidth = mImage->GetWidth();
+        mHeight = mImage->GetHeight();
     }
 }
