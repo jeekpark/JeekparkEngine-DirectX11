@@ -1,6 +1,8 @@
 #include "jkApplication.h"
+
 #include "jkInput.h"
 #include "jkTime.h"
+#include "jkSceneManager.h"
 
 namespace jk
 {
@@ -11,6 +13,7 @@ namespace jk
         , mHeight(0U)
         , mBackBitmap(nullptr)
         , mBackHdc(nullptr)
+        , mGameObjects{}
     {
     }
 
@@ -24,7 +27,7 @@ namespace jk
         createBuffer(width, height);
         initializeETC();
 
-        mPlayer.SetPosition(0.f, 0.f);
+        SceneManager::Initialize();
     }
 
     void Application::Run()
@@ -39,11 +42,12 @@ namespace jk
         Input::Update();
         Time::Update();
 
-        mPlayer.Update();
+        SceneManager::Update();
     }
 
     void Application::LateUpdate()
     {
+        
     }
 
     void Application::Render()
@@ -51,7 +55,7 @@ namespace jk
         clearRenderTarget(mBackHdc);
 
         Time::Render(mBackHdc);
-        mPlayer.Render(mBackHdc);
+        SceneManager::Render(mBackHdc);
 
         copyRenderTarget(mBackHdc, mHdc);
     }
@@ -71,7 +75,7 @@ namespace jk
     {
         mHwnd = hwnd;
         mHdc = GetDC(hwnd);
-        RECT rect = { 0, 0, width, height };
+        RECT rect = { 0, 0, (LONG)width, (LONG)height };
         mWidth = rect.right - rect.left;
         mHeight = rect.bottom - rect.top;
         AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);

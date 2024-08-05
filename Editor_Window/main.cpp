@@ -7,6 +7,7 @@
 
 
 #include "..\JeekparkEngine_SOURCE\jkApplication.h"
+#include "..\JeekparkEngine_Window\jkLoadScenes.h"
 
 
 
@@ -132,6 +133,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
+
+   jk::LoadScenes();
 
    return TRUE;
 }

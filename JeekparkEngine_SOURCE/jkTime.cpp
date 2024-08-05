@@ -40,6 +40,6 @@ namespace jk
 
         
         
-        TextOut(hdc, 0, 0, str, len);
+        TextOut(hdc, 0, 0, str, (int)len);
     }
 }
