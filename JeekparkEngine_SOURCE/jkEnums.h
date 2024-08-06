@@ -10,4 +10,12 @@ namespace jk::enums
         Player,
         Max,
     };
+
+    enum class eResourceType
+    {
+        Texture,
+        AudioClip,
+        Prefab,
+        End,
+    };
 }

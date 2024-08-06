@@ -8,6 +8,7 @@
 #include "jkTitleScene.h"
 #include "jkSceneManager.h"
 #include "jkObject.h"
+#include "jkTexture.h"
 
 namespace jk
 {
@@ -34,10 +35,14 @@ namespace jk
             enums::eLayerType::Backgorund,
             math::Vector2(100, 100)
         );
-
         SpriteRenderer* sr = bg->AddComponent<SpriteRenderer>();
         sr->SetName(L"SR");
-        sr->ImageLoad(L"C:\\Users\\9001\\Desktop\\CloudOcean.png");
+
+        graphics::Texture* tex = new graphics::Texture();
+        tex->Load(L"C:\\Users\\9001\\Desktop\\CloudOcean.png");
+        //sr->ImageLoad(L"C:\\Users\\9001\\Desktop\\CloudOcean.png");
+
+        Scene::Initialize();
 
     }
     void PlayScene::Update()

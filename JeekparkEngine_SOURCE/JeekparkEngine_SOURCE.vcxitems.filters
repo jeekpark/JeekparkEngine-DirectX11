@@ -35,8 +35,15 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)jkLayer.cpp">
       <Filter>Layer</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)jkResource.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)jkResources.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jkResource.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jkResources.cpp">
+      <Filter>Resource</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jkTexture.cpp">
+      <Filter>Resource\Texture</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)jkApplication.h" />
@@ -79,10 +86,17 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)jkLayer.h">
       <Filter>Layer</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)jkResource.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)jkResources.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkObject.h">
       <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jkResource.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jkResources.h">
+      <Filter>Resource</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jkTexture.h">
+      <Filter>Resource\Texture</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -103,6 +117,12 @@
     </Filter>
     <Filter Include="Layer">
       <UniqueIdentifier>{d42aae5a-fb5f-44ed-8377-a072e89c356e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource">
+      <UniqueIdentifier>{bb21c0c6-02d0-4fcd-ac45-2e21a9938ce7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Texture">
+      <UniqueIdentifier>{0e18e7a1-ced7-44bc-9e00-1c7b7fa23f43}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

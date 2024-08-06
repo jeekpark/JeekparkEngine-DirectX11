@@ -17,6 +17,9 @@ namespace jk
         void Update();
         void LateUpdate();
         void Render();
+
+        HDC GetHdc() { return mHdc; }
+
     private:
         void clearRenderTarget(HDC target);
         void copyRenderTarget(HDC source, HDC dest);
