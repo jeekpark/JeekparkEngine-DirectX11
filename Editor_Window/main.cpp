@@ -8,6 +8,7 @@
 
 #include "..\JeekparkEngine_SOURCE\jkApplication.h"
 #include "..\JeekparkEngine_Window\jkLoadScenes.h"
+#include "..\JeekparkEngine_Window\jkLoadResources.h"
 
 
 
@@ -140,6 +141,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    Gdiplus::GdiplusStartup(&gpToken, &gpsi, nullptr);
 
+   jk::LoadResources();
    jk::LoadScenes();
 
    return TRUE;

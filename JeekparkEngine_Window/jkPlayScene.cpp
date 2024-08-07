@@ -9,6 +9,7 @@
 #include "jkSceneManager.h"
 #include "jkObject.h"
 #include "jkTexture.h"
+#include "jkResources.h"
 
 namespace jk
 {
@@ -20,27 +21,16 @@ namespace jk
     }
     void PlayScene::Initialize()
     {
-        /*bg = new Player();
-        Transform* tr = bg->AddComponent<Transform>();
-        tr->SetName(L"TR");
-        tr->SetPosition(Vector2(0, 0));
-
-        SpriteRenderer* sr = bg->AddComponent<SpriteRenderer>();
-        sr->SetName(L"SR");
-        sr->ImageLoad(L"C:\\Users\\9001\\Desktop\\CloudOcean.png");
         
-        AddGameObject(bg, enums::eLayerType::Backgorund);*/
 
         bg = object::Instantiate<Player>(
             enums::eLayerType::Backgorund,
-            math::Vector2(100, 100)
+            math::Vector2(0, 0)
         );
         SpriteRenderer* sr = bg->AddComponent<SpriteRenderer>();
-        sr->SetName(L"SR");
-
-        graphics::Texture* tex = new graphics::Texture();
-        tex->Load(L"C:\\Users\\9001\\Desktop\\CloudOcean.png");
-        //sr->ImageLoad(L"C:\\Users\\9001\\Desktop\\CloudOcean.png");
+        graphics::Texture* texture = Resources::Find<graphics::Texture>(L"BG");
+        sr->SetTexture(texture);
+        //sr->SetSize(math::Vector2(3, 3));
 
         Scene::Initialize();
 
@@ -61,7 +51,7 @@ namespace jk
     {
         Scene::Render(hdc);
         wchar_t str[50] = L"Play Scene";
-        TextOut(hdc, 0, 0, str, wcsnlen_s(str, 50));
+        TextOut(hdc, 0, 0, str, (int)wcsnlen_s(str, 50));
     }
     void PlayScene::OnEnter()
     {

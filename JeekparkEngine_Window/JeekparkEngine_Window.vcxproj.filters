@@ -21,6 +21,7 @@
     <ClInclude Include="jkTitleScene.h">
       <Filter>Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="jkLoadResources.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="jkPlayer.cpp">

@@ -13,6 +13,7 @@
 #include <algorithm>
 #include <string>
 #include <map>
+#include <cassert>
 
 #include "jkMath.h"
 #include "jkEnums.h"

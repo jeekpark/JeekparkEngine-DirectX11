@@ -1,6 +1,7 @@
 #pragma once
 
 #include "jkComponent.h"
+#include "jkTexture.h"
 
 namespace jk
 {
@@ -14,8 +15,12 @@ namespace jk
         void Update()  override;
         void LateUpdate()  override;
         void Render(HDC hdc)  override;
-    private:
 
+        void SetTexture(graphics::Texture* texture) { mTexture = texture; }
+        void SetSize(math::Vector2 size) { mScale = size; }
+    private:
+        graphics::Texture* mTexture;
+        math::Vector2 mScale;
     };
 }
 

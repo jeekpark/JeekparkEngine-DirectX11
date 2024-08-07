@@ -134,6 +134,7 @@
     <ClInclude Include="jkPlayer.h" />
     <ClInclude Include="jkPlayScene.h" />
     <ClInclude Include="jkTitleScene.h" />
+    <ClInclude Include="jkLoadResources.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="jkPlayer.cpp" />
