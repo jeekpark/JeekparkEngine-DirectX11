@@ -8,7 +8,7 @@ namespace jk
     class Component : public Entity
     {
     public:
-        Component();
+        Component(enums::eComponentType type);
         ~Component();
 
         virtual void Initialize();
@@ -18,10 +18,11 @@ namespace jk
 
         void SetOwner(GameObject* owner) { mOwner = owner; }
         GameObject* GetOwner() { return mOwner; }
+        enums::eComponentType GetComponentType() { return mComponentType; }
 
     private:
         GameObject* mOwner;
-
+        enums::eComponentType mComponentType;
     };
 
 }

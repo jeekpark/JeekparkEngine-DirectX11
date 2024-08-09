@@ -27,10 +27,7 @@ namespace jk::graphics
                 0,
                 LR_LOADFROMFILE | LR_CREATEDIBSECTION
             );
-            if (mBitmap == nullptr)
-            {
-                return S_FALSE;
-            }
+            assert(mBitmap != nullptr);
             BITMAP info = {};
             GetObject(mBitmap, sizeof(BITMAP), &info);
 
@@ -47,10 +44,7 @@ namespace jk::graphics
         {
             mTextureType = eTextureType::Png;
             mImage = Gdiplus::Image::FromFile(path.c_str());
-            if (mImage == nullptr)
-            {
-                return S_FALSE;
-            }
+            assert(mImage->GetLastStatus() == Gdiplus::Ok);
             mWidth = mImage->GetWidth();
             mHeight = mImage->GetHeight();
         }

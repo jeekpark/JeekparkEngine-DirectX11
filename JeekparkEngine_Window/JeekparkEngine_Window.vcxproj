@@ -106,6 +106,7 @@
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -121,6 +122,7 @@
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp20</LanguageStandard>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -132,12 +134,14 @@
   <ItemGroup>
     <ClInclude Include="jkLoadScenes.h" />
     <ClInclude Include="jkPlayer.h" />
+    <ClInclude Include="jkPlayerScript.h" />
     <ClInclude Include="jkPlayScene.h" />
     <ClInclude Include="jkTitleScene.h" />
     <ClInclude Include="jkLoadResources.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="jkPlayer.cpp" />
+    <ClCompile Include="jkPlayerScript.cpp" />
     <ClCompile Include="jkPlayScene.cpp" />
     <ClCompile Include="jkTitleScene.cpp" />
   </ItemGroup>

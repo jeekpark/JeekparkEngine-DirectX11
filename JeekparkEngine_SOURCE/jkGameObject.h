@@ -21,7 +21,7 @@ namespace jk
         {
             T* comp = new T();
             comp->SetOwner(this);
-            mComponents.push_back(comp);
+            mComponents[(UINT)comp->GetComponentType()] = comp;
             return comp;
         }
 

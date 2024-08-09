@@ -3,6 +3,15 @@
 
 namespace jk::enums
 {
+    enum class eComponentType
+    {
+        Transform,
+        SpriteRenderer,
+        Animator,
+        Script,
+        Camera,
+        End
+    };
     enum class eLayerType
     {
         None,
@@ -15,6 +24,7 @@ namespace jk::enums
     {
         Texture,
         AudioClip,
+        Animation,
         Prefab,
         End,
     };

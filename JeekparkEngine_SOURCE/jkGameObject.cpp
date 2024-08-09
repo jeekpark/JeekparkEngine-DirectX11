@@ -8,6 +8,7 @@ namespace jk
 {
     GameObject::GameObject()
     {
+        mComponents.resize((UINT)enums::eComponentType::End);
         initializeTransform();
     }
 
@@ -24,6 +25,10 @@ namespace jk
     {
         for (Component* comp : mComponents)
         {
+            if (comp == nullptr)
+            {
+                continue;
+            }
             comp->Initialize();
         }
     }
@@ -32,6 +37,10 @@ namespace jk
     {
         for (Component* comp : mComponents)
         {
+            if (comp == nullptr)
+            {
+                continue;
+            }
             comp->Update();
         }
     }
@@ -40,6 +49,10 @@ namespace jk
     {
         for (Component* comp : mComponents)
         {
+            if (comp == nullptr)
+            {
+                continue;
+            }
             comp->LateUpdate();
         }
     }
@@ -48,6 +61,10 @@ namespace jk
     {
         for (Component* comp : mComponents)
         {
+            if (comp == nullptr)
+            {
+                continue;
+            }
             comp->Render(hdc);
         }
     }

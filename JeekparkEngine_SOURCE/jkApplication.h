@@ -19,6 +19,8 @@ namespace jk
         void Render();
 
         HDC GetHdc() { return mHdc; }
+        UINT GetWidth() { return mWidth; }
+        UINT GetHeight() { return mHeight; }
 
     private:
         void clearRenderTarget(HDC target);
@@ -35,8 +37,7 @@ namespace jk
 
         UINT mWidth;
         UINT mHeight;
-        
-        std::vector<GameObject*> mGameObjects;
+
     };
 
 

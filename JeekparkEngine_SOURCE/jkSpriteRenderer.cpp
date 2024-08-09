@@ -3,13 +3,15 @@
 #include "jkGameObject.h"
 #include "jkTransform.h"
 #include "jkTexture.h"
+#include "jkRenderer.h"
+
 
 namespace jk
 {
     SpriteRenderer::SpriteRenderer()
-        : Component()
+        : Component(enums::eComponentType::SpriteRenderer)
         , mTexture(nullptr)
-        , mScale(Vector2::One)
+        , mSize(Vector2::One)
     {
     }
     SpriteRenderer::~SpriteRenderer()
@@ -29,15 +31,16 @@ namespace jk
         assert(mTexture != nullptr);
         
         Transform* tr = GetOwner()->GetComponent<Transform>();
-        const Vector2& pos = tr->GetPosition();
-
+        Vector2 pos = tr->GetPosition();
+        pos = renderer::mainCamera->CalculatePosition(pos);
         if (mTexture->GetTextureType()
             == graphics::Texture::eTextureType::Bmp)
         {
+            
             TransparentBlt(
                 hdc,
                 pos.x, pos.y,
-                mTexture->GetWidth(), mTexture->GetHeight(),
+                mTexture->GetWidth() * mSize.x, mTexture->GetHeight() * mSize.y,
                 mTexture->GetHdc(),
                 0, 0,
                 mTexture->GetWidth(), mTexture->GetHeight(),
@@ -53,8 +56,8 @@ namespace jk
                 Gdiplus::Rect(
                     pos.x,
                     pos.y, 
-                    mTexture->GetWidth() * mScale.x,
-                    mTexture->GetHeight() * mScale.y
+                    mTexture->GetWidth() * mSize.x,
+                    mTexture->GetHeight() * mSize.y
                 )
             );
         }

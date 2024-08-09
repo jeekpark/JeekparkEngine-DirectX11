@@ -2,6 +2,8 @@
 
 #include "CommonInclude.h"
 
+using namespace jk::math;
+
 namespace jk
 {
     class Entity

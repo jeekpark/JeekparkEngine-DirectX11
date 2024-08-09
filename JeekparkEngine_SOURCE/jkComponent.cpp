@@ -3,8 +3,9 @@
 
 namespace jk
 {
-    Component::Component()
+    Component::Component(enums::eComponentType type)
         : mOwner(nullptr)
+        , mComponentType(type)
     {
     }
     Component::~Component()

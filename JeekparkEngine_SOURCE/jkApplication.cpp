@@ -13,7 +13,6 @@ namespace jk
         , mHeight(0U)
         , mBackBitmap(nullptr)
         , mBackHdc(nullptr)
-        , mGameObjects{}
     {
     }
 
@@ -63,7 +62,7 @@ namespace jk
 
     void Application::clearRenderTarget(HDC target)
     {
-        Rectangle(target, -1, -1, 1921, 1081);
+        Rectangle(target, -1, -1, 1000, 1000);
     }
 
     void Application::copyRenderTarget(HDC source, HDC dest)
@@ -76,9 +75,9 @@ namespace jk
         mHwnd = hwnd;
         mHdc = GetDC(hwnd);
         RECT rect = { 0, 0, (LONG)width, (LONG)height };
+        AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
         mWidth = rect.right - rect.left;
         mHeight = rect.bottom - rect.top;
-        AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
         SetWindowPos(
             hwnd,
             nullptr,

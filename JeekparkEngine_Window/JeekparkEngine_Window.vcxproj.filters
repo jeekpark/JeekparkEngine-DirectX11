@@ -1,11 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
+    <Filter Include="Contents">
+      <UniqueIdentifier>{7b8c869b-d701-46d2-b46d-b91f965859ba}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Scenes">
       <UniqueIdentifier>{7391cd2c-97b3-4cbd-8bd5-524692283ecd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Contents">
-      <UniqueIdentifier>{7b8c869b-d701-46d2-b46d-b91f965859ba}</UniqueIdentifier>
+    <Filter Include="Scripts">
+      <UniqueIdentifier>{ce3ff6db-3271-4a53-b4f3-17cdea4f8d8b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -21,7 +24,12 @@
     <ClInclude Include="jkTitleScene.h">
       <Filter>Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="jkLoadResources.h" />
+    <ClInclude Include="jkPlayerScript.h">
+      <Filter>Scripts</Filter>
+    </ClInclude>
+    <ClInclude Include="jkLoadResources.h">
+      <Filter>Contents</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="jkPlayer.cpp">
@@ -32,6 +40,9 @@
     </ClCompile>
     <ClCompile Include="jkTitleScene.cpp">
       <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="jkPlayerScript.cpp">
+      <Filter>Scripts</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

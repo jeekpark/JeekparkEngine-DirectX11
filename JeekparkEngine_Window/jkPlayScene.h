@@ -21,7 +21,7 @@ namespace jk
         void OnEnter() override;
         void OnExit() override;
     private:
-        Player* bg;
+        Player* mPlayer;
     };
 
 }
