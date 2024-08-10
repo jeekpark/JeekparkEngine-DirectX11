@@ -1,4 +1,4 @@
-#include "jkPlayer.h"
+#include "jkCat.h"
 
 #include "jkInput.h"
 #include "jkTransform.h"
@@ -6,19 +6,19 @@
 
 namespace jk
 {
-    void Player::Initialize()
+    void Cat::Initialize()
     {
         GameObject::Initialize();
     }
-    void Player::Update()
+    void Cat::Update()
     {
         GameObject::Update();
     }
-    void Player::LateUpdate()
+    void Cat::LateUpdate()
     {
         GameObject::LateUpdate();
     }
-    void Player::Render(HDC hdc)
+    void Cat::Render(HDC hdc)
     {
         GameObject::Render(hdc);
     }

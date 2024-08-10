@@ -132,6 +132,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="jkCat.h" />
+    <ClInclude Include="jkCatScript.h" />
     <ClInclude Include="jkLoadScenes.h" />
     <ClInclude Include="jkPlayer.h" />
     <ClInclude Include="jkPlayerScript.h" />
@@ -140,6 +142,8 @@
     <ClInclude Include="jkLoadResources.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="jkCat.cpp" />
+    <ClCompile Include="jkCatScript.cpp" />
     <ClCompile Include="jkPlayer.cpp" />
     <ClCompile Include="jkPlayerScript.cpp" />
     <ClCompile Include="jkPlayScene.cpp" />

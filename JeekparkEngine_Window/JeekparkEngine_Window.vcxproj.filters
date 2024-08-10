@@ -28,6 +28,12 @@
       <Filter>Scripts</Filter>
     </ClInclude>
     <ClInclude Include="jkLoadResources.h" />
+    <ClInclude Include="jkCat.h">
+      <Filter>Contents</Filter>
+    </ClInclude>
+    <ClInclude Include="jkCatScript.h">
+      <Filter>Scripts</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="jkPlayer.cpp">
@@ -40,6 +46,12 @@
       <Filter>Scenes</Filter>
     </ClCompile>
     <ClCompile Include="jkPlayerScript.cpp">
+      <Filter>Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="jkCat.cpp">
+      <Filter>Contents</Filter>
+    </ClCompile>
+    <ClCompile Include="jkCatScript.cpp">
       <Filter>Scripts</Filter>
     </ClCompile>
   </ItemGroup>

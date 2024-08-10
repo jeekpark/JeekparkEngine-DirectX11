@@ -66,7 +66,7 @@ namespace jk
             func.BlendOp = AC_SRC_OVER;
             func.BlendFlags = 0;
             func.AlphaFormat = AC_SRC_ALPHA;
-            func.SourceConstantAlpha = 125;
+            func.SourceConstantAlpha = 255;
 
             
             HDC imgHdc = mTexture->GetHdc();

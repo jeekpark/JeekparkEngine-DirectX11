@@ -16,6 +16,7 @@ namespace jk::enums
     {
         None,
         Backgorund,
+        Animal,
         Player,
         Particle,
         Max,

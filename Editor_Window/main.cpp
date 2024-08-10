@@ -1,6 +1,6 @@
 ﻿// Editor_Window.cpp : 애플리케이션에 대한 진입점을 정의합니다.
 //
-
+#include <time.h>
 #include "framework.h"
 #include "Editor_Window.h"
 
@@ -135,6 +135,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    Gdiplus::GdiplusStartup(&gpToken, &gpsi, nullptr);
 
+   srand(time(0));
    jk::LoadResources();
    jk::LoadScenes();
 
