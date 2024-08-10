@@ -3,6 +3,7 @@
 #include "jkInput.h"
 #include "jkTime.h"
 #include "jkSceneManager.h"
+#include "jkResources.h"
 
 namespace jk
 {
@@ -57,6 +58,12 @@ namespace jk
         SceneManager::Render(mBackHdc);
         
         copyRenderTarget(mBackHdc, mHdc);
+    }
+
+    void Application::Release()
+    {
+        SceneManager::Release();
+        Resources::Release();
     }
 
 

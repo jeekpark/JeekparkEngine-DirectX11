@@ -23,11 +23,14 @@ namespace jk
 
     void CatScript::Initialize()
     {
-        mAnimator = GetOwner()->GetComponent<Animator>();
     }
 
     void CatScript::Update()
     {
+        if (mAnimator == nullptr)
+        {
+            mAnimator = GetOwner()->GetComponent<Animator>();
+        }
         switch (mState)
         {
         case jk::CatScript::eState::SitDown:

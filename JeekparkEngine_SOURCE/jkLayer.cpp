@@ -7,6 +7,10 @@ namespace jk
     }
     Layer::~Layer()
     {
+        for (GameObject* obj : mGameObjects)
+        {
+            delete obj;
+        }
     }
 
     void Layer::Initialize()

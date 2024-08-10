@@ -11,6 +11,16 @@ namespace jk
     }
     Animator::~Animator()
     {
+        for (auto& iter : mAnimations)
+        {
+            delete iter.second;
+            iter.second = nullptr;
+        }
+        for (auto& iter : mEvents)
+        {
+            delete iter.second;
+            iter.second = nullptr;
+        }
     }
     void Animator::Initialize()
     {
@@ -20,10 +30,19 @@ namespace jk
         if (mActiveAnimation)
         {
             mActiveAnimation->Update();
-            if (mActiveAnimation->IsComplete() == true
-                && mbLoop == true)
+
+            Events* events = FindEvents(mActiveAnimation->GetName());
+            if (mActiveAnimation->IsComplete() == true)
+            
             {
-                mActiveAnimation->Reset();
+                if (events)
+                {
+                    events->completeEvent();
+                }
+                if (mbLoop == true)
+                {
+                    mActiveAnimation->Reset();
+                }
             }
         }
     }
@@ -55,6 +74,7 @@ namespace jk
         }
 
         animation = new Animation();
+        animation->SetName(name);
         animation->CreateAnimation(
             name,
             spriteSheet,
@@ -66,7 +86,8 @@ namespace jk
         );
 
         animation->SetAnimator(this);
-
+        Events* events = new Events();
+        mEvents.insert(std::make_pair(name, events));
         mAnimations.insert(std::make_pair(name, animation));
     }
     Animation* Animator::FindAnimation(const std::wstring& name)
@@ -86,8 +107,48 @@ namespace jk
         {
             return;
         }
+
+        if (mActiveAnimation)
+        {
+            Events* currentEvents = FindEvents(mActiveAnimation->GetName());
+            if (currentEvents)
+            {
+                currentEvents->endEvent();
+            }
+        }
+
+        Events* nextEvents = FindEvents(animation->GetName());
+        if (nextEvents)
+        {
+            nextEvents->startEvent();
+        }
+
         mActiveAnimation = animation;
         mActiveAnimation->Reset();
         mbLoop = loop;
+    }
+    Animator::Events* Animator::FindEvents(const std::wstring& name)
+    {
+        auto iter = mEvents.find(name);
+        if (iter == mEvents.end())
+        {
+            return nullptr;
+        }
+        return iter->second;
+    }
+    std::function<void()>& Animator::GetStartEvent(const std::wstring& name)
+    {
+        Events* events = FindEvents(name);
+        return events->startEvent.mEvent;
+    }
+    std::function<void()>& Animator::GetCompleteEvent(const std::wstring& name)
+    {
+        Events* events = FindEvents(name);
+        return events->completeEvent.mEvent;
+    }
+    std::function<void()>& Animator::GetEndEvent(const std::wstring& name)
+    {
+        Events* events = FindEvents(name);
+        return events->endEvent.mEvent;
     }
 }

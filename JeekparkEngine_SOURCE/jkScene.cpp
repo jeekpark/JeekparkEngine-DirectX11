@@ -13,6 +13,10 @@ namespace jk
     }
     Scene::~Scene()
     {
+        for (Layer* layer : mLayers)
+        {
+            delete layer;
+        }
     }
     void Scene::Initialize()
     {

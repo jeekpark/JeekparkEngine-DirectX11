@@ -35,46 +35,23 @@ namespace jk
         renderer::mainCamera = cameraComp;
 
 
+        /////// PLAYER ////////
         mPlayer = object::Instantiate<Player>(enums::eLayerType::Particle);
-        mPlayer->AddComponent<PlayerScript>();
-
-        /*graphics::Texture* pacmanTexture = Resources::Find<graphics::Texture>(L"MapleEffect");
-        Animator* animator = mPlayer->AddComponent<Animator>();
-        animator->CreateAnimation(L"CatFrontMove", pacmanTexture,
-            Vector2(0.f, 0.f), Vector2(386.f, 246.f), Vector2::Zero, 8, .05f);
-        animator->PlayAnimation(L"CatFrontMove", true);
-        mPlayer->GetComponent<Transform>()->SetPosition({ 100.f, 100.f });
-        mPlayer->GetComponent<Transform>()->SetScale({ 2.f, 2.f });
-        mPlayer->GetComponent<Transform>()->SetRotation(30.f);*/
-
-        graphics::Texture* pacmanTexture = Resources::Find<graphics::Texture>(L"Cat");
-        Animator* animator = mPlayer->AddComponent<Animator>();
-        animator->CreateAnimation(L"DownWalk", pacmanTexture,
-            Vector2(0.f, 0.f), Vector2(32.f, 32.f), Vector2::Zero, 4, 0.1f);
-        animator->CreateAnimation(L"RightWalk", pacmanTexture,
-            Vector2(0.f, 32.f), Vector2(32.f, 32.f), Vector2::Zero, 4, 0.1f);
-        animator->CreateAnimation(L"UpWalk", pacmanTexture,
-            Vector2(0.f, 64.f), Vector2(32.f, 32.f), Vector2::Zero, 4, 0.1f);
-        animator->CreateAnimation(L"LeftWalk", pacmanTexture,
-            Vector2(0.f, 96.f), Vector2(32.f, 32.f), Vector2::Zero, 4, 0.1f);
-        animator->CreateAnimation(L"SitDown", pacmanTexture,
-            Vector2(0.f, 128.f), Vector2(32.f, 32.f), Vector2::Zero, 4, 0.5f);
-        animator->CreateAnimation(L"Grooming", pacmanTexture,
-            Vector2(0.f, 160.f), Vector2(32.f, 32.f), Vector2::Zero, 4, 0.5f);
+        PlayerScript* plScript = mPlayer->AddComponent<PlayerScript>();
+        graphics::Texture* playerTex = Resources::Find<graphics::Texture>(L"Player");
+        Animator* playerAnimator = mPlayer->AddComponent<Animator>();
+        playerAnimator->CreateAnimation(L"Idle", playerTex,
+            Vector2(2000.f, 250.f), Vector2(250.f, 250.f), Vector2::Zero, 1, 0.1f);
+        playerAnimator->CreateAnimation(L"FrontGiveWater", playerTex,
+            Vector2(0.f, 2000.f), Vector2(250.f, 250.f), Vector2::Zero, 12, 0.1f);
         
+        playerAnimator->GetCompleteEvent(L"FrontGiveWater") = std::bind(&PlayerScript::AttackEffect, plScript);
+
 
         mPlayer->GetComponent<Transform>()->SetPosition({ 100.f, 100.f });
-        mPlayer->GetComponent<Transform>()->SetScale({ 3.f, 3.f });
-        mPlayer->GetComponent<Transform>()->SetRotation(0.f);
-        animator->PlayAnimation(L"SitDown", false);
 
+        playerAnimator->PlayAnimation(L"Idle", false);
 
-        /*GameObject* bg = object::Instantiate<GameObject>(enums::eLayerType::Player);
-        SpriteRenderer* bgSr = bg->AddComponent<SpriteRenderer>();
-        graphics::Texture* bgTexture = Resources::Find<graphics::Texture>(L"Bubble");
-        
-        bgSr->SetTexture(bgTexture);*/
-        
 
         /////// CAT ////////
         Cat* cat = object::Instantiate<Cat>(enums::eLayerType::Animal);

@@ -9,9 +9,10 @@ namespace jk
     public:
         enum class eState
         {
-            SitDown,
+            Idle,
             Walk,
             Sleep,
+            GiveWater,
             Attack,
         };
 
@@ -22,13 +23,20 @@ namespace jk
         void Update() override;
         void LateUpdate() override;
         void Render(HDC hdc) override;
+
+        void AttackEffect();
     private:
-        void sitDown();
+        void idle();
         void move();
+        void giveWater();
 
     private:
         eState mState;
         class Animator* mAnimator;
+
+        void (*StartEvent)();
+        void (*CompleteEvent)();
+        void (*EndEvent)();
     };
 
 }

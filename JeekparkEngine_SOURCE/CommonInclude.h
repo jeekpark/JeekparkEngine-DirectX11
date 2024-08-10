@@ -14,6 +14,7 @@
 #include <string>
 #include <map>
 #include <cassert>
+#include <functional>
 
 #include "jkMath.h"
 #include "jkEnums.h"
