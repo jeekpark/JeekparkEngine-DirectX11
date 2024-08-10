@@ -37,7 +37,9 @@ namespace jk
 
         /////// PLAYER ////////
         mPlayer = object::Instantiate<Player>(enums::eLayerType::Particle);
+        
         PlayerScript* plScript = mPlayer->AddComponent<PlayerScript>();
+
         graphics::Texture* playerTex = Resources::Find<graphics::Texture>(L"Player");
         Animator* playerAnimator = mPlayer->AddComponent<Animator>();
         playerAnimator->CreateAnimation(L"Idle", playerTex,
@@ -56,7 +58,7 @@ namespace jk
         /////// CAT ////////
         Cat* cat = object::Instantiate<Cat>(enums::eLayerType::Animal);
         cat->AddComponent<CatScript>();
-
+        cameraComp->SetTarget(cat);
         graphics::Texture* catTex = Resources::Find<graphics::Texture>(L"Cat");
         Animator* catAnimator = cat->AddComponent<Animator>();
         catAnimator->CreateAnimation(L"DownWalk", catTex,
@@ -76,8 +78,8 @@ namespace jk
 
         catAnimator->PlayAnimation(L"SitDown", false);
 
-        cat->GetComponent<Transform>()->SetPosition({ 300, 300 });
-        cat->GetComponent<Transform>()->SetScale({ 3.f, 3.f });
+        cat->GetComponent<Transform>()->SetPosition({ 200, 200 });
+        cat->GetComponent<Transform>()->SetScale({ 2.f, 2.f });
 
         Scene::Initialize();
 

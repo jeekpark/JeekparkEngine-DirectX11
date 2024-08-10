@@ -57,6 +57,12 @@ namespace jk
         Vector2 pos = tr->GetPosition();
         Vector2 scl = tr->GetScale();
         float rot = tr->GetRotation();
+
+        if (renderer::mainCamera)
+        {
+            pos = renderer::mainCamera->CalculatePosition(pos);
+        }
+
         Sprite sprite = mAnimationSheet[mIndex];
 
         graphics::Texture::eTextureType type = mTexture->GetTextureType();

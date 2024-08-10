@@ -17,6 +17,8 @@ namespace jk
         void LateUpdate() override;
         void Render(HDC hdc) override;
 
+        void SetTarget(GameObject* target) { mTarget = target; }
+
         Vector2 CalculatePosition(Vector2 pos) { return pos - mDistance; };
 
     private:
