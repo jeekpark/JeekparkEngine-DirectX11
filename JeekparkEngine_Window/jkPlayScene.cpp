@@ -25,34 +25,38 @@ namespace jk
     }
     void PlayScene::Initialize()
     {
-        GameObject* camera = object::Instantiate<GameObject>(
+        GameObject* cameraObj = object::Instantiate<GameObject>(
             enums::eLayerType::None,
             {347.f, 450.f}
         );
-        Camera* cameraComp = camera->AddComponent<Camera>();
+        Camera* cameraComp = cameraObj->AddComponent<Camera>();
         renderer::mainCamera = cameraComp;
-        //camera->AddComponent<PlayerScript>();
 
-        mPlayer = object::Instantiate<Player>(enums::eLayerType::Player);
+
+        mPlayer = object::Instantiate<Player>(enums::eLayerType::Particle);
         //SpriteRenderer* sr = mPlayer->AddComponent<SpriteRenderer>();
-        //sr->SetSize(Vector2(3.f, 3.f));
+
         mPlayer->AddComponent<PlayerScript>();
 
-        graphics::Texture* pacmanTexture = Resources::Find<graphics::Texture>(L"Cat");
+        graphics::Texture* pacmanTexture = Resources::Find<graphics::Texture>(L"MapleEffect");
         Animator* animator = mPlayer->AddComponent<Animator>();
         animator->CreateAnimation(L"CatFrontMove", pacmanTexture,
-            Vector2(0.f, 0.f), Vector2(32.f, 32.f), Vector2::Zero, 4, 1);
-        animator->PlayAnimation(L"CatFrontMove");
-        //sr->SetTexture(pacmanTexture);
+            Vector2(0.f, 0.f), Vector2(386.f, 246.f), Vector2::Zero, 8, .05f);
+        mPlayer->GetComponent<Transform>()->SetPosition({ 100.f, 100.f });
+        mPlayer->GetComponent<Transform>()->SetScale({ 2.f, 2.f });
+        mPlayer->GetComponent<Transform>()->SetRotation(30.f);
+
+        animator->PlayAnimation(L"CatFrontMove", true);
+        
         
 
-        GameObject* bg = object::Instantiate<GameObject>(enums::eLayerType::Backgorund);
-        SpriteRenderer* sr = bg->AddComponent<SpriteRenderer>();
-        sr->SetSize({ 3.f, 3.f });
+        GameObject* bg = object::Instantiate<GameObject>(enums::eLayerType::Player);
+        SpriteRenderer* bgSr = bg->AddComponent<SpriteRenderer>();
+
         
-        graphics::Texture* bgTexture = Resources::Find<graphics::Texture>(L"Map");
+        graphics::Texture* bgTexture = Resources::Find<graphics::Texture>(L"Bubble");
         
-        sr->SetTexture(bgTexture);
+        bgSr->SetTexture(bgTexture);
 
 
         Scene::Initialize();

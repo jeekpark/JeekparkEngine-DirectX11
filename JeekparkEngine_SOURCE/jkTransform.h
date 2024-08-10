@@ -4,8 +4,6 @@
 
 namespace jk
 {
-    using namespace math;
-
     class Transform : public Component
     {
     public:
@@ -17,18 +15,19 @@ namespace jk
         void LateUpdate() override;
         void Render(HDC hdc) override;
 
-        void SetPosition(const Vector2& pos)
-        {
-            mPosition = pos;
-        }
-
-        const Vector2& GetPosition() const
-        {
-            return mPosition;
-        }
+        const Vector2& GetPosition() const { return mPosition; }
+        const Vector2& GetScale() const { return mScale; }
+        float GetRotation() const { return mRotation; }
+        
+        void SetPosition(const Vector2& pos) { mPosition = pos; }
+        void SetScale(const Vector2& scl) { mScale = scl; }
+        void SetRotation(float rot) { mRotation = rot; }
+        
 
     private:
         Vector2 mPosition;
+        Vector2 mScale;
+        float mRotation;
     };
 
 }

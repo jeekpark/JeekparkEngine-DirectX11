@@ -27,9 +27,7 @@
     <ClInclude Include="jkPlayerScript.h">
       <Filter>Scripts</Filter>
     </ClInclude>
-    <ClInclude Include="jkLoadResources.h">
-      <Filter>Contents</Filter>
-    </ClInclude>
+    <ClInclude Include="jkLoadResources.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="jkPlayer.cpp">

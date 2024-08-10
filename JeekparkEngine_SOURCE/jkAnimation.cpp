@@ -50,14 +50,13 @@ namespace jk
     }
     void Animation::Render(HDC hdc)
     {
-        if (mTexture == nullptr)
-        {
-            return;
-        }
+        assert(mTexture != nullptr);
 
         GameObject* obj = mAnimator->GetOwner();
         Transform* tr = obj->GetComponent<Transform>();
         Vector2 pos = tr->GetPosition();
+        Vector2 scl = tr->GetScale();
+        float rot = tr->GetRotation();
         Sprite sprite = mAnimationSheet[mIndex];
 
         graphics::Texture::eTextureType type = mTexture->GetTextureType();
@@ -67,34 +66,47 @@ namespace jk
             func.BlendOp = AC_SRC_OVER;
             func.BlendFlags = 0;
             func.AlphaFormat = AC_SRC_ALPHA;
-            func.SourceConstantAlpha = 255;
+            func.SourceConstantAlpha = 125;
 
             
             HDC imgHdc = mTexture->GetHdc();
-            AlphaBlend(hdc, pos.x, pos.y,
-                sprite.size.x * 5, sprite.size.y * 5,
+            AlphaBlend(hdc,
+                pos.x - (sprite.size.x / 2.f),
+                pos.y - (sprite.size.y / 2.f),
+                sprite.size.x * scl.x,
+                sprite.size.y * scl.y,
                 imgHdc,
-                sprite.leftTop.x, sprite.leftTop.y,
-                sprite.size.x, sprite.size.y,
+                sprite.leftTop.x,
+                sprite.leftTop.y,
+                sprite.size.x,
+                sprite.size.y,
                 func
             );
         }
         else if (type == graphics::Texture::eTextureType::Png)
         {
             Gdiplus::ImageAttributes imgAtt = {};
-            imgAtt.SetColorKey(Gdiplus::Color(100, 100, 100), Gdiplus::Color(255, 255, 255));
+            imgAtt.SetColorKey(Gdiplus::Color(230, 230, 230), Gdiplus::Color(255, 255, 255));
             Gdiplus::Graphics graphics(hdc);
+
+            graphics.TranslateTransform(pos.x, pos.y);
+            graphics.RotateTransform(rot);
+            graphics.TranslateTransform(-pos.x, -pos.y);
+
             graphics.DrawImage(
                 mTexture->GetImage(),
                 Gdiplus::Rect(
-                    pos.x, pos.y,
-                    sprite.size.x, sprite.size.y
+                    pos.x - (sprite.size.x / 2.f),
+                    pos.y - (sprite.size.y / 2.f),
+                    sprite.size.x * scl.x,
+                    sprite.size.y * scl.y
                 ),
-                sprite.leftTop.x, sprite.leftTop.y,
-                sprite.leftTop.x + sprite.size.x,
-                sprite.leftTop.y + sprite.size.y,
+                sprite.leftTop.x,
+                sprite.leftTop.y,
+                sprite.size.x,
+                sprite.size.y,
                 Gdiplus::UnitPixel,
-                nullptr
+                &imgAtt
             );
         }
 

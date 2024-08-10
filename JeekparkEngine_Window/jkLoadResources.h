@@ -13,5 +13,6 @@ namespace jk
         Resources::Load<graphics::Texture>(L"PacMan", L"..\\Resources\\img\\pacman\\0.png");
         Resources::Load<graphics::Texture>(L"Cat", L"..\\Resources\\chickenAlpha.bmp");
         Resources::Load<graphics::Texture>(L"Bubble", L"..\\Resources\\Bubble.png");
+        Resources::Load<graphics::Texture>(L"MapleEffect", L"..\\Resources\\ezgif.com-gif-maker.png");
     }
 }

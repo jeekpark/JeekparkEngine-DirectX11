@@ -17,6 +17,7 @@ namespace jk::enums
         None,
         Backgorund,
         Player,
+        Particle,
         Max,
     };
 
