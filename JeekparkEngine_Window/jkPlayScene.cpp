@@ -29,7 +29,7 @@ namespace jk
     {
         GameObject* cameraObj = object::Instantiate<GameObject>(
             enums::eLayerType::None,
-            { 0.f, 0.f }//{347.f, 450.f}
+            { 672.f / 2.f, 816.f / 2.f}//{347.f, 450.f}
         );
         Camera* cameraComp = cameraObj->AddComponent<Camera>();
         renderer::mainCamera = cameraComp;
@@ -37,14 +37,16 @@ namespace jk
 
         /////// PLAYER ////////
         mPlayer = object::Instantiate<Player>(enums::eLayerType::Player);
-        mPlayer->GetComponent<Transform>()->SetPosition({ 0.f, 0.f });
+        mPlayer->GetComponent<Transform>()->SetPosition({ 300.f, 250.f });
+        mPlayer->GetComponent<Transform>()->SetScale({ 0.6f, 0.6f });
+        mPlayer->GetComponent<Transform>()->SetRotation(0.f);
         PlayerScript* plScript = mPlayer->AddComponent<PlayerScript>();
         graphics::Texture* playerTex = Resources::Find<graphics::Texture>(L"Player");
         Animator* playerAnimator = mPlayer->AddComponent<Animator>();
         playerAnimator->CreateAnimation(L"Idle", playerTex,
-            Vector2(2000.f, 250.f), Vector2(250.f, 250.f), Vector2::Zero, 1, 0.1f);
+            Vector2(2000.f, 250.f), Vector2(250.f, 250.f), {125.f, 250.f}, 1, 0.1f);
         playerAnimator->CreateAnimation(L"FrontGiveWater", playerTex,
-            Vector2(0.f, 8.f * 250.f), Vector2(250.f, 250.f), Vector2::Zero, 12, 0.1f);
+            Vector2(0.f, 8.f * 250.f), Vector2(250.f, 250.f), { 125.f, 250.f }, 12, 0.1f);
         
         playerAnimator->GetCompleteEvent(L"FrontGiveWater") = std::bind(&PlayerScript::AttackEffect, plScript);
 
@@ -58,11 +60,12 @@ namespace jk
         graphics::Texture* sakuyaTex = Resources::Find<graphics::Texture>(L"Sakuya");
         Animator* sakuyaAnimator = sakuya->AddComponent<Animator>();
         sakuyaAnimator->CreateAnimation(L"Idle", sakuyaTex,
-            { 0.f, 0.f }, { 64.f, 64.f }, { 0.f, 0.f }, 6, 0.1f);
+            { 0.f, 0.f }, { 64.f, 64.f }, { 32.f, 64.f }, 6, 0.1f);
         sakuyaAnimator->CreateAnimation(L"Float", sakuyaTex,
-            { 0.f, 64.f * 9.f }, { 64.f, 64.f }, { 0.f, 0.f }, 5, 0.05f);
-        sakuya->GetComponent<Transform>()->SetPosition({ 0.f, 0.f });
-        sakuya->GetComponent<Transform>()->SetScale({ 1.f, 1.f });
+            { 0.f, 64.f * 9.f }, { 64.f, 64.f }, { 32.f, 64.f }, 5, 0.05f);
+        sakuya->GetComponent<Transform>()->SetPosition({ 200.f, 600.f });
+        sakuya->GetComponent<Transform>()->SetScale({ 2.f, 2.f });
+        sakuya->GetComponent<Transform>()->SetRotation(0.f);
         sakuyaAnimator->PlayAnimation(L"Float", true);
 
         /////// CAT ////////

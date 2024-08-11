@@ -70,6 +70,18 @@ namespace jk
         {
             HDC imgHdc = mTexture->GetHdc();
 
+            XFORM xForm;
+            float radians = rot * (3.14159265f / 180.0f);
+            xForm.eM11 = cos(radians);
+            xForm.eM12 = sin(radians);
+            xForm.eM21 = -sin(radians);
+            xForm.eM22 = cos(radians);
+            xForm.eDx = pos.x;
+            xForm.eDy = pos.y;
+
+            SetGraphicsMode(hdc, GM_ADVANCED);
+            SetWorldTransform(hdc, &xForm);
+
             if (mTexture->IsAlpha())
             {
                 BLENDFUNCTION func = {};
@@ -79,8 +91,8 @@ namespace jk
                 func.SourceConstantAlpha = 255;
 
                 AlphaBlend(hdc,
-                    pos.x - (sprite.size.x / 2.f) + sprite.offset.x,
-                    pos.y - (sprite.size.y / 2.f) + sprite.offset.y,
+                    -sprite.offset.x * scl.x,
+                    -sprite.offset.y * scl.y,
                     sprite.size.x * scl.x,
                     sprite.size.y * scl.y,
                     imgHdc,
@@ -94,8 +106,8 @@ namespace jk
             else
             {
                 TransparentBlt(hdc,
-                    pos.x - (sprite.size.x / 2.f) + sprite.offset.x,
-                    pos.y - (sprite.size.y / 2.f) + sprite.offset.y,
+                    -sprite.offset.x * scl.x,
+                    -sprite.offset.y * scl.y,
                     sprite.size.x * scl.x,
                     sprite.size.y * scl.y,
                     imgHdc,
@@ -106,14 +118,14 @@ namespace jk
                     RGB(255, 0, 255)
                 );
             }
-            
+            ModifyWorldTransform(hdc, NULL, MWT_IDENTITY);
         }
         else if (type == graphics::Texture::eTextureType::Png)
         {
             Gdiplus::ImageAttributes imgAtt = {};
-            imgAtt.SetColorKey(Gdiplus::Color(230, 230, 230), Gdiplus::Color(255, 255, 255));
+            //imgAtt.SetColorKey(Gdiplus::Color(230, 230, 230), Gdiplus::Color(255, 255, 255));
             Gdiplus::Graphics graphics(hdc);
-            //graphics.SetInterpolationMode(Gdiplus::InterpolationModeNearestNeighbor);
+            graphics.SetInterpolationMode(Gdiplus::InterpolationModeNearestNeighbor);
             graphics.TranslateTransform(pos.x, pos.y);
             graphics.RotateTransform(rot);
             graphics.TranslateTransform(-pos.x, -pos.y);
@@ -121,8 +133,8 @@ namespace jk
             graphics.DrawImage(
                 mTexture->GetImage(),
                 Gdiplus::Rect(
-                    pos.x - (sprite.size.x / 2.f),
-                    pos.y - (sprite.size.y / 2.f),
+                    pos.x - sprite.offset.x * scl.x,
+                    pos.y - sprite.offset.y * scl.y,
                     sprite.size.x * scl.x,
                     sprite.size.y * scl.y
                 ),
