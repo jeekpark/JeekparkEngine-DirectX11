@@ -44,6 +44,7 @@ namespace jk
         class Animator* mAnimator;
         float mTime;
         eDirection mDirection;
+        float mDeathTime;
     };
 
 }

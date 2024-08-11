@@ -94,7 +94,7 @@ namespace jk
             Gdiplus::ImageAttributes imgAtt = {};
             imgAtt.SetColorKey(Gdiplus::Color(230, 230, 230), Gdiplus::Color(255, 255, 255));
             Gdiplus::Graphics graphics(hdc);
-
+            graphics.SetInterpolationMode(Gdiplus::InterpolationModeNearestNeighbor);
             graphics.TranslateTransform(pos.x, pos.y);
             graphics.RotateTransform(rot);
             graphics.TranslateTransform(-pos.x, -pos.y);
@@ -112,7 +112,7 @@ namespace jk
                 sprite.size.x,
                 sprite.size.y,
                 Gdiplus::UnitPixel,
-                &imgAtt
+                nullptr//&imgAtt
             );
         }
 

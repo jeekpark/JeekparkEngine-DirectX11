@@ -1,12 +1,42 @@
 #include "jkTexture.h"
+
 #include "jkApplication.h"
+#include "jkResources.h"
 
 extern jk::Application app;
 
 namespace jk::graphics
 {
+    Texture* Texture::Create(const std::wstring& name, UINT width, UINT height)
+    {
+        Texture* image = Resources::Find<Texture>(name);
+        if (image)
+        {
+            return image;
+        }
+
+        image = new Texture();
+        image->SetName(name);
+        image->SetWidth(width);
+        image->SetHeight(height);
+
+        HDC hdc = app.GetHdc();
+        HWND hwnd = app.GetHwnd();
+
+        image->mBitmap = CreateCompatibleBitmap(hdc, width, height);
+        image->mHdc = CreateCompatibleDC(hdc);
+
+        HBITMAP oldBitmap = (HBITMAP)SelectObject(image->mHdc, image->mBitmap);
+        DeleteObject(oldBitmap);
+
+        Resources::Insert(name, image);
+
+        return image;
+    }
+
     Texture::Texture()
         : Resource(enums::eResourceType::Texture)
+        , mbAlpha(false)
     {
     }
     Texture::~Texture()

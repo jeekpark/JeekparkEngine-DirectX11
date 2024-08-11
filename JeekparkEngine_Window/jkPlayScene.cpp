@@ -55,13 +55,25 @@ namespace jk
         playerAnimator->PlayAnimation(L"Idle", false);
 
 
+        /////// SAKUYA ////////
+        Player* sakuya = object::Instantiate<Player>(enums::eLayerType::Player);
+        graphics::Texture* sakuyaTex = Resources::Find<graphics::Texture>(L"Sakuya");
+        Animator* sakuyaAnimator = sakuya->AddComponent<Animator>();
+        sakuyaAnimator->CreateAnimation(L"Idle", sakuyaTex,
+            { 0.f, 0.f }, { 64.f, 64.f }, { 0.f, 0.f }, 6, 0.1f);
+        sakuyaAnimator->CreateAnimation(L"Float", sakuyaTex,
+            { 0.f, 64.f * 9.f }, { 64.f, 64.f }, { 0.f, 0.f }, 5, 0.05f);
+        sakuya->GetComponent<Transform>()->SetPosition({ 200.f, 450.f });
+        sakuya->GetComponent<Transform>()->SetScale({ 5.f, 5.f });
+        sakuyaAnimator->PlayAnimation(L"Float", true);
+
         /////// CAT ////////
         Cat* cat = object::Instantiate<Cat>(enums::eLayerType::Animal);
         cat->AddComponent<CatScript>();
-        cameraComp->SetTarget(cat);
+        //cameraComp->SetTarget(cat);
         graphics::Texture* catTex = Resources::Find<graphics::Texture>(L"Cat");
         Animator* catAnimator = cat->AddComponent<Animator>();
-        catAnimator->CreateAnimation(L"DownWalk", catTex,
+        /*catAnimator->CreateAnimation(L"DownWalk", catTex,
             Vector2(0.f, 0.f), Vector2(32.f, 32.f), Vector2::Zero, 4, 0.2f);
         catAnimator->CreateAnimation(L"RightWalk", catTex,
             Vector2(0.f, 32.f), Vector2(32.f, 32.f), Vector2::Zero, 4, 0.2f);
@@ -74,10 +86,12 @@ namespace jk
         catAnimator->CreateAnimation(L"Grooming", catTex,
             Vector2(0.f, 160.f), Vector2(32.f, 32.f), Vector2::Zero, 4, 0.5f);
         catAnimator->CreateAnimation(L"LayDown", catTex,
-            Vector2(0.f, 192.f), Vector2(32.f, 32.f), Vector2::Zero, 4, 0.5f);
+            Vector2(0.f, 192.f), Vector2(32.f, 32.f), Vector2::Zero, 4, 0.5f);*/
 
-        catAnimator->PlayAnimation(L"SitDown", false);
-
+        //catAnimator->PlayAnimation(L"SitDown", false);
+        catAnimator->CreateAnimationByFolder(L"MushroomIdle",
+            L"..\\Resources\\Mushroom", {0.f, 0.f}, .5f);
+        catAnimator->PlayAnimation(L"MushroomIdle", true);
         cat->GetComponent<Transform>()->SetPosition({ 200, 200 });
         cat->GetComponent<Transform>()->SetScale({ 2.f, 2.f });
 

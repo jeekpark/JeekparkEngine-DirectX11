@@ -21,7 +21,10 @@ namespace jk
     {
         mActiveScene->Render(hdc);
     }
-
+    void SceneManager::Destroy()
+    {
+        mActiveScene->Destroy();
+    }
     Scene* SceneManager::LoadScene(const std::wstring& name)
     {
         if (mActiveScene)

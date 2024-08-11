@@ -3,11 +3,21 @@
 
 #include "jkComponent.h"
 
+
 namespace jk
 {
     class GameObject
     {
     public:
+
+
+        enum class eState
+        {
+            Active,
+            Paused,
+            Dead,
+            End
+        };
         GameObject();
         ~GameObject();
 
@@ -40,11 +50,29 @@ namespace jk
             return res;
         }
 
+        eState GetActive() { return mState; }
+
+        void SetActive(bool power)
+        {
+            if (power == true)
+            {
+                mState = eState::Active;
+            }
+            else
+            {
+                mState = eState::Paused;
+            }
+        }
+        void Death() { mState = eState::Dead; }
+
     private:
         void initializeTransform();
+        
+        
 
     private:
         std::vector<Component*> mComponents;
+        eState mState;
     };
 
 }

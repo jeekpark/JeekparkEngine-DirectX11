@@ -15,6 +15,7 @@
 #include <map>
 #include <cassert>
 #include <functional>
+#include <filesystem>
 
 #include "jkMath.h"
 #include "jkEnums.h"

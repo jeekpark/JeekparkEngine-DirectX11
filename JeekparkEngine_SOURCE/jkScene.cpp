@@ -46,6 +46,13 @@ namespace jk
             layer->Render(hdc);
         }
     }
+    void Scene::Destroy()
+    {
+        for (Layer* layer : mLayers)
+        {
+            layer->Destroy();
+        }
+    }
     void Scene::OnEnter()
     {
     }

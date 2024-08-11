@@ -5,7 +5,7 @@
 #include "jkTime.h"
 #include "jkGameObject.h"
 #include "jkAnimator.h"
-
+#include "jkObject.h"
 namespace jk
 {
 
@@ -14,9 +14,10 @@ namespace jk
         , mAnimator(nullptr)
         , mTime(0.f)
         , mDirection(eDirection::Down)
+        , mDeathTime(0.f)
     {
     }
-
+    
     CatScript::~CatScript()
     {
     }
@@ -27,6 +28,11 @@ namespace jk
 
     void CatScript::Update()
     {
+        mDeathTime += Time::DeltaTime();
+        if (mDeathTime > 3.f)
+        {
+            object::Destroy(GetOwner());
+        }
         if (mAnimator == nullptr)
         {
             mAnimator = GetOwner()->GetComponent<Animator>();

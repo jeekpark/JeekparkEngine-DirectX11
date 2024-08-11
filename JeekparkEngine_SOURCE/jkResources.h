@@ -39,6 +39,14 @@ namespace jk
             return resource;
         }
 
+
+        static void Insert(const std::wstring& key, Resource* resource)
+        {
+            assert(resource != nullptr);
+            assert(key != L"");
+            mResources.insert(std::make_pair(key, resource));
+        }
+
         static void Release()
         {
             for (auto& iter : mResources)

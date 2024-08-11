@@ -35,6 +35,8 @@ namespace jk
         Update();
         LateUpdate();
         Render();
+
+        Destroy();
     }
 
     void Application::Update()
@@ -59,7 +61,10 @@ namespace jk
         
         copyRenderTarget(mBackHdc, mHdc);
     }
-
+    void Application::Destroy()
+    {
+        SceneManager::Destroy();
+    }
     void Application::Release()
     {
         SceneManager::Release();
