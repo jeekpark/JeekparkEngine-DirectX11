@@ -2,6 +2,8 @@
 
 #include "..\JeekparkEngine_SOURCE\jkGameObject.h"
 
+
+
 namespace jk
 {
 
@@ -14,6 +16,7 @@ namespace jk
         void Render(HDC hdc) override;
 
     private:
+        
     };
 
 }

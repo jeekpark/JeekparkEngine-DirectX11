@@ -61,8 +61,9 @@ namespace jk
     void PlayerScript::AttackEffect()
     {
         Cat* cat = object::Instantiate<Cat>(enums::eLayerType::Animal);
-        cat->AddComponent<CatScript>();
-
+        
+        CatScript* catScript = cat->AddComponent<CatScript>();
+        catScript->SetPlayer(GetOwner());
         graphics::Texture* catTex = Resources::Find<graphics::Texture>(L"Cat");
         Animator* catAnimator = cat->AddComponent<Animator>();
         catAnimator->CreateAnimation(L"DownWalk", catTex,
@@ -82,7 +83,9 @@ namespace jk
 
         catAnimator->PlayAnimation(L"SitDown", false);
 
-        cat->GetComponent<Transform>()->SetPosition({ 300, 300 });
+        Transform* tr = GetOwner()->GetComponent<Transform>();
+
+        cat->GetComponent<Transform>()->SetPosition(tr->GetPosition());
         cat->GetComponent<Transform>()->SetScale({ 3.f, 3.f });
     }
 

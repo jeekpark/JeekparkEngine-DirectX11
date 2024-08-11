@@ -70,15 +70,21 @@ namespace jk
     {
         
         mTime += Time::DeltaTime();
-        if (mTime > 3.f)
-        {
-            mState = eState::Walk;
-            int direction = rand() % 4;
-            mDirection = (eDirection)direction;
-            playWalkAnimationBydirection(mDirection);
-            mTime = 0.f;
+        Transform* tr = GetOwner()->GetComponent<Transform>();
+        Vector2 pos = tr->GetPosition();
 
+        Vector2 mousePos = Vector2::Zero;
+        if (Input::GetKeyDown(eKeyCode::LButton))
+        {
+            mousePos = Input::GetMousePostion();
         }
+
+        Transform* plTr = mPlayer->GetComponent<Transform>();
+
+        Vector2 dest = mousePos - plTr->GetPosition();
+        pos += dest.normalize() * 100.f * Time::DeltaTime();
+
+        tr->SetPosition(pos);
     }
 
     void CatScript::move()

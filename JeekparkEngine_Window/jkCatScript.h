@@ -31,6 +31,8 @@ namespace jk
         void Update() override;
         void LateUpdate() override;
         void Render(HDC hdc) override;
+
+        void SetPlayer(GameObject* player) { mPlayer = player; }
     private:
         void sitDown();
         void move();
@@ -45,6 +47,7 @@ namespace jk
         float mTime;
         eDirection mDirection;
         float mDeathTime;
+        GameObject* mPlayer;
     };
 
 }
