@@ -50,6 +50,43 @@ namespace jk
                 mTexture->GetWidth(), mTexture->GetHeight(),
                 RGB(255, 0, 255)
             );
+
+            if (mTexture->IsAlpha())
+            {
+                BLENDFUNCTION func = {};
+                func.BlendOp = AC_SRC_OVER;
+                func.BlendFlags = 0;
+                func.AlphaFormat = AC_SRC_ALPHA;
+                func.SourceConstantAlpha = 255;
+
+                AlphaBlend(hdc,
+                    pos.y,
+                    pos.x,
+                    mTexture->GetWidth() * mSize.x * scl.x,
+                    mTexture->GetHeight() * mSize.y * scl.y,
+                    mTexture->GetHdc(),
+                    0,
+                    0,
+                    mTexture->GetWidth(),
+                    mTexture->GetHeight(),
+                    func
+                );
+            }
+            else
+            {
+                TransparentBlt(hdc,
+                    pos.y,
+                    pos.x,
+                    mTexture->GetWidth() * mSize.x * scl.x,
+                    mTexture->GetHeight() * mSize.y * scl.y,
+                    mTexture->GetHdc(),
+                    0,
+                    0,
+                    mTexture->GetWidth(),
+                    mTexture->GetHeight(),
+                    RGB(255, 0, 255)
+                );
+            }
         }
         else if (mTexture->GetTextureType()
             == graphics::Texture::eTextureType::Png)

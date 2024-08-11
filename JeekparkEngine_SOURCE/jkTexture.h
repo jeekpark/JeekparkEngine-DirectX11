@@ -29,7 +29,7 @@ namespace jk::graphics
         HDC GetHdc() { return mHdc; }
         eTextureType GetTextureType() { return mTextureType; }
         Gdiplus::Image* GetImage() { return mImage; }
-
+        bool IsAlpha() { return mbAlpha; }
     private:
         bool mbAlpha;
         eTextureType mTextureType;

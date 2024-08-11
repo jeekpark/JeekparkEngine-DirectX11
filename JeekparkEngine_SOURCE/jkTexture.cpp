@@ -64,6 +64,15 @@ namespace jk::graphics
             mWidth = info.bmWidth;
             mHeight = info.bmHeight;
 
+            if (info.bmBitsPixel == (WORD)32)
+            {
+                mbAlpha = true;
+            }
+            else if (info.bmBitsPixel == (WORD)24)
+            {
+                mbAlpha = false;
+            }
+
             HDC mainDC = app.GetHdc();
             mHdc = CreateCompatibleDC(mainDC);
 
