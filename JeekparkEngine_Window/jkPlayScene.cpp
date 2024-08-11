@@ -37,8 +37,8 @@ namespace jk
 
         /////// PLAYER ////////
         mPlayer = object::Instantiate<Player>(enums::eLayerType::Player);
-        mPlayer->GetComponent<Transform>()->SetPosition({ 300.f, 250.f });
-        mPlayer->GetComponent<Transform>()->SetScale({ 0.6f, 0.6f });
+        mPlayer->GetComponent<Transform>()->SetPosition({ 300.f, 350.f });
+        mPlayer->GetComponent<Transform>()->SetScale({ 1.f, 1.f });
         mPlayer->GetComponent<Transform>()->SetRotation(0.f);
         PlayerScript* plScript = mPlayer->AddComponent<PlayerScript>();
         graphics::Texture* playerTex = Resources::Find<graphics::Texture>(L"Player");

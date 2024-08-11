@@ -87,15 +87,49 @@ namespace jk
 
         cat->GetComponent<Transform>()->SetPosition(tr->GetPosition());
         cat->GetComponent<Transform>()->SetScale({ 3.f, 3.f });
+        
+        Vector2 mousePos = Input::GetMousePostion();
+        catScript->mDest = mousePos;
+
     }
 
     void PlayerScript::idle()
     {
         if (Input::GetKey(eKeyCode::LButton))
         {
-            mState = PlayerScript::eState::GiveWater;
-            mAnimator->PlayAnimation(L"FrontGiveWater", false);
+            Cat* cat = object::Instantiate<Cat>(enums::eLayerType::Animal);
+
+            CatScript* catScript = cat->AddComponent<CatScript>();
+            catScript->SetPlayer(GetOwner());
+            graphics::Texture* catTex = Resources::Find<graphics::Texture>(L"Cat");
+            Animator* catAnimator = cat->AddComponent<Animator>();
+            catAnimator->CreateAnimation(L"DownWalk", catTex,
+                Vector2(0.f, 0.f), Vector2(32.f, 32.f), { 16.f, 32.f }, 4, 0.2f);
+            catAnimator->CreateAnimation(L"RightWalk", catTex,
+                Vector2(0.f, 32.f), Vector2(32.f, 32.f), { 16.f, 32.f }, 4, 0.2f);
+            catAnimator->CreateAnimation(L"UpWalk", catTex,
+                Vector2(0.f, 64.f), Vector2(32.f, 32.f), { 16.f, 32.f }, 4, 0.2f);
+            catAnimator->CreateAnimation(L"LeftWalk", catTex,
+                Vector2(0.f, 96.f), Vector2(32.f, 32.f), { 16.f, 32.f }, 4, 0.2f);
+            catAnimator->CreateAnimation(L"SitDown", catTex,
+                Vector2(0.f, 128.f), Vector2(32.f, 32.f), { 16.f, 32.f }, 4, 0.5f);
+            catAnimator->CreateAnimation(L"Grooming", catTex,
+                Vector2(0.f, 160.f), Vector2(32.f, 32.f), { 16.f, 32.f }, 4, 0.5f);
+            catAnimator->CreateAnimation(L"LayDown", catTex,
+                Vector2(0.f, 192.f), Vector2(32.f, 32.f), { 16.f, 32.f }, 4, 0.5f);
+
+            catAnimator->PlayAnimation(L"SitDown", false);
+
+            Transform* tr = GetOwner()->GetComponent<Transform>();
+
+            cat->GetComponent<Transform>()->SetPosition(tr->GetPosition());
+            cat->GetComponent<Transform>()->SetScale({ 3.f, 3.f });
+
             Vector2 mousePos = Input::GetMousePostion();
+            catScript->mDest = mousePos;
+            /*mState = PlayerScript::eState::GiveWater;
+            mAnimator->PlayAnimation(L"FrontGiveWater", false);
+            Vector2 mousePos = Input::GetMousePostion();*/
         }
 
     }

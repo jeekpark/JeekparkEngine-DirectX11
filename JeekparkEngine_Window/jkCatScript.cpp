@@ -15,6 +15,7 @@ namespace jk
         , mTime(0.f)
         , mDirection(eDirection::Down)
         , mDeathTime(0.f)
+
     {
     }
     
@@ -70,19 +71,20 @@ namespace jk
     {
         
         mTime += Time::DeltaTime();
+
+        if (mTime > 2.f)
+        {
+            object::Destroy(GetOwner());
+        }
+
         Transform* tr = GetOwner()->GetComponent<Transform>();
         Vector2 pos = tr->GetPosition();
 
-        Vector2 mousePos = Vector2::Zero;
-        if (Input::GetKeyDown(eKeyCode::LButton))
-        {
-            mousePos = Input::GetMousePostion();
-        }
-
+        Vector2 mousePos = Input::GetMousePostion();
         Transform* plTr = mPlayer->GetComponent<Transform>();
 
-        Vector2 dest = mousePos - plTr->GetPosition();
-        pos += dest.normalize() * 100.f * Time::DeltaTime();
+        Vector2 dest = mDest - plTr->GetPosition();
+        pos += dest.normalize() * 700.f * Time::DeltaTime();
 
         tr->SetPosition(pos);
     }
