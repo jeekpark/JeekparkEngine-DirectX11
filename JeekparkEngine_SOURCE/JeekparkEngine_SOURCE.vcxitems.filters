@@ -57,6 +57,15 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)jkApplication.cpp">
       <Filter>High Level Interface</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jkCollider.cpp">
+      <Filter>Component\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jkBoxCollider2D.cpp">
+      <Filter>Component\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jkCircleCollider2D.cpp">
+      <Filter>Component\Collider</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h">
@@ -124,6 +133,15 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)jkApplication.h">
       <Filter>High Level Interface</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jkCollider.h">
+      <Filter>Component\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jkBoxCollider2D.h">
+      <Filter>Component\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jkCircleCollider2D.h">
+      <Filter>Component\Collider</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">
@@ -167,6 +185,9 @@
     </Filter>
     <Filter Include="High Level Interface">
       <UniqueIdentifier>{9cd47d01-f83e-4ef6-8ca8-5d35e846dd67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Collider">
+      <UniqueIdentifier>{c5c750bd-bfdf-4ef7-a123-5efd130d0b09}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

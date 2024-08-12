@@ -6,6 +6,7 @@
 namespace jk::math
 {
     constexpr auto M_PI = 3.14159265358979323846;
+    static float radToDeg(float radians) { return (radians * (180.f / M_PI)); }
     struct Vector2
     {
         static float Dot(Vector2& v1, Vector2& v2)

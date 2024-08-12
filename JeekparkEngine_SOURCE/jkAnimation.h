@@ -45,6 +45,7 @@ namespace jk
 
         bool IsComplete() { return mbComplete; }
         void SetAnimator(class Animator* animator) { mAnimator = animator; }
+        void SetVerticalFlip(bool verticalFlip) { mbVerticalFlip = verticalFlip; }
     private:
         class Animator* mAnimator;
         graphics::Texture* mTexture;
@@ -52,6 +53,7 @@ namespace jk
         int mIndex;
         float mTime;
         bool mbComplete;
+        bool mbVerticalFlip;
     };
 
 }

@@ -74,7 +74,12 @@ namespace jk
 
     void Application::clearRenderTarget(HDC target)
     {
+        HBRUSH grayBrush = (HBRUSH)CreateSolidBrush(RGB(127, 127, 127));
+        HBRUSH oldBrush = (HBRUSH)SelectObject(target, grayBrush);
         Rectangle(target, -1, -1, 1000, 1000);
+
+        SelectObject(target, oldBrush);
+        DeleteObject(grayBrush);
     }
 
     void Application::copyRenderTarget(HDC source, HDC dest)
@@ -93,7 +98,7 @@ namespace jk
         SetWindowPos(
             hwnd,
             nullptr,
-            0,
+            2000,
             0,
             mWidth,
             mHeight,

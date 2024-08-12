@@ -35,10 +35,10 @@ namespace jk
         static void Initialize();
         static void Update();
 
-        static bool GetKeyDown(eKeyCode code) { return mKeys[(size_t)code].state == eKeyState::Down; }
-        static bool GetKeyUp(eKeyCode code) { return mKeys[(size_t)code].state == eKeyState::Up; }
-        static bool GetKey(eKeyCode code) { return mKeys[(size_t)code].state == eKeyState::Pressed; }
-        static math::Vector2 GetMousePostion() { return mMousePostion; }
+        __forceinline static bool GetKeyDown(eKeyCode code) { return mKeys[(size_t)code].state == eKeyState::Down; }
+        __forceinline static bool GetKeyUp(eKeyCode code) { return mKeys[(size_t)code].state == eKeyState::Up; }
+        __forceinline static bool GetKey(eKeyCode code) { return mKeys[(size_t)code].state == eKeyState::Pressed; }
+        __forceinline static math::Vector2 GetMousePostion() { return mMousePostion; }
     private:
         static std::vector<Key> mKeys;
         static math::Vector2 mMousePostion;

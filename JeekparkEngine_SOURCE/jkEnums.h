@@ -6,9 +6,10 @@ namespace jk::enums
     enum class eComponentType
     {
         Transform,
+        Collider,
+        Script,
         SpriteRenderer,
         Animator,
-        Script,
         Camera,
         End
     };
@@ -29,5 +30,14 @@ namespace jk::enums
         Animation,
         Prefab,
         End,
+    };
+
+    enum class eDirection
+    {
+        Left,
+        Right,
+        Up,
+        Down,
+        None,
     };
 }

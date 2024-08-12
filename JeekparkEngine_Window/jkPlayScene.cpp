@@ -16,6 +16,9 @@
 #include "jkAnimator.h"
 #include "jkCat.h"
 #include "jkCatScript.h"
+#include "jkBoxCollider2D.h"
+#include "jkSakuya.h"
+#include "jkSakuyaScript.h"
 
 namespace jk
 {
@@ -42,6 +45,7 @@ namespace jk
         mPlayer->GetComponent<Transform>()->SetRotation(0.f);
         PlayerScript* plScript = mPlayer->AddComponent<PlayerScript>();
         graphics::Texture* playerTex = Resources::Find<graphics::Texture>(L"Player");
+
         Animator* playerAnimator = mPlayer->AddComponent<Animator>();
         playerAnimator->CreateAnimation(L"Idle", playerTex,
             Vector2(2000.f, 250.f), Vector2(250.f, 250.f), {125.f, 250.f}, 1, 0.1f);
@@ -50,51 +54,35 @@ namespace jk
         
         playerAnimator->GetCompleteEvent(L"FrontGiveWater") = std::bind(&PlayerScript::AttackEffect, plScript);
 
-        
-
         playerAnimator->PlayAnimation(L"Idle", false);
 
 
         /////// SAKUYA ////////
-        Player* sakuya = object::Instantiate<Player>(enums::eLayerType::Player);
-        graphics::Texture* sakuyaTex = Resources::Find<graphics::Texture>(L"Sakuya");
+        Sakuya* sakuya = object::Instantiate<Sakuya>(enums::eLayerType::Player);
+        graphics::Texture* sakuyaTex = Resources::Find<graphics::Texture>(L"SakuyaTexture");
+        SakuyaScript* sakuyaScript = sakuya->AddComponent<SakuyaScript>();
+
         Animator* sakuyaAnimator = sakuya->AddComponent<Animator>();
         sakuyaAnimator->CreateAnimation(L"Idle", sakuyaTex,
             { 0.f, 0.f }, { 64.f, 64.f }, { 32.f, 64.f }, 6, 0.1f);
+        sakuyaAnimator->CreateAnimation(L"StartRun", sakuyaTex,
+            { 64.f * 9.f, 0.f }, { 64.f, 64.f }, { 32.f, 64.f }, 8, 0.01f);
+        sakuyaAnimator->CreateAnimation(L"Run", sakuyaTex,
+            { 0.f, 64.f * 1.f }, { 64.f, 64.f }, { 32.f, 64.f }, 16, 0.04f);
+        sakuyaAnimator->CreateAnimation(L"EndRun", sakuyaTex,
+            { 0.f, 64.f * 2.f }, { 64.f, 64.f }, { 32.f, 64.f }, 8, 0.04f);
         sakuyaAnimator->CreateAnimation(L"Float", sakuyaTex,
-            { 0.f, 64.f * 9.f }, { 64.f, 64.f }, { 32.f, 64.f }, 5, 0.05f);
+            { 0.f, 64.f * 7.f }, { 64.f, 64.f }, { 32.f, 64.f }, 5, 0.05f);
+        BoxCollider2D* boxCollider2d = sakuya->AddComponent<BoxCollider2D>();
+        boxCollider2d->SetOffset({ -32.f, -64.f });
+        boxCollider2d->SetSize({ 64.f, 64.f });
+        
         sakuya->GetComponent<Transform>()->SetPosition({ 200.f, 600.f });
-        sakuya->GetComponent<Transform>()->SetScale({ 2.f, 2.f });
+        sakuya->GetComponent<Transform>()->SetScale({ 3.f, 3.f });
         sakuya->GetComponent<Transform>()->SetRotation(0.f);
-        sakuyaAnimator->PlayAnimation(L"Float", true);
+        //sakuyaAnimator->PlayAnimation(L"Idle", true);
+        
 
-        /////// CAT ////////
-        //Cat* cat = object::Instantiate<Cat>(enums::eLayerType::Animal);
-        //cat->AddComponent<CatScript>();
-        ////cameraComp->SetTarget(cat);
-        //graphics::Texture* catTex = Resources::Find<graphics::Texture>(L"Cat");
-        //Animator* catAnimator = cat->AddComponent<Animator>();
-        /*catAnimator->CreateAnimation(L"DownWalk", catTex,
-            Vector2(0.f, 0.f), Vector2(32.f, 32.f), Vector2::Zero, 4, 0.2f);
-        catAnimator->CreateAnimation(L"RightWalk", catTex,
-            Vector2(0.f, 32.f), Vector2(32.f, 32.f), Vector2::Zero, 4, 0.2f);
-        catAnimator->CreateAnimation(L"UpWalk", catTex,
-            Vector2(0.f, 64.f), Vector2(32.f, 32.f), Vector2::Zero, 4, 0.2f);
-        catAnimator->CreateAnimation(L"LeftWalk", catTex,
-            Vector2(0.f, 96.f), Vector2(32.f, 32.f), Vector2::Zero, 4, 0.2f);
-        catAnimator->CreateAnimation(L"SitDown", catTex,
-            Vector2(0.f, 128.f), Vector2(32.f, 32.f), Vector2::Zero, 4, 0.5f);
-        catAnimator->CreateAnimation(L"Grooming", catTex,
-            Vector2(0.f, 160.f), Vector2(32.f, 32.f), Vector2::Zero, 4, 0.5f);
-        catAnimator->CreateAnimation(L"LayDown", catTex,
-            Vector2(0.f, 192.f), Vector2(32.f, 32.f), Vector2::Zero, 4, 0.5f);*/
-
-        //catAnimator->PlayAnimation(L"SitDown", false);
-        /*catAnimator->CreateAnimationByFolder(L"MushroomIdle",
-            L"..\\Resources\\Mushroom", {0.f, 0.f}, .5f);
-        catAnimator->PlayAnimation(L"MushroomIdle", true);
-        cat->GetComponent<Transform>()->SetPosition({ 200, 200 });
-        cat->GetComponent<Transform>()->SetScale({ 2.f, 2.f });*/
         
         Scene::Initialize();
 

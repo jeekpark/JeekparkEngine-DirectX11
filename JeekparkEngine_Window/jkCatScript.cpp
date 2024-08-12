@@ -6,6 +6,7 @@
 #include "jkGameObject.h"
 #include "jkAnimator.h"
 #include "jkObject.h"
+
 namespace jk
 {
 
@@ -15,7 +16,8 @@ namespace jk
         , mTime(0.f)
         , mDirection(eDirection::Down)
         , mDeathTime(0.f)
-
+        , mPlayer(nullptr)
+        , mRadian(0.f)
     {
     }
     
@@ -72,21 +74,33 @@ namespace jk
         
         mTime += Time::DeltaTime();
 
-        if (mTime > 2.f)
+        if (mTime > 10.f)
         {
             object::Destroy(GetOwner());
         }
 
         Transform* tr = GetOwner()->GetComponent<Transform>();
         Vector2 pos = tr->GetPosition();
-
-        Vector2 mousePos = Input::GetMousePostion();
+        
+        /*Vector2 mousePos = Input::GetMousePostion();
         Transform* plTr = mPlayer->GetComponent<Transform>();
 
         Vector2 dest = mDest - plTr->GetPosition();
-        pos += dest.normalize() * 700.f * Time::DeltaTime();
+        pos += dest.normalize() * 700.f * Time::DeltaTime();*/
+        //
 
+        /*mRadian += 1.f * Time::DeltaTime();
+        pos += Vector2(1.f, cosf(mRadian)) * 100.f * Time::DeltaTime();*/
+
+        Transform* plTr = mPlayer->GetComponent<Transform>();
+        Vector2 dest = mDest - plTr->GetPosition();
+        dest = dest.normalize();
+        float rotRad = Vector2::Dot(dest, Vector2::Right);
+        rotRad = acosf(rotRad);
+        //pos += dest.normalize() * 100.f * Time::DeltaTime();
+        
         tr->SetPosition(pos);
+        tr->SetRotation(radToDeg(rotRad));
     }
 
     void CatScript::move()

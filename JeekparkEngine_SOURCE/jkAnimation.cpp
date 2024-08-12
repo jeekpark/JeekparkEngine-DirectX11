@@ -17,6 +17,7 @@ namespace jk
         , mIndex(-1)
         , mTime(0.f)
         , mbComplete(false)
+        , mbVerticalFlip(false)
     {
     }
     Animation::~Animation()
@@ -119,6 +120,8 @@ namespace jk
                 );
             }
             ModifyWorldTransform(hdc, NULL, MWT_IDENTITY);
+            Rectangle(hdc, pos.x, pos.y, pos.x + 10, pos.y + 10);
+
         }
         else if (type == graphics::Texture::eTextureType::Png)
         {
@@ -126,10 +129,19 @@ namespace jk
             //imgAtt.SetColorKey(Gdiplus::Color(230, 230, 230), Gdiplus::Color(255, 255, 255));
             Gdiplus::Graphics graphics(hdc);
             graphics.SetInterpolationMode(Gdiplus::InterpolationModeNearestNeighbor);
+
             graphics.TranslateTransform(pos.x, pos.y);
             graphics.RotateTransform(rot);
             graphics.TranslateTransform(-pos.x, -pos.y);
 
+            if (mbVerticalFlip)
+            {
+                graphics.TranslateTransform(pos.x, 0);
+                graphics.ScaleTransform(-1.0f, 1.0f);
+                graphics.TranslateTransform(-pos.x - sprite.size.x * scl.x, 0);
+                sprite.offset.x *= -1;
+            }
+            
             graphics.DrawImage(
                 mTexture->GetImage(),
                 Gdiplus::Rect(

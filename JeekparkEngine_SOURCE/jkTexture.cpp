@@ -26,6 +26,16 @@ namespace jk::graphics
         image->mBitmap = CreateCompatibleBitmap(hdc, width, height);
         image->mHdc = CreateCompatibleDC(hdc);
 
+        HBRUSH transparentBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
+        HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, transparentBrush);
+        Rectangle(image->mHdc,
+            -1,
+            -1,
+            image->GetWidth() + 1,
+            image->GetHeight() + 1
+        );
+        SelectObject(hdc, oldBrush);
+
         HBITMAP oldBitmap = (HBITMAP)SelectObject(image->mHdc, image->mBitmap);
         DeleteObject(oldBitmap);
 
@@ -87,8 +97,6 @@ namespace jk::graphics
             mWidth = mImage->GetWidth();
             mHeight = mImage->GetHeight();
         }
-        
-
         return S_OK;
     }
 }

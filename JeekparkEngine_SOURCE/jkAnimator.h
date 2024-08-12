@@ -55,7 +55,7 @@ namespace jk
         );
 
         Animation* FindAnimation(const std::wstring& name);
-        void PlayAnimation(const std::wstring& name, bool loop = true);
+        void PlayAnimation(const std::wstring& name, bool loop = true, bool flip = false);
 
         Events* FindEvents(const std::wstring& name);
 
@@ -65,12 +65,10 @@ namespace jk
 
         bool IsComplete() { return mActiveAnimation->IsComplete(); }
 
-
     private:
         std::map<std::wstring, Animation*> mAnimations;
         Animation* mActiveAnimation;
         bool mbLoop;
-
         std::map<std::wstring, Events*> mEvents;
     };
 

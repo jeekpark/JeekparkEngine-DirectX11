@@ -34,6 +34,12 @@
     <ClInclude Include="jkCatScript.h">
       <Filter>Scripts</Filter>
     </ClInclude>
+    <ClInclude Include="jkSakuya.h">
+      <Filter>Contents</Filter>
+    </ClInclude>
+    <ClInclude Include="jkSakuyaScript.h">
+      <Filter>Scripts</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="jkPlayer.cpp">
@@ -52,6 +58,12 @@
       <Filter>Contents</Filter>
     </ClCompile>
     <ClCompile Include="jkCatScript.cpp">
+      <Filter>Scripts</Filter>
+    </ClCompile>
+    <ClCompile Include="jkSakuya.cpp">
+      <Filter>Contents</Filter>
+    </ClCompile>
+    <ClCompile Include="jkSakuyaScript.cpp">
       <Filter>Scripts</Filter>
     </ClCompile>
   </ItemGroup>

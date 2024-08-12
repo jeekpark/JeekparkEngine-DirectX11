@@ -50,7 +50,7 @@ namespace jk
         eDirection mDirection;
         float mDeathTime;
         GameObject* mPlayer;
-        
+        float mRadian;
     };
 
 }

@@ -151,7 +151,7 @@ namespace jk
         return iter->second;
         
     }
-    void Animator::PlayAnimation(const std::wstring& name, bool loop)
+    void Animator::PlayAnimation(const std::wstring& name, bool loop, bool flip)
     {
         Animation* animation = FindAnimation(name);
         if (animation == nullptr)
@@ -174,6 +174,7 @@ namespace jk
             nextEvents->startEvent();
         }
 
+        animation->SetVerticalFlip(flip);
         mActiveAnimation = animation;
         mActiveAnimation->Reset();
         mbLoop = loop;
