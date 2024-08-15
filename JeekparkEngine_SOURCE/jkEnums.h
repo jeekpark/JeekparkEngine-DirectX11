@@ -23,6 +23,8 @@ namespace jk::enums
         Max,
     };
 
+    
+
     enum class eResourceType
     {
         Texture,

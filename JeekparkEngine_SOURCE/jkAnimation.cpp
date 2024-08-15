@@ -92,15 +92,15 @@ namespace jk
                 func.SourceConstantAlpha = 255;
 
                 AlphaBlend(hdc,
-                    -sprite.offset.x * scl.x,
-                    -sprite.offset.y * scl.y,
-                    sprite.size.x * scl.x,
-                    sprite.size.y * scl.y,
+                    (int)-sprite.offset.x * scl.x,
+                    (int)-sprite.offset.y * scl.y,
+                    (int)sprite.size.x * scl.x,
+                    (int)sprite.size.y * scl.y,
                     imgHdc,
-                    sprite.leftTop.x,
-                    sprite.leftTop.y,
-                    sprite.size.x,
-                    sprite.size.y,
+                    (int)sprite.leftTop.x,
+                    (int)sprite.leftTop.y,
+                    (int)sprite.size.x,
+                    (int)sprite.size.y,
                     func
                 );
             }

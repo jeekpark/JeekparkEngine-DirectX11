@@ -11,7 +11,8 @@ namespace jk
     SakuyaScript::SakuyaScript()
         : mState(eState::Idle)
         , mAnimator(nullptr)
-        , mDirection(enums::eDirection::Right)
+        , mbLeftDirection(false)
+        , mRunSpeed(600.f)
     {
     }
     SakuyaScript::~SakuyaScript()
@@ -41,8 +42,10 @@ namespace jk
         case jk::SakuyaScript::eState::SitDown:
             break;
         case jk::SakuyaScript::eState::StopJump:
+            stopJump();
             break;
         case jk::SakuyaScript::eState::RunJump:
+            runJump();
             break;
         case jk::SakuyaScript::eState::Float:
             break;
@@ -66,49 +69,105 @@ namespace jk
     }
     void SakuyaScript::idle()
     {
-        if (Input::GetKey(eKeyCode::Right))
+        if (Input::GetKeyDown(eKeyCode::Right) || Input::GetKeyDown(eKeyCode::Left))
         {
             mState = eState::StartRun;
-            mAnimator->PlayAnimation(L"StartRun", false);
+            if (Input::GetKeyDown(eKeyCode::Right))
+            {
+                mbLeftDirection = false;
+            }
+            else
+            {
+                mbLeftDirection = true;
+            }
+            mAnimator->PlayAnimation(L"StartRun", false, mbLeftDirection);
+            return;
+        }
+        if (Input::GetKeyDown(eKeyCode::Up))
+        {
+            mState = eState::StopJump;
+            mAnimator->PlayAnimation(L"StopJump", false, mbLeftDirection);
+            return;
         }
     }
     void SakuyaScript::startRun()
     {
-
-        if (Input::GetKey(eKeyCode::Right) == false)
+        if (Input::GetKeyUp(eKeyCode::Right) || Input::GetKeyUp(eKeyCode::Left))
         {
             mState = eState::Idle;
-            mAnimator->PlayAnimation(L"Idle", true);
+            mAnimator->PlayAnimation(L"Idle", true, mbLeftDirection);
             return;
         }
-
         if (mAnimator->IsComplete())
         {
             mState = eState::Run;
-            mAnimator->PlayAnimation(L"Run", true);
+            mAnimator->PlayAnimation(L"Run", true, mbLeftDirection);
         }
-
+        Transform* tr = GetOwner()->GetComponent<Transform>();
+        Vector2 pos = tr->GetPosition();
+        if (mbLeftDirection)
+        {
+            pos += Vector2::Left * (mRunSpeed / 10) *Time::DeltaTime();
+        }
+        else
+        {
+            pos += Vector2::Right * (mRunSpeed / 10) * Time::DeltaTime();
+        }
+        tr->SetPosition(pos);
     }
     void SakuyaScript::run()
     {
-        if (Input::GetKey(eKeyCode::Right) == false)
+        if (Input::GetKeyUp(eKeyCode::Right) || Input::GetKeyUp(eKeyCode::Left))
         {
             mState = eState::EndRun;
-            mAnimator->PlayAnimation(L"EndRun", false);
+            mAnimator->PlayAnimation(L"EndRun", false, mbLeftDirection);
             return;
         }
         Transform* tr = GetOwner()->GetComponent<Transform>();
         Vector2 pos = tr->GetPosition();
-        pos += Vector2::Right * 500.f * Time::DeltaTime();
+        if (mbLeftDirection)
+        {
+            pos += Vector2::Left * mRunSpeed * Time::DeltaTime();
+        }
+        else
+        {
+            pos += Vector2::Right * mRunSpeed * Time::DeltaTime();
+        }
         tr->SetPosition(pos);
     }
     void SakuyaScript::endRun()
     {
+        if (Input::GetKey(eKeyCode::Right) || Input::GetKey(eKeyCode::Left))
+        {
+            mState = eState::Run;
+            if (Input::GetKey(eKeyCode::Right))
+            {
+                mbLeftDirection = false;
+            }
+            else
+            {
+                mbLeftDirection = true;
+            }
+            mAnimator->PlayAnimation(L"Run", true, mbLeftDirection);
+        }
         if (mAnimator->IsComplete())
         {
             mState = eState::Idle;
-            mAnimator->PlayAnimation(L"Idle", true);
+            mAnimator->PlayAnimation(L"Idle", true, mbLeftDirection);
         }
+    }
+
+    void SakuyaScript::stopJump()
+    {
+        if (mAnimator->IsComplete())
+        {
+            mState = eState::Idle;
+            mAnimator->PlayAnimation(L"Idle", true, mbLeftDirection);
+        }
+    }
+
+    void SakuyaScript::runJump()
+    {
     }
 
 }

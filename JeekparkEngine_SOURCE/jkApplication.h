@@ -24,6 +24,8 @@ namespace jk
         HDC GetHdc() { return mHdc; }
         UINT GetWidth() { return mWidth; }
         UINT GetHeight() { return mHeight; }
+        UINT GetClientWidth() { return mClientWidth; }
+        UINT GetClientHeight() { return mClientHeight; }
 
     private:
         void clearRenderTarget(HDC target);
@@ -40,7 +42,8 @@ namespace jk
 
         UINT mWidth;
         UINT mHeight;
-
+        UINT mClientWidth;
+        UINT mClientHeight;
     };
 
 

@@ -2,7 +2,7 @@
 
 #include "jkTransform.h"
 #include "jkGameObject.h"
-
+#include "jkRenderer.h"
 namespace jk
 {
     BoxCollider2D::BoxCollider2D()
@@ -25,6 +25,10 @@ namespace jk
     {
         Transform* tr = GetOwner()->GetComponent<Transform>();
         Vector2 ownerPos = tr->GetPosition();
+        if (renderer::mainCamera)
+        {
+            ownerPos = renderer::mainCamera->CalculatePosition(ownerPos);
+        }
         Vector2 ownerScl = tr->GetScale();
         Vector2 offset = GetOffset();
 

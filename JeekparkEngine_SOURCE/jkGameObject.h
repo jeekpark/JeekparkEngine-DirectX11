@@ -50,7 +50,7 @@ namespace jk
             return res;
         }
 
-        eState GetActive() { return mState; }
+        eState GetState() { return mState; }
 
         void SetActive(bool power)
         {
@@ -63,6 +63,8 @@ namespace jk
                 mState = eState::Paused;
             }
         }
+        bool IsActive() { return mState == eState::Active; }
+        bool IsDead() { return mState == eState::Dead; }
         void Death() { mState = eState::Dead; }
 
     private:

@@ -35,11 +35,14 @@ namespace jk
         void startRun();
         void run();
         void endRun();
+        void stopJump();
+        void runJump();
 
 
     private:
         eState mState;
-        enums::eDirection mDirection;
+        bool mbLeftDirection;
+        float mRunSpeed;
         class Animator* mAnimator;
 
     };

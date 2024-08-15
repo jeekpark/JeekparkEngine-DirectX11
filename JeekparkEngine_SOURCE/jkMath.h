@@ -6,7 +6,7 @@
 namespace jk::math
 {
     constexpr auto M_PI = 3.14159265358979323846;
-    static float radToDeg(float radians) { return (radians * (180.f / M_PI)); }
+    static float radToDeg(float radians) { return (radians * (180.f / (float)M_PI)); }
     struct Vector2
     {
         static float Dot(Vector2& v1, Vector2& v2)
@@ -21,7 +21,7 @@ namespace jk::math
 
         static Vector2 Rotate(Vector2& vector, float degree)
         {
-            float radian = (degree / 180.f) * M_PI;
+            float radian = (degree / 180.f) * (float)M_PI;
             vector.normalize();
             float x = cosf(radian) * vector.x - sinf(radian) * vector.y;
             float y = sinf(radian) * vector.x - cosf(radian) * vector.y;

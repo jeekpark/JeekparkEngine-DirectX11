@@ -16,6 +16,7 @@
 #include <cassert>
 #include <functional>
 #include <filesystem>
+#include <bitset>
 
 #include "jkMath.h"
 #include "jkEnums.h"

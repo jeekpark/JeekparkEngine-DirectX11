@@ -4,6 +4,7 @@
 #include "jkTime.h"
 #include "jkSceneManager.h"
 #include "jkResources.h"
+#include "jkCollisionManager.h"
 
 namespace jk
 {
@@ -12,6 +13,8 @@ namespace jk
         , mHdc(nullptr)
         , mWidth(0U)
         , mHeight(0U)
+        , mClientWidth(0U)
+        , mClientHeight(0U)
         , mBackBitmap(nullptr)
         , mBackHdc(nullptr)
     {
@@ -27,6 +30,7 @@ namespace jk
         createBuffer(width, height);
         initializeETC();
 
+        CollisionManager::Initialize();
         SceneManager::Initialize();
     }
 
@@ -43,12 +47,13 @@ namespace jk
     {
         Input::Update();
         Time::Update();
-
+        CollisionManager::Update();
         SceneManager::Update();
     }
 
     void Application::LateUpdate()
     {
+        CollisionManager::Update();
         SceneManager::LateUpdate();
     }
 
@@ -57,6 +62,7 @@ namespace jk
         clearRenderTarget(mBackHdc);
 
         Time::Render(mBackHdc);
+        CollisionManager::Render(mBackHdc);
         SceneManager::Render(mBackHdc);
         
         copyRenderTarget(mBackHdc, mHdc);
@@ -76,7 +82,7 @@ namespace jk
     {
         HBRUSH grayBrush = (HBRUSH)CreateSolidBrush(RGB(127, 127, 127));
         HBRUSH oldBrush = (HBRUSH)SelectObject(target, grayBrush);
-        Rectangle(target, -1, -1, 1000, 1000);
+        Rectangle(target, -1, -1, mClientWidth + 1, mClientHeight + 1);
 
         SelectObject(target, oldBrush);
         DeleteObject(grayBrush);
@@ -98,13 +104,18 @@ namespace jk
         SetWindowPos(
             hwnd,
             nullptr,
-            2000,
+            1500,
             0,
             mWidth,
             mHeight,
             0U
         );
         ShowWindow(hwnd, true);
+
+        RECT clientRect;
+        GetClientRect(mHwnd, &clientRect);
+        mClientWidth = clientRect.right - clientRect.left;
+        mClientHeight = clientRect.bottom - clientRect.top;
     }
 
     void Application::createBuffer(UINT width, UINT height)

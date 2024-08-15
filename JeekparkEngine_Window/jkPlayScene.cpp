@@ -19,6 +19,10 @@
 #include "jkBoxCollider2D.h"
 #include "jkSakuya.h"
 #include "jkSakuyaScript.h"
+#include "jkApplication.h"
+#include "jkCollisionManager.h"
+
+extern jk::Application app;
 
 namespace jk
 {
@@ -30,9 +34,11 @@ namespace jk
     }
     void PlayScene::Initialize()
     {
+        CollisionManager::CollistionLayerCheck(eLayerType::Player, eLayerType::Animal, true);
+
         GameObject* cameraObj = object::Instantiate<GameObject>(
             enums::eLayerType::None,
-            { 672.f / 2.f, 816.f / 2.f}//{347.f, 450.f}
+            { app.GetClientWidth() / 2.f, app.GetClientHeight() / 2.f}
         );
         Camera* cameraComp = cameraObj->AddComponent<Camera>();
         renderer::mainCamera = cameraComp;
@@ -68,11 +74,13 @@ namespace jk
         sakuyaAnimator->CreateAnimation(L"StartRun", sakuyaTex,
             { 64.f * 9.f, 0.f }, { 64.f, 64.f }, { 32.f, 64.f }, 8, 0.01f);
         sakuyaAnimator->CreateAnimation(L"Run", sakuyaTex,
-            { 0.f, 64.f * 1.f }, { 64.f, 64.f }, { 32.f, 64.f }, 16, 0.04f);
+            { 0.f, 64.f * 1.f }, { 64.f, 64.f }, { 32.f, 64.f }, 16, 0.03f);
         sakuyaAnimator->CreateAnimation(L"EndRun", sakuyaTex,
-            { 0.f, 64.f * 2.f }, { 64.f, 64.f }, { 32.f, 64.f }, 8, 0.04f);
+            { 0.f, 64.f * 2.f }, { 64.f, 64.f }, { 32.f, 64.f }, 8, 0.03f);
         sakuyaAnimator->CreateAnimation(L"Float", sakuyaTex,
             { 0.f, 64.f * 7.f }, { 64.f, 64.f }, { 32.f, 64.f }, 5, 0.05f);
+        sakuyaAnimator->CreateAnimation(L"StopJump", sakuyaTex,
+            { 64.f, 64.f * 5.f }, { 64.f, 64.f }, { 32.f, 64.f }, 7, 0.05f);
         BoxCollider2D* boxCollider2d = sakuya->AddComponent<BoxCollider2D>();
         boxCollider2d->SetOffset({ -32.f, -64.f });
         boxCollider2d->SetSize({ 64.f, 64.f });
@@ -83,7 +91,7 @@ namespace jk
         //sakuyaAnimator->PlayAnimation(L"Idle", true);
         
 
-        
+        cameraComp->SetTarget(sakuya);
         Scene::Initialize();
 
     }
