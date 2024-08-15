@@ -53,7 +53,7 @@ namespace jk
 
     void Application::LateUpdate()
     {
-        CollisionManager::Update();
+        CollisionManager::LateUpdate();
         SceneManager::LateUpdate();
     }
 

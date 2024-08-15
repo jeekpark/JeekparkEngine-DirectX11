@@ -15,12 +15,8 @@ namespace jk
         void LateUpdate()  override;
         void Render(HDC hdc)  override;
 
-        void SetSize(Vector2 size) { mSize = size; }
-        Vector2 GetSize() { return mSize; }
-
     private:
-        Vector2 mSize;
-        
+
 
     };
 }

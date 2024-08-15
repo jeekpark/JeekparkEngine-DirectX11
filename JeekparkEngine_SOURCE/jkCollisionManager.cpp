@@ -4,18 +4,22 @@
 #include "jkSceneManager.h"
 #include "jkGameObject.h"
 #include "jkCollider.h"
+#include "jkTransform.h"
+#include "jkComponent.h"
 
 namespace jk
 {
     std::bitset<(UINT)eLayerType::Max> CollisionManager::mCollisionLayerMaxtirx[(UINT)eLayerType::Max] = {};
+    std::unordered_map<UINT64, bool> CollisionManager::mCollisionMap = {};
     void CollisionManager::Initialize()
     {
     }
     void CollisionManager::Update()
     {
+        Scene* scene = SceneManager::GetActiveScene();
         for (UINT row = 0; row < (UINT)eLayerType::Max; ++row)
         {
-            for (UINT col = row + 1; col < (UINT)eLayerType::Max; ++col)
+            for (UINT col = 0; col < (UINT)eLayerType::Max; ++col)
             {
                 if (mCollisionLayerMaxtirx[row][col] == true)
                 {
@@ -86,6 +90,61 @@ namespace jk
     }
     void CollisionManager::ColliderCollision(Collider* left, Collider* right)
     {
+        CollisionID id = {};
+        id.left = left->GetID();
+        id.right = right->GetID();
 
+        auto iter = mCollisionMap.find(id.id);
+        if (iter == mCollisionMap.end())
+        {
+            mCollisionMap.insert(std::make_pair(id.id, false));
+            iter = mCollisionMap.find(id.id);
+        }
+
+        if (Intersect(left, right))
+        {
+            if (iter->second == false)
+            {
+                left->OnCollisionEnter(right);
+                right->OnCollisionEnter(left);
+                iter->second = true;
+            }
+            else
+            {
+                left->OnCollisionStay(right);
+                right->OnCollisionStay(left);
+            }
+        }
+        else
+        {
+            if (iter->second == true)
+            {
+                left->OnCollisionExit(right);
+                right->OnCollisionExit(left);
+                iter->second = false;
+            }
+        }
+        
+    }
+    bool CollisionManager::Intersect(Collider* left, Collider* right)
+    {
+        Transform* leftTransform = left->GetOwner()->GetComponent<Transform>();
+        Transform* rightTransform = right->GetOwner()->GetComponent<Transform>();
+
+        Vector2 leftPos = leftTransform->GetPosition() + left->GetOffset();
+        Vector2 rightPos = rightTransform->GetPosition() + right->GetOffset();
+
+        Vector2 leftSize = left->GetSize() * 100.f;
+        Vector2 rightSize = right->GetSize() * 100.f;
+
+        if (fabs(leftPos.x - rightPos.x) < (leftSize.x + rightSize.x) * 0.5f &&
+            fabs(leftPos.y - rightPos.y) < (leftSize.y + rightSize.y) * 0.5f)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 }

@@ -29,7 +29,6 @@ namespace jk
         {
             ownerPos = renderer::mainCamera->CalculatePosition(ownerPos);
         }
-        Vector2 ownerScl = tr->GetScale();
         Vector2 offset = GetOffset();
 
         HBRUSH transparentBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
@@ -39,10 +38,10 @@ namespace jk
         HPEN oldPen = (HPEN)SelectObject(hdc, greenPen);
 
         Rectangle(hdc,
-            ownerPos.x + GetOffset().x,
-            ownerPos.y + GetOffset().y,
-            ownerPos.x + GetOffset().x + mSize.x,
-            ownerPos.y + GetOffset().y + mSize.y
+            ownerPos.x + offset.x,
+            ownerPos.y + offset.y,
+            ownerPos.x + offset.x + 100 * GetSize().x,
+            ownerPos.y + offset.y + 100 * GetSize().y
         );
 
         SelectObject(hdc, oldBrush);

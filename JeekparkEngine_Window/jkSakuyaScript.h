@@ -29,6 +29,10 @@ namespace jk
         void LateUpdate() override;
         void Render(HDC hdc) override;
 
+        void OnCollisionEnter(class Collider* other) override;
+        void OnCollisionStay(class Collider* other) override;
+        void OnCollisionExit(class Collider* other) override;
+
         void AttackEffect();
     private:
         void idle();

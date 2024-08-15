@@ -34,7 +34,7 @@ namespace jk
     }
     void PlayScene::Initialize()
     {
-        CollisionManager::CollistionLayerCheck(eLayerType::Player, eLayerType::Animal, true);
+        CollisionManager::CollistionLayerCheck(eLayerType::Player, eLayerType::Player, true);
 
         GameObject* cameraObj = object::Instantiate<GameObject>(
             enums::eLayerType::None,
@@ -82,16 +82,26 @@ namespace jk
         sakuyaAnimator->CreateAnimation(L"StopJump", sakuyaTex,
             { 64.f, 64.f * 5.f }, { 64.f, 64.f }, { 32.f, 64.f }, 7, 0.05f);
         BoxCollider2D* boxCollider2d = sakuya->AddComponent<BoxCollider2D>();
-        boxCollider2d->SetOffset({ -32.f, -64.f });
-        boxCollider2d->SetSize({ 64.f, 64.f });
+        boxCollider2d->SetOffset({ -64.f, -64.f });
+        //boxCollider2d->SetSize({ 64.f, 64.f });
         
         sakuya->GetComponent<Transform>()->SetPosition({ 200.f, 600.f });
         sakuya->GetComponent<Transform>()->SetScale({ 3.f, 3.f });
         sakuya->GetComponent<Transform>()->SetRotation(0.f);
-        //sakuyaAnimator->PlayAnimation(L"Idle", true);
-        
-
         cameraComp->SetTarget(sakuya);
+        //////////////
+
+        Sakuya* npc = object::Instantiate<Sakuya>(enums::eLayerType::Player);
+        Animator* npcAnimator = npc->AddComponent<Animator>();
+        npcAnimator->CreateAnimation(L"Idle", sakuyaTex,
+            { 0.f, 0.f }, { 64.f, 64.f }, { 32.f, 64.f }, 6, 0.1f);
+        npcAnimator->PlayAnimation(L"Idle", true);
+        BoxCollider2D* npcBoxCollider2d = npc->AddComponent<BoxCollider2D>();
+        npcBoxCollider2d->SetOffset({ -64.f, -64.f });
+        npc->GetComponent<Transform>()->SetPosition({ 0.f, 600.f });
+        npc->GetComponent<Transform>()->SetScale({ 3.f, 3.f });
+
+
         Scene::Initialize();
 
     }

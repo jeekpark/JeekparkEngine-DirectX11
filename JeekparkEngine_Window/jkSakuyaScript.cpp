@@ -6,6 +6,7 @@
 #include "jkInput.h"
 #include "jkTransform.h"
 #include "jkTime.h"
+#include "jkCollider.h"
 namespace jk
 {
     SakuyaScript::SakuyaScript()
@@ -63,6 +64,18 @@ namespace jk
     }
     void SakuyaScript::Render(HDC hdc)
     {
+    }
+    void SakuyaScript::OnCollisionEnter(Collider* other)
+    {
+        
+    }
+    void SakuyaScript::OnCollisionStay(Collider* other)
+    {
+        
+    }
+    void SakuyaScript::OnCollisionExit(Collider* other)
+    {
+        
     }
     void SakuyaScript::AttackEffect()
     {

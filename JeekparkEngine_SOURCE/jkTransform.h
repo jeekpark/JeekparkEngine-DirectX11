@@ -15,8 +15,8 @@ namespace jk
         void LateUpdate() override;
         void Render(HDC hdc) override;
 
-        const Vector2& GetPosition() const { return mPosition; }
-        const Vector2& GetScale() const { return mScale; }
+        Vector2 GetPosition() const { return mPosition; }
+        Vector2 GetScale() const { return mScale; }
         float GetRotation() const { return mRotation; }
         
         void SetPosition(const Vector2& pos) { mPosition = pos; }
