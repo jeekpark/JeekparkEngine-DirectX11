@@ -35,7 +35,7 @@ namespace jk
         Vector2 scl = tr->GetScale();
         float rot = tr->GetRotation();
 
-        pos = renderer::mainCamera->CalculatePosition(pos);
+        pos = renderer::mainCamera->WorldToScreenPoint(pos);
         if (mTexture->GetTextureType()
             == graphics::Texture::eTextureType::Bmp)
         {

@@ -13,6 +13,7 @@ namespace jk::object
     static T* Instantiate(enums::eLayerType type)
     {
         T* gameObject = new T();
+        gameObject->SetLayerType(type);
         Scene* activeScene = SceneManager::GetActiveScene();
         Layer* layer = activeScene->GetLayer(type);
         layer->AddGameObject(gameObject);
@@ -23,6 +24,7 @@ namespace jk::object
     static T* Instantiate(enums::eLayerType type, math::Vector2 position)
     {
         T* gameObject = new T();
+        gameObject->SetLayerType(type);
         Scene* activeScene = SceneManager::GetActiveScene();
         Layer* layer = activeScene->GetLayer(type);
         layer->AddGameObject(gameObject);
@@ -36,5 +38,14 @@ namespace jk::object
     static void Destroy(GameObject* obj)
     {
         obj->Death();
+    }
+
+    static void DontDestroyOnLoad(GameObject* obj)
+    {
+        Scene* activeScene = SceneManager::GetActiveScene();
+
+        activeScene->EraseGameObject(obj);
+        Scene* dontDestroyOnLoad = SceneManager::GetDontDestroyOnLoad();
+        dontDestroyOnLoad->AddGameObject(obj, obj->GetLayerType());
     }
 }

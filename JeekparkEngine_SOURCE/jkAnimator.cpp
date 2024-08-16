@@ -143,6 +143,7 @@ namespace jk
     }
     Animation* Animator::FindAnimation(const std::wstring& name)
     {
+        std::map<std::wstring, Animation*>& test = mAnimations;
         auto iter = mAnimations.find(name);
         if (iter == mAnimations.end())
         {

@@ -24,6 +24,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)jkCollider.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkCollisionManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkComponent.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jkDontDestroyOnLoad.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkEnums.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkGameObject.h" />
@@ -52,6 +53,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)jkCollider.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jkCollisionManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jkComponent.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jkDontDestroyOnLoad.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jkEntity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jkGameObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jkInput.cpp" />

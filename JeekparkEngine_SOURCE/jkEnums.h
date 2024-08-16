@@ -34,6 +34,13 @@ namespace jk::enums
         End,
     };
 
+    enum class eColliderType
+    {
+        Box2D,
+        Circle2D,
+        End,
+    };
+
     enum class eDirection
     {
         Left,

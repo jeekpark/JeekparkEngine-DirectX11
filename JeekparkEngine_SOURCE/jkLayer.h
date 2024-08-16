@@ -19,11 +19,12 @@ namespace jk
         virtual void Destroy();
 
         void AddGameObject(GameObject* gameObject);
+        void EraseGameObject(GameObject* gameObject);
         const std::vector<GameObject*> GetGameObjects() const { return mGameObjects; }
     private:
         void findDeadGameObject(OUT std::vector<GameObject*>& gameObjects);
         void deleteGameObject(std::vector<GameObject*>& deadGameObjects);
-        void eraseGameObject();
+        void eraseDeadGameObject();
 
         std::vector<GameObject*> mGameObjects;
     };

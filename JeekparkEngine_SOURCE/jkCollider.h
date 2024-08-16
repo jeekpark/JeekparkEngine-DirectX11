@@ -8,7 +8,7 @@ namespace jk
     {
     public:
 
-        Collider();
+        Collider(enums::eColliderType type);
         ~Collider();
 
         void Initialize() override;
@@ -26,12 +26,13 @@ namespace jk
         UINT32 GetID() { return mID; }
         Vector2 GetSize() { return mSize; }
         void SetSize(Vector2 size) { mSize = size; }
-
+        enums::eColliderType GetColliderType() { return mColliderType; }
     private:
         static UINT32 sCollistionID;
         UINT32 mID;
         Vector2 mOffset;
         Vector2 mSize;
+        enums::eColliderType mColliderType;
     };
 
 }

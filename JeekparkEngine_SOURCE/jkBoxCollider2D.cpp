@@ -6,7 +6,7 @@
 namespace jk
 {
     BoxCollider2D::BoxCollider2D()
-        : Collider()
+        : Collider(enums::eColliderType::Box2D)
     {
     }
     BoxCollider2D::~BoxCollider2D()
@@ -27,7 +27,7 @@ namespace jk
         Vector2 ownerPos = tr->GetPosition();
         if (renderer::mainCamera)
         {
-            ownerPos = renderer::mainCamera->CalculatePosition(ownerPos);
+            ownerPos = renderer::mainCamera->WorldToScreenPoint(ownerPos);
         }
         Vector2 offset = GetOffset();
 

@@ -18,7 +18,7 @@ namespace jk
         void Render(HDC hdc)  override;
 
     private:
-
+        float mRadius;
     };
 
 }

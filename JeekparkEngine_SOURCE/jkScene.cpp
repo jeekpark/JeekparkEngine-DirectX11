@@ -63,5 +63,10 @@ namespace jk
     {
         mLayers[(UINT)type]->AddGameObject(gameObject);
     }
+    void Scene::EraseGameObject(GameObject* gameObject)
+    {
+        enums::eLayerType type = gameObject->GetLayerType();
+        mLayers[(UINT)type]->EraseGameObject(gameObject);
+    }
 
 }

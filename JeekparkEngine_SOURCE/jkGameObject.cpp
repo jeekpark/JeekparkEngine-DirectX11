@@ -8,6 +8,7 @@ namespace jk
 {
     GameObject::GameObject()
         : mState(eState::Active)
+        , mLayerType(enums::eLayerType::None)
     {
         mComponents.resize((UINT)enums::eComponentType::End);
         initializeTransform();

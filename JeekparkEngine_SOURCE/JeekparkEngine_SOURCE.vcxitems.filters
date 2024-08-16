@@ -67,6 +67,9 @@
       <Filter>Component\Collider</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)jkCollisionManager.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jkDontDestroyOnLoad.cpp">
+      <Filter>Scene</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h">
@@ -144,6 +147,9 @@
       <Filter>Component\Collider</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)jkCollisionManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jkDontDestroyOnLoad.h">
+      <Filter>Scene</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">

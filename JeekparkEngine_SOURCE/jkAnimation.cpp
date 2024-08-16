@@ -61,7 +61,7 @@ namespace jk
 
         if (renderer::mainCamera)
         {
-            pos = renderer::mainCamera->CalculatePosition(pos);
+            pos = renderer::mainCamera->WorldToScreenPoint(pos);
         }
 
         Sprite sprite = mAnimationSheet[mIndex];

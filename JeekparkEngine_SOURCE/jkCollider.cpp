@@ -7,10 +7,11 @@ namespace jk
 {
     UINT32 Collider::sCollistionID = 1;
 
-    Collider::Collider()
+    Collider::Collider(enums::eColliderType type)
         : Component(enums::eComponentType::Collider)
         , mID(sCollistionID++)
         , mSize(Vector2::One)
+        , mColliderType(type)
     {
     }
     Collider::~Collider()

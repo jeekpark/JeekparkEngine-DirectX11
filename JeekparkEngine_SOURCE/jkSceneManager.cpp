@@ -1,51 +1,58 @@
 #include "jkSceneManager.h"
 
-
+#include "jkDontDestroyOnLoad.h"
 namespace jk
 {
-    std::map<std::wstring, Scene*> SceneManager::mScene = {};
-    Scene* SceneManager::mActiveScene = nullptr;
+    std::map<std::wstring, Scene*> SceneManager::sScene = {};
+    Scene* SceneManager::sActiveScene = nullptr;
+    Scene* SceneManager::sDontDestroyOnLoad = nullptr;
 
     void SceneManager::Initialize()
     {
+        sDontDestroyOnLoad = CreateScene<DontDestroyOnLoad>(L"DontDestroyOnLoad");
+
     }
     void SceneManager::Update()
     {
-        mActiveScene->Update();
+        sActiveScene->Update();
+        sDontDestroyOnLoad->Update();
     }
     void SceneManager::LateUpdate()
     {
-        mActiveScene->LateUpdate();
+        sActiveScene->LateUpdate();
+        sDontDestroyOnLoad->LateUpdate();
     }
     void SceneManager::Render(HDC hdc)
     {
-        mActiveScene->Render(hdc);
+        sActiveScene->Render(hdc);
+        sDontDestroyOnLoad->Render(hdc);
     }
     void SceneManager::Destroy()
     {
-        mActiveScene->Destroy();
+        sActiveScene->Destroy();
+        sDontDestroyOnLoad->Destroy();
     }
     Scene* SceneManager::LoadScene(const std::wstring& name)
     {
-        if (mActiveScene)
+        if (sActiveScene)
         {
-            mActiveScene->OnExit();
+            sActiveScene->OnExit();
         }
-        auto iter = mScene.find(name);
+        auto iter = sScene.find(name);
 
-        if (iter == mScene.end())
+        if (iter == sScene.end())
         {
             return nullptr;
         }
 
-        mActiveScene = iter->second;
-        mActiveScene->OnEnter();
+        sActiveScene = iter->second;
+        sActiveScene->OnEnter();
         return iter->second;
     }
 
     void SceneManager::Release()
     {
-        for (auto& iter : mScene)
+        for (auto& iter : sScene)
         {
             delete iter.second;
             iter.second = nullptr;

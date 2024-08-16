@@ -137,14 +137,46 @@ namespace jk
         Vector2 leftSize = left->GetSize() * 100.f;
         Vector2 rightSize = right->GetSize() * 100.f;
 
-        if (fabs(leftPos.x - rightPos.x) < (leftSize.x + rightSize.x) * 0.5f &&
-            fabs(leftPos.y - rightPos.y) < (leftSize.y + rightSize.y) * 0.5f)
+        enums::eColliderType leftType = left->GetColliderType();
+        enums::eColliderType rightType = right->GetColliderType();
+
+        if (leftType == enums::eColliderType::Box2D &&
+            rightType == enums::eColliderType::Box2D)
         {
-            return true;
+            if (fabs(leftPos.x - rightPos.x) < (leftSize.x + rightSize.x) * 0.5f &&
+                fabs(leftPos.y - rightPos.y) < (leftSize.y + rightSize.y) * 0.5f)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
-        else
+        
+        if (leftType == enums::eColliderType::Circle2D &&
+            rightType == enums::eColliderType::Circle2D)
         {
-            return false;
+            Vector2 leftCirclePos = leftPos + leftSize * 0.5f;
+            Vector2 rightCirclePos = rightPos + rightSize * 0.5f;
+
+            float distance = (leftCirclePos - rightCirclePos).length();
+            if (distance < (leftSize.x + rightSize.x) * 0.5f)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
+
+        if (leftType == enums::eColliderType::Circle2D &&
+                rightType == enums::eColliderType::Box2D)
+        {
+
+          
+        }
+        
     }
 }

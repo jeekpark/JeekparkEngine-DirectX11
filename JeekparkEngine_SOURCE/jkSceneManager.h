@@ -2,6 +2,7 @@
 
 #include "jkScene.h"
 
+
 namespace jk
 {
     class SceneManager
@@ -12,15 +13,15 @@ namespace jk
         {
             T* scene = new T();
             scene->SetName(name);
-            mActiveScene = scene;
+            sActiveScene = scene;
             scene->Initialize();
-            mScene.insert(std::make_pair(name, scene));
+            sScene.insert(std::make_pair(name, scene));
             return scene;
         }
 
         static Scene* LoadScene(const std::wstring& name);
-        static Scene* GetActiveScene() { return mActiveScene; }
-
+        static Scene* GetActiveScene() { return sActiveScene; }
+        static Scene* GetDontDestroyOnLoad() { return sDontDestroyOnLoad; }
         static void Initialize();
         static void Update();
         static void LateUpdate();
@@ -28,9 +29,9 @@ namespace jk
         static void Destroy();
         static void Release();
     private:
-        static std::map<std::wstring, Scene*> mScene;
-        static Scene* mActiveScene;
-
+        static std::map<std::wstring, Scene*> sScene;
+        static Scene* sActiveScene;
+        static Scene* sDontDestroyOnLoad;
     };
 }
 

@@ -66,7 +66,8 @@ namespace jk
         bool IsActive() { return mState == eState::Active; }
         bool IsDead() { return mState == eState::Dead; }
         void Death() { mState = eState::Dead; }
-
+        void SetLayerType(enums::eLayerType layer) { mLayerType = layer; }
+        enums::eLayerType GetLayerType() { return mLayerType; }
     private:
         void initializeTransform();
         
@@ -75,6 +76,7 @@ namespace jk
     private:
         std::vector<Component*> mComponents;
         eState mState;
+        enums::eLayerType mLayerType;
     };
 
 }
