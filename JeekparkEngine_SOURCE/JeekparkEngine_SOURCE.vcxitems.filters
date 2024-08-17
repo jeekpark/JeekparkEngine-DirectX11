@@ -70,6 +70,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)jkDontDestroyOnLoad.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jkTilemapRenderer.cpp">
+      <Filter>Component\TilemapRenderer</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h">
@@ -150,6 +153,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)jkDontDestroyOnLoad.h">
       <Filter>Scene</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jkTilemapRenderer.h">
+      <Filter>Component\TilemapRenderer</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">
@@ -196,6 +202,9 @@
     </Filter>
     <Filter Include="Component\Collider">
       <UniqueIdentifier>{c5c750bd-bfdf-4ef7-a123-5efd130d0b09}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\TilemapRenderer">
+      <UniqueIdentifier>{ac9dde5e-c629-4c9a-80be-e9dbb288a58b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

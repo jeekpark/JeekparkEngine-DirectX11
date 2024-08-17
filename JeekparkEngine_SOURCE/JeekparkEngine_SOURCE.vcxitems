@@ -42,6 +42,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)jkTexture.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkTime.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkTransform.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jkTilemapRenderer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)jkAnimation.cpp" />
@@ -69,5 +70,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)jkTexture.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jkTime.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jkTransform.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jkTilemapRenderer.cpp" />
   </ItemGroup>
 </Project>

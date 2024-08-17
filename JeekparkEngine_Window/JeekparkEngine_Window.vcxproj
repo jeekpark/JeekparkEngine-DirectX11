@@ -140,8 +140,10 @@
     <ClInclude Include="jkPlayScene.h" />
     <ClInclude Include="jkSakuya.h" />
     <ClInclude Include="jkSakuyaScript.h" />
+    <ClInclude Include="jkTile.h" />
     <ClInclude Include="jkTitleScene.h" />
     <ClInclude Include="jkLoadResources.h" />
+    <ClInclude Include="jkToolScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="jkCat.cpp" />
@@ -151,7 +153,9 @@
     <ClCompile Include="jkPlayScene.cpp" />
     <ClCompile Include="jkSakuya.cpp" />
     <ClCompile Include="jkSakuyaScript.cpp" />
+    <ClCompile Include="jkTile.cpp" />
     <ClCompile Include="jkTitleScene.cpp" />
+    <ClCompile Include="jkToolScene.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

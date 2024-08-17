@@ -12,6 +12,7 @@ namespace jk
         Resources::Load<graphics::Texture>(L"Cat", L"..\\Resources\\chickenAlpha.bmp");
         Resources::Load<graphics::Texture>(L"Player", L"..\\Resources\\Player.bmp");
         Resources::Load<graphics::Texture>(L"SakuyaTexture", L"..\\Resources\\SakuyaIzayoi.png");
+        Resources::Load<graphics::Texture>(L"SpringFloor", L"..\\Resources\\SpringFloor.bmp");
 
     }
 }

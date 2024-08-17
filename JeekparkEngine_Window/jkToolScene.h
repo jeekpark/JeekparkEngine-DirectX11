@@ -4,13 +4,12 @@
 
 namespace jk
 {
-    class Player;
-    class PlayScene : public Scene
+    class ToolScene : public Scene
     {
     public:
-        PlayScene();
-        ~PlayScene();
-        
+        ToolScene();
+        ~ToolScene();
+
         void Initialize() override;
         void Update() override;
         void LateUpdate() override;
@@ -19,7 +18,6 @@ namespace jk
         void OnEnter() override;
         void OnExit() override;
     private:
-        Player* mPlayer;
     };
 
 }
