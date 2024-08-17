@@ -12,6 +12,7 @@ namespace jk
         void LateUpdate() override;
         void Render(HDC hdc) override;
 
+        void SetPositionInGrid(int x, int y, Vector2 gridSize);
     };
 }
 

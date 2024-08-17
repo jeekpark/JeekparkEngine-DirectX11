@@ -22,4 +22,12 @@ namespace jk
     {
         GameObject::Render(hdc);
     }
+    void Tile::SetPositionInGrid(int x, int y, Vector2 gridSize)
+    {
+        
+        x = (int)(x / gridSize.x) * gridSize.x;
+        y = (int)(y / gridSize.y) * gridSize.y;
+        Transform* tr = GetComponent<Transform>();
+        tr->SetPosition(Vector2(x, y));
+    }
 }

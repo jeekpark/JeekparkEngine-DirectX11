@@ -18,8 +18,8 @@ namespace jk
         void OnEnter() override;
         void OnExit() override;
     private:
-        
+        Vector2 mGridSize;
     };
 
 }
-
+LRESULT CALLBACK WndTileProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);

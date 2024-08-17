@@ -18,12 +18,11 @@ namespace jk
 
         void SetTexture(graphics::Texture* texture) { mTexture = texture; }
         void SetIndex(Vector2 index) { mIndex = index; }
-        void SetTileSize(Vector2 tileSize) { mTileSize = tileSize; }
-
+        void SetSourceTileSize(Vector2 tileSize) { mSourceTileSize = tileSize; }
     private:
         graphics::Texture* mTexture;
         Vector2 mIndex;
-        Vector2 mTileSize;
+        Vector2 mSourceTileSize;
     };
 }
 

@@ -12,7 +12,7 @@ namespace jk
         : Component(enums::eComponentType::SpriteRenderer)
         , mTexture(nullptr)
         , mIndex(Vector2::Zero)
-        , mTileSize(Vector2::One)
+        , mSourceTileSize(Vector2::One)
     {
     }
     TilemapRenderer::~TilemapRenderer()
@@ -53,13 +53,13 @@ namespace jk
                 AlphaBlend(hdc,
                     pos.x,
                     pos.y,
-                    mTileSize.x * scl.x,
-                    mTileSize.y * scl.y,
+                    mSourceTileSize.x * scl.x,
+                    mSourceTileSize.y * scl.y,
                     mTexture->GetHdc(),
-                    mIndex.x * mTileSize.x,
-                    mIndex.y * mTileSize.y,
-                    mTileSize.x,
-                    mTileSize.y,
+                    mIndex.x * mSourceTileSize.x,
+                    mIndex.y * mSourceTileSize.y,
+                    mSourceTileSize.x,
+                    mSourceTileSize.y,
                     func
                 );
             }
@@ -68,13 +68,13 @@ namespace jk
                 TransparentBlt(hdc,
                     pos.x,
                     pos.y,
-                    mTileSize.x * scl.x,
-                    mTileSize.y * scl.y,
+                    mSourceTileSize.x * scl.x,
+                    mSourceTileSize.y * scl.y,
                     mTexture->GetHdc(),
-                    mIndex.x * mTileSize.x,
-                    mIndex.y * mTileSize.y,
-                    mTileSize.x,
-                    mTileSize.y,
+                    mIndex.x * mSourceTileSize.x,
+                    mIndex.y * mSourceTileSize.y,
+                    mSourceTileSize.x,
+                    mSourceTileSize.y,
                     RGB(255, 0, 255)
                 );
             }

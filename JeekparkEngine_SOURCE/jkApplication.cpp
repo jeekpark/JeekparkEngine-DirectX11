@@ -61,10 +61,10 @@ namespace jk
     {
         clearRenderTarget(mBackHdc);
 
-        Time::Render(mBackHdc);
+        
         CollisionManager::Render(mBackHdc);
         SceneManager::Render(mBackHdc);
-        
+        Time::Render(mBackHdc);
         copyRenderTarget(mBackHdc, mHdc);
     }
     void Application::Destroy()
