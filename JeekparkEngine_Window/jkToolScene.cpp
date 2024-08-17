@@ -64,7 +64,18 @@ void jk::ToolScene::LateUpdate()
         tmr->SetIndex({ 1.f, 1.f });
         tile->SetPositionInGrid(pos.x, pos.y, mGridSize);
         tile->GetComponent<Transform>()->SetScale({ 3.f, 3.f });
+
+        mTiles.push_back(tile);
     }
+    if (Input::GetKeyDown(eKeyCode::S))
+    {
+        Save();
+    }
+    if (Input::GetKeyDown(eKeyCode::L))
+    {
+        Load();
+    }
+
 }
 
 void jk::ToolScene::Render(HDC hdc)
@@ -91,6 +102,90 @@ void jk::ToolScene::OnEnter()
 void jk::ToolScene::OnExit()
 {
     Scene::OnExit();
+}
+
+void jk::ToolScene::Save()
+{
+    OPENFILENAME ofn = {};
+    wchar_t szFilePath[MAX_PATH] = {};
+    ZeroMemory(&ofn, sizeof(ofn));
+    ofn.lStructSize = sizeof(ofn);
+    ofn.hwndOwner = NULL;
+    ofn.lpstrFile = szFilePath;
+    ofn.lpstrFile[0] = '\0';
+    ofn.nMaxFile = sizeof(szFilePath);
+    ofn.lpstrFilter = L"Tile\0*.tile\0";
+    ofn.nFilterIndex = 1;
+    ofn.lpstrFileTitle = NULL;
+    ofn.nMaxFileTitle = 0;
+    ofn.lpstrInitialDir = NULL;
+    ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
+    if (GetSaveFileName(&ofn) == false)
+    {
+        return;
+    }
+    FILE* pFile = nullptr;
+    _wfopen_s(&pFile, szFilePath, L"wb");
+    if (pFile == nullptr)
+    {
+        return;
+    }
+
+    for (Tile* tile : mTiles)
+    {
+        TilemapRenderer* tmr = tile->GetComponent<TilemapRenderer>();
+        Vector2 index = tmr->GetIndex();
+
+        Transform* tr = tile->GetComponent<Transform>();
+        Vector2 pos = tr->GetPosition();
+
+        fwrite(&index, sizeof(Vector2), 1, pFile);
+        fwrite(&pos, sizeof(Vector2), 1, pFile);
+    }
+    fclose(pFile);
+}
+
+void jk::ToolScene::Load()
+{
+    OPENFILENAME ofn = {};
+    wchar_t szFilePath[MAX_PATH] = {};
+    ZeroMemory(&ofn, sizeof(ofn));
+    ofn.lStructSize = sizeof(ofn);
+    ofn.hwndOwner = NULL;
+    ofn.lpstrFile = szFilePath;
+    ofn.lpstrFile[0] = '\0';
+    ofn.nMaxFile = sizeof(szFilePath);
+    ofn.lpstrFilter = L"Tile\0*.tile\0";
+    ofn.nFilterIndex = 1;
+    ofn.lpstrFileTitle = NULL;
+    ofn.nMaxFileTitle = 0;
+    ofn.lpstrInitialDir = NULL;
+    ofn.Flags = OFN_PATHMUSTEXIST | OFN_FILEMUSTEXIST;
+    if (GetSaveFileName(&ofn) == false)
+    {
+        return;
+    }
+    FILE* pFile = nullptr;
+    _wfopen_s(&pFile, szFilePath, L"rb");
+    if (pFile == nullptr)
+    {
+        return;
+    }
+
+    while (true)
+    {
+        Vector2 index;
+        Vector2 pos;
+        if (fread(&index, sizeof(Vector2), 1, pFile) == 0)
+        {
+            break;
+        }
+        if (fread(&pos, sizeof(Vector2), 1, pFile) == 0)
+        {
+            break;
+        }
+        int a = 0;
+    }
 }
 
 
