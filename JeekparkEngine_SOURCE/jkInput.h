@@ -35,13 +35,22 @@ namespace jk
         static void Initialize();
         static void Update();
 
-        __forceinline static bool GetKeyDown(eKeyCode code) { return mKeys[(size_t)code].state == eKeyState::Down; }
-        __forceinline static bool GetKeyUp(eKeyCode code) { return mKeys[(size_t)code].state == eKeyState::Up; }
-        __forceinline static bool GetKey(eKeyCode code) { return mKeys[(size_t)code].state == eKeyState::Pressed; }
-        __forceinline static math::Vector2 GetMousePostion() { return mMousePostion; }
+        __forceinline static bool GetKeyDown(eKeyCode code) { return Keys[(size_t)code].state == eKeyState::Down; }
+        __forceinline static bool GetKeyUp(eKeyCode code) { return Keys[(size_t)code].state == eKeyState::Up; }
+        __forceinline static bool GetKey(eKeyCode code) { return Keys[(size_t)code].state == eKeyState::Pressed; }
+        __forceinline static math::Vector2 GetMousePostion() { return mMousePosition; }
     private:
-        static std::vector<Key> mKeys;
-        static math::Vector2 mMousePostion;
+        static void createKeys();
+        static void updateKeys();
+        static void updateKey(Input::Key& key);
+        static bool isKeyDown(eKeyCode code);
+        static void updateKeyDown(Input::Key& key);
+        static void updateKeyUp(Input::Key& key);
+        static void getMousePositionByWindow();
+        static void clearKeys();
+    private:
+        static std::vector<Key> Keys;
+        static math::Vector2 mMousePosition;
     };
 }
 

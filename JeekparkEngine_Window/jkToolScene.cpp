@@ -6,6 +6,9 @@
 #include "jkCamera.h"
 #include "jkRenderer.h"
 #include "jkInput.h"
+#include "jkCameraScript.h"
+Vector2 jk::ToolScene::SelectedIndex = { 0.f, 0.f };
+
 jk::ToolScene::ToolScene()
     : mGridSize(1.f, 1.f)
 {
@@ -17,6 +20,13 @@ jk::ToolScene::~ToolScene()
 
 void jk::ToolScene::Initialize()
 {
+    ///////// CAMERA /////////
+    GameObject* camObj = object::Instantiate<GameObject>(enums::eLayerType::None);
+    Camera* camComp = camObj->AddComponent<Camera>();
+    CameraScript* camScript = camObj->AddComponent<CameraScript>();
+    renderer::mainCamera = camComp;
+
+
     mGridSize = { 48.f, 48.f };
     for (int i = 0; i < 10; ++i)
     {
@@ -32,16 +42,9 @@ void jk::ToolScene::Initialize()
             tile->GetComponent<Transform>()->SetScale({ 3.f, 3.f });
         }
     }
-    Tile* tile = object::Instantiate<Tile>(enums::eLayerType::Tile);
-    TilemapRenderer* tmr = tile->AddComponent<TilemapRenderer>();
-    tmr->SetTexture(Resources::Find<graphics::Texture>(L"SpringFloor"));
-    tmr->SetSourceTileSize({ 16.f, 16.f });
-    tmr->SetIndex({ 0.f, 0.f });
 
-    ///////// CAMERA /////////
-    GameObject* camObj = object::Instantiate<GameObject>(enums::eLayerType::None);
-    Camera* camComp = camObj->AddComponent<Camera>();
-    //renderer::mainCamera = camComp;
+
+    
 
     Scene::Initialize();
 }
@@ -57,11 +60,17 @@ void jk::ToolScene::LateUpdate()
     if (Input::GetKeyDown(eKeyCode::LButton))
     {
         Vector2 pos = Input::GetMousePostion();
+        
+        if (pos.x < 0.f || pos.y < 0.f)
+        {
+            return;
+        }   
+        pos = renderer::mainCamera->ScreenToWorldPoint(pos);
         Tile* tile = object::Instantiate<Tile>(enums::eLayerType::Tile);
         TilemapRenderer* tmr = tile->AddComponent<TilemapRenderer>();
         tmr->SetTexture(Resources::Find<graphics::Texture>(L"SpringFloor"));
         tmr->SetSourceTileSize({ 16.f, 16.f });
-        tmr->SetIndex({ 1.f, 1.f });
+        tmr->SetIndex(SelectedIndex);
         tile->SetPositionInGrid(pos.x, pos.y, mGridSize);
         tile->GetComponent<Transform>()->SetScale({ 3.f, 3.f });
 
@@ -81,16 +90,18 @@ void jk::ToolScene::LateUpdate()
 void jk::ToolScene::Render(HDC hdc)
 {
     Scene::Render(hdc);
-
-    for (size_t i = 0; i < 50; ++i)
+    
+    for (int i = -50; i < 50; ++i)
     {
-        MoveToEx(hdc, mGridSize.x * i, 0, nullptr);
-        LineTo(hdc, mGridSize.x * i, 1080);
+        Vector2 pos = renderer::mainCamera->WorldToScreenPoint({ mGridSize.x * i, 0.f });
+        MoveToEx(hdc, pos.x, 0, nullptr);
+        LineTo(hdc, pos.x, 1080);
     }
-    for (size_t j = 0; j < 50; ++j)
+    for (int j = -50; j < 50; ++j)
     {
-        MoveToEx(hdc, 0, mGridSize.y * j, nullptr);
-        LineTo(hdc, 1920, mGridSize.y * j);
+        Vector2 pos = renderer::mainCamera->WorldToScreenPoint({ 0.f, mGridSize.y * j});
+        MoveToEx(hdc, 0, pos.y, nullptr);
+        LineTo(hdc, 1920, pos.y);
     }
 }
 
@@ -171,6 +182,7 @@ void jk::ToolScene::Load()
     {
         return;
     }
+    clearTiles();
 
     while (true)
     {
@@ -185,7 +197,27 @@ void jk::ToolScene::Load()
             break;
         }
         int a = 0;
+
+
+        Tile* tile = object::Instantiate<Tile>(enums::eLayerType::Tile);
+        TilemapRenderer* tmr = tile->AddComponent<TilemapRenderer>();
+        tmr->SetTexture(Resources::Find<graphics::Texture>(L"SpringFloor"));
+        tmr->SetSourceTileSize({ 16.f, 16.f });
+        tmr->SetIndex(index);
+        tile->SetPositionInGrid(pos.x, pos.y, mGridSize);
+        tile->GetComponent<Transform>()->SetScale({ 3.f, 3.f });
+
+        mTiles.push_back(tile);
     }
+}
+
+void jk::ToolScene::clearTiles()
+{
+    for (Tile* tile : mTiles)
+    {
+        object::Destroy(tile);
+    }
+    mTiles.clear();
 }
 
 
@@ -193,21 +225,17 @@ LRESULT CALLBACK WndTileProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPar
 {
     switch (message)
     {
-    case WM_COMMAND:
+    case WM_LBUTTONDOWN:
     {
-        //int wmId = LOWORD(wParam);
-        //// 메뉴 선택을 구문 분석합니다:
-        //switch (wmId)
-        //{
-        //case IDM_ABOUT:
-        //    DialogBox(hInst, MAKEINTRESOURCE(IDD_ABOUTBOX), hWnd, About);
-        //    break;
-        //case IDM_EXIT:
-        //    DestroyWindow(hWnd);
-        //    break;
-        //default:
-        //    return DefWindowProc(hWnd, message, wParam, lParam);
-        //}
+        POINT mousePos = {};
+        GetCursorPos(&mousePos);
+        ScreenToClient(hWnd, &mousePos);
+
+        jk::math::Vector2 pos = { (float)mousePos.x, (float)mousePos.y };
+        int idxX = (int)(pos.x / 16.f);
+        int idxY = (int)(pos.y / 16.f);
+
+        jk::ToolScene::SelectedIndex = { (float)idxX, (float)idxY };
     }
     break;
     case WM_PAINT:

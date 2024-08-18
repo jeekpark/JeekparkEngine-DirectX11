@@ -7,6 +7,7 @@ namespace jk
     class ToolScene : public Scene
     {
     public:
+        static Vector2 SelectedIndex;
         ToolScene();
         ~ToolScene();
 
@@ -20,6 +21,8 @@ namespace jk
 
         void Save();
         void Load();
+    private:
+        void clearTiles();
     private:
         Vector2 mGridSize;
         std::vector<Tile*> mTiles;

@@ -46,6 +46,9 @@
     <ClInclude Include="jkTile.h">
       <Filter>Contents</Filter>
     </ClInclude>
+    <ClInclude Include="jkCameraScript.h">
+      <Filter>Scripts</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="jkPlayer.cpp">
@@ -77,6 +80,9 @@
     </ClCompile>
     <ClCompile Include="jkTile.cpp">
       <Filter>Contents</Filter>
+    </ClCompile>
+    <ClCompile Include="jkCameraScript.cpp">
+      <Filter>Scripts</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -6,8 +6,8 @@ extern jk::Application app;
 
 namespace jk
 {
-    std::vector<Input::Key> Input::mKeys = {};
-    math::Vector2 Input::mMousePostion = { 0.f, 0.f };
+    std::vector<Input::Key> Input::Keys = {};
+    math::Vector2 Input::mMousePosition = { 0.f, 0.f };
     int ASCII[(size_t)eKeyCode::End] =
     {
         'Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P',
@@ -27,65 +27,105 @@ namespace jk
             key.state = eKeyState::None;
             key.keyCode = (eKeyCode)i;
 
-            mKeys.push_back(key);
+            Keys.push_back(key);
         }
     }
 
-    void Input::Update()
-    {
-        if (GetFocus())
-        {
-            for (size_t i = 0; i < mKeys.size(); ++i)
-            {
-                if (GetAsyncKeyState(ASCII[i]) & 0x8000)
-                {
-                    if (mKeys[i].bPressed == true)
-                    {
-                        mKeys[i].state = eKeyState::Pressed;
-                    }
-                    else
-                    {
-                        mKeys[i].state = eKeyState::Down;
-                    }
-                    mKeys[i].bPressed = true;
-                }
-                else
-                {
-                    if (mKeys[i].bPressed == true)
-                    {
-                        mKeys[i].state = eKeyState::Up;
-                    }
-                    else
-                    {
-                        mKeys[i].state = eKeyState::None;
-                    }
-                    mKeys[i].bPressed = false;
-                }
-            }
+	void Input::Update()
+	{
+		updateKeys();
+	}
+	void Input::createKeys()
+	{
+		for (size_t i = 0; i < (UINT)eKeyCode::End; i++)
+		{
+			Key key = {};
+			key.bPressed = false;
+			key.state = eKeyState::None;
+			key.keyCode = (eKeyCode)i;
 
-            POINT mousePos = {};
-            GetCursorPos(&mousePos);
-            ScreenToClient(app.GetHwnd(), &mousePos);
-            mMousePostion.x = mousePos.x;
-            mMousePostion.y = mousePos.y;
-        }
-        else
-        {
-            for (Key& key : mKeys)
-            {
-                if (key.state == eKeyState::Down || key.state == eKeyState::Pressed)
-                {
-                    key.state = eKeyState::Up;
-                }
-                else if (key.state == eKeyState::Up)
-                {
-                    key.state == eKeyState::None;
-                }
+			Keys.push_back(key);
+		}
+	}
 
-                key.bPressed = false;
-            }
-        }
-        
-    }
+	void Input::updateKeys()
+	{
+		std::for_each(Keys.begin(), Keys.end(),
+			[](Key& key) -> void
+			{
+				updateKey(key);
+			});
+	}
+
+	void Input::updateKey(Input::Key& key)
+	{
+		if (GetFocus())
+		{
+			if (isKeyDown(key.keyCode))
+				updateKeyDown(key);
+			else
+				updateKeyUp(key);
+
+			getMousePositionByWindow();
+		}
+		else
+		{
+			clearKeys();
+		}
+	}
+
+	bool Input::isKeyDown(eKeyCode code)
+	{
+		return GetAsyncKeyState(ASCII[(UINT)code]) & 0x8000;
+	}
+
+	void Input::updateKeyDown(Input::Key& key)
+	{
+		if (key.bPressed == true)
+			key.state = eKeyState::Pressed;
+		else
+			key.state = eKeyState::Down;
+
+		key.bPressed = true;
+	}
+	void Input::updateKeyUp(Input::Key& key)
+	{
+		if (key.bPressed == true)
+			key.state = eKeyState::Up;
+		else
+			key.state = eKeyState::None;
+
+		key.bPressed = false;
+	}
+	void Input::getMousePositionByWindow()
+	{
+		POINT mousePos = { };
+		GetCursorPos(&mousePos);
+		ScreenToClient(app.GetHwnd(), &mousePos);
+
+		UINT width = app.GetWidth();
+		UINT height = app.GetHeight();
+
+		mMousePosition.x = -1.0f;
+		mMousePosition.y = -1.0f;
+
+		if (0 < mousePos.x && mousePos.x < width)
+			mMousePosition.x = mousePos.x;
+
+		if (0 < mousePos.y && mousePos.y < height)
+			mMousePosition.y = mousePos.y;
+	}
+	void Input::clearKeys()
+	{
+		for (Key& key : Keys)
+		{
+			if (key.state == eKeyState::Down || key.state == eKeyState::Pressed)
+				key.state = eKeyState::Up;
+			else if (key.state == eKeyState::Up)
+				key.state = eKeyState::None;
+
+			key.bPressed = false;
+		}
+	}
 
 }

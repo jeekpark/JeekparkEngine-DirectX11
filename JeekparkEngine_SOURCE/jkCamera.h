@@ -20,6 +20,7 @@ namespace jk
         void SetTarget(GameObject* target) { mTarget = target; }
 
         Vector2 WorldToScreenPoint(Vector2 pos) { return pos - mDistance; };
+        Vector2 ScreenToWorldPoint(Vector2 pos) { return pos + mDistance; };
 
     private:
         

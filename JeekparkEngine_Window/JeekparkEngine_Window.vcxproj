@@ -132,6 +132,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="jkCameraScript.h" />
     <ClInclude Include="jkCat.h" />
     <ClInclude Include="jkCatScript.h" />
     <ClInclude Include="jkLoadScenes.h" />
@@ -146,6 +147,7 @@
     <ClInclude Include="jkToolScene.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="jkCameraScript.cpp" />
     <ClCompile Include="jkCat.cpp" />
     <ClCompile Include="jkCatScript.cpp" />
     <ClCompile Include="jkPlayer.cpp" />
