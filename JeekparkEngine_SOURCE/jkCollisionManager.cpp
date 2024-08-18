@@ -34,6 +34,17 @@ namespace jk
     void CollisionManager::Render(HDC hdc)
     {
     }
+    void CollisionManager::Clear()
+    {
+        mCollisionMap.clear();
+        for (UINT row = 0; row < (UINT)eLayerType::Max; ++row)
+        {
+            for (UINT col = 0; col < (UINT)eLayerType::Max; ++col)
+            {
+                mCollisionLayerMaxtirx[row][col] = false;
+            }
+        }
+    }
     void CollisionManager::CollistionLayerCheck(eLayerType left, eLayerType right, bool enable)
     {
         int row = 0;
@@ -53,8 +64,8 @@ namespace jk
     }
     void CollisionManager::LayerCollision(Scene* scene, eLayerType left, eLayerType right)
     {
-        const std::vector<GameObject*>& lefts = scene->GetLayer((eLayerType)left)->GetGameObjects();
-        const std::vector<GameObject*>& rights = scene->GetLayer((eLayerType)right)->GetGameObjects();
+        const std::vector<GameObject*>& lefts = SceneManager::GetGameObjects((eLayerType)left);
+        const std::vector<GameObject*>& rights = SceneManager::GetGameObjects((eLayerType)right);
 
         for (GameObject* left : lefts)
         {

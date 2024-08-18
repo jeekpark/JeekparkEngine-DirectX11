@@ -1,5 +1,6 @@
 #include "jkScene.h"
 
+#include "jkCollisionManager.h"
 namespace jk
 {
     Scene::Scene()
@@ -58,6 +59,7 @@ namespace jk
     }
     void Scene::OnExit()
     {
+        CollisionManager::Clear();
     }
     void Scene::AddGameObject(GameObject* gameObject, enums::eLayerType type)
     {

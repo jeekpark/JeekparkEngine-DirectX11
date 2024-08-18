@@ -13,11 +13,6 @@ namespace jk
             StartRun,
             Run,
             EndRun,
-            SitDown,
-            StopJump,
-            RunJump,
-            Float,
-            Attack,
             None,
         };
 
@@ -39,8 +34,6 @@ namespace jk
         void startRun();
         void run();
         void endRun();
-        void stopJump();
-        void runJump();
 
 
     private:

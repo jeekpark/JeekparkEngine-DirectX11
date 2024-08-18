@@ -7,6 +7,7 @@
 #include "jkTransform.h"
 #include "jkTime.h"
 #include "jkCollider.h"
+#include "jkRigidbody.h"
 namespace jk
 {
     SakuyaScript::SakuyaScript()
@@ -39,18 +40,6 @@ namespace jk
             break;
         case jk::SakuyaScript::eState::EndRun:
             endRun();
-            break;
-        case jk::SakuyaScript::eState::SitDown:
-            break;
-        case jk::SakuyaScript::eState::StopJump:
-            stopJump();
-            break;
-        case jk::SakuyaScript::eState::RunJump:
-            runJump();
-            break;
-        case jk::SakuyaScript::eState::Float:
-            break;
-        case jk::SakuyaScript::eState::Attack:
             break;
         case jk::SakuyaScript::eState::None:
             break;
@@ -96,12 +85,6 @@ namespace jk
             mAnimator->PlayAnimation(L"StartRun", false, mbLeftDirection);
             return;
         }
-        if (Input::GetKeyDown(eKeyCode::Up))
-        {
-            mState = eState::StopJump;
-            mAnimator->PlayAnimation(L"StopJump", false, mbLeftDirection);
-            return;
-        }
     }
     void SakuyaScript::startRun()
     {
@@ -116,17 +99,7 @@ namespace jk
             mState = eState::Run;
             mAnimator->PlayAnimation(L"Run", true, mbLeftDirection);
         }
-        Transform* tr = GetOwner()->GetComponent<Transform>();
-        Vector2 pos = tr->GetPosition();
-        if (mbLeftDirection)
-        {
-            pos += Vector2::Left * (mRunSpeed / 10) *Time::DeltaTime();
-        }
-        else
-        {
-            pos += Vector2::Right * (mRunSpeed / 10) * Time::DeltaTime();
-        }
-        tr->SetPosition(pos);
+
     }
     void SakuyaScript::run()
     {
@@ -136,17 +109,16 @@ namespace jk
             mAnimator->PlayAnimation(L"EndRun", false, mbLeftDirection);
             return;
         }
-        Transform* tr = GetOwner()->GetComponent<Transform>();
-        Vector2 pos = tr->GetPosition();
+        Rigidbody* rb = GetOwner()->GetComponent<Rigidbody>();
+
         if (mbLeftDirection)
         {
-            pos += Vector2::Left * mRunSpeed * Time::DeltaTime();
+            rb->AddForce(Vector2(-200.f, 0.f));
         }
         else
         {
-            pos += Vector2::Right * mRunSpeed * Time::DeltaTime();
+            rb->AddForce(Vector2(200.f, 0.f));
         }
-        tr->SetPosition(pos);
     }
     void SakuyaScript::endRun()
     {
@@ -170,17 +142,5 @@ namespace jk
         }
     }
 
-    void SakuyaScript::stopJump()
-    {
-        if (mAnimator->IsComplete())
-        {
-            mState = eState::Idle;
-            mAnimator->PlayAnimation(L"Idle", true, mbLeftDirection);
-        }
-    }
-
-    void SakuyaScript::runJump()
-    {
-    }
 
 }

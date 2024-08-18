@@ -52,8 +52,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)jkRenderer.cpp">
       <Filter>Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)jkAnimator.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)jkAnimation.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jkApplication.cpp">
       <Filter>High Level Interface</Filter>
     </ClCompile>
@@ -66,13 +64,22 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)jkCircleCollider2D.cpp">
       <Filter>Component\Collider</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)jkCollisionManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jkDontDestroyOnLoad.cpp">
       <Filter>Scene</Filter>
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)jkTilemapRenderer.cpp">
       <Filter>Component\TilemapRenderer</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jkAnimation.cpp">
+      <Filter>Component\Animator</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jkAnimator.cpp">
+      <Filter>Component\Animator</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jkCollisionManager.cpp">
+      <Filter>Collision</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jkRigidbody.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h">
@@ -108,9 +115,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)jkLayer.h">
       <Filter>Layer</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)jkObject.h">
-      <Filter>Common</Filter>
-    </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)jkResource.h">
       <Filter>Resource</Filter>
     </ClInclude>
@@ -135,8 +139,6 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)jkRenderer.h">
       <Filter>Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)jkAnimator.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)jkAnimation.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkApplication.h">
       <Filter>High Level Interface</Filter>
     </ClInclude>
@@ -149,13 +151,25 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)jkCircleCollider2D.h">
       <Filter>Component\Collider</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)jkCollisionManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkDontDestroyOnLoad.h">
       <Filter>Scene</Filter>
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)jkTilemapRenderer.h">
       <Filter>Component\TilemapRenderer</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jkAnimator.h">
+      <Filter>Component\Animator</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jkAnimation.h">
+      <Filter>Component\Animator</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jkCollisionManager.h">
+      <Filter>Collision</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jkObject.h">
+      <Filter>Object</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jkRigidbody.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">
@@ -205,6 +219,15 @@
     </Filter>
     <Filter Include="Component\TilemapRenderer">
       <UniqueIdentifier>{ac9dde5e-c629-4c9a-80be-e9dbb288a58b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Animator">
+      <UniqueIdentifier>{0514f2b1-ec07-4701-aa59-963efa716f70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Collision">
+      <UniqueIdentifier>{b12299d6-7ac2-4139-8452-63e64be9eaf2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Object">
+      <UniqueIdentifier>{fc15d434-5d8e-43f3-8c9d-e9d7df072782}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

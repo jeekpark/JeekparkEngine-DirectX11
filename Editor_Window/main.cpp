@@ -46,7 +46,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
     LoadStringW(hInstance, IDC_EDITORWINDOW, szWindowClass, MAX_LOADSTRING);
     MyRegisterClass(hInstance, szWindowClass, WndProc);
-    MyRegisterClass(hInstance, L"TILEWINDOW", WndTileProc);
+    //MyRegisterClass(hInstance, L"TILEWINDOW", WndTileProc);
 
     // 애플리케이션 초기화를 수행합니다:
     if (!InitInstance (hInstance, nCmdShow))
@@ -132,8 +132,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
       0, 0, width, height, nullptr, nullptr, hInstance, nullptr);
 
-   HWND toolhWnd = CreateWindowW(L"TILEWINDOW", L"TileWindow", WS_OVERLAPPEDWINDOW,
-       0, 0, width, height, nullptr, nullptr, hInstance, nullptr);
+   //HWND toolhWnd = CreateWindowW(L"TILEWINDOW", L"TileWindow", WS_OVERLAPPEDWINDOW,
+   //    0, 0, width, height, nullptr, nullptr, hInstance, nullptr);
 
    app.Initialize(hWnd, width, height);
    if (!hWnd)
@@ -156,7 +156,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    jk::graphics::Texture* tex 
        = jk::Resources::Find<jk::graphics::Texture>(L"SpringFloor");
 
-   RECT rect = { 0, 0, tex->GetWidth(), tex->GetHeight() };
+   /*RECT rect = { 0, 0, tex->GetWidth(), tex->GetHeight() };
    AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
 
    UINT toolWidth = rect.right - rect.left;
@@ -164,7 +164,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    SetWindowPos(toolhWnd, nullptr, 0, 0, toolWidth, toolHeight, SWP_NOMOVE);
    ShowWindow(toolhWnd, nCmdShow);
-   UpdateWindow(toolhWnd);
+   UpdateWindow(toolhWnd);*/
    return TRUE;
 }
 

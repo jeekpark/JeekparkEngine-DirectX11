@@ -22,6 +22,7 @@ namespace jk
         static Scene* LoadScene(const std::wstring& name);
         static Scene* GetActiveScene() { return sActiveScene; }
         static Scene* GetDontDestroyOnLoad() { return sDontDestroyOnLoad; }
+        static std::vector<GameObject*> GetGameObjects(enums::eLayerType layer);
         static void Initialize();
         static void Update();
         static void LateUpdate();

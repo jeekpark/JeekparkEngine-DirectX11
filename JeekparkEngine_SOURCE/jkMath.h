@@ -61,6 +61,10 @@ namespace jk::math
             x += other.x;
             y += other.y;
         }
+        Vector2 operator-()
+        {
+            return Vector2(-x, -y);
+        }
         Vector2 operator-(Vector2 other)
         {
             return Vector2(x - other.x, y - other.y);
@@ -76,6 +80,11 @@ namespace jk::math
         Vector2 operator*(Vector2 v)
         {
             return Vector2(x * v.x, y * v.y);
+        }
+
+        bool operator==(Vector2 v)
+        {
+            return x == v.x && y == v.y;
         }
 
         void clear()

@@ -7,6 +7,7 @@ namespace jk::enums
     {
         Transform,
         Collider,
+        Rigidbody,
         Script,
         SpriteRenderer,
         Animator,

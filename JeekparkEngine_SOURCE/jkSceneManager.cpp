@@ -7,6 +7,19 @@ namespace jk
     Scene* SceneManager::sActiveScene = nullptr;
     Scene* SceneManager::sDontDestroyOnLoad = nullptr;
 
+    std::vector<GameObject*> SceneManager::GetGameObjects(enums::eLayerType layer)
+    {
+        std::vector<GameObject*> gameObjects
+            = sActiveScene->GetLayer(layer)->GetGameObjects();
+        std::vector<GameObject*> dontDestroyOnLoad
+            = sDontDestroyOnLoad->GetLayer(layer)->GetGameObjects();
+
+        gameObjects.insert(gameObjects.end()
+            , dontDestroyOnLoad.begin(), dontDestroyOnLoad.end());
+
+        return gameObjects;
+    }
+
     void SceneManager::Initialize()
     {
         sDontDestroyOnLoad = CreateScene<DontDestroyOnLoad>(L"DontDestroyOnLoad");

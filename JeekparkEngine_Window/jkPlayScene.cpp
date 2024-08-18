@@ -21,7 +21,7 @@
 #include "jkSakuyaScript.h"
 #include "jkApplication.h"
 #include "jkCollisionManager.h"
-
+#include "jkRigidbody.h"
 extern jk::Application app;
 
 namespace jk
@@ -34,7 +34,8 @@ namespace jk
     }
     void PlayScene::Initialize()
     {
-        CollisionManager::CollistionLayerCheck(eLayerType::Player, eLayerType::Player, true);
+        
+        
 
         GameObject* cameraObj = object::Instantiate<GameObject>(
             enums::eLayerType::None,
@@ -43,37 +44,14 @@ namespace jk
         Camera* cameraComp = cameraObj->AddComponent<Camera>();
         renderer::mainCamera = cameraComp;
 
-
-        /////// PLAYER ////////
-        mPlayer = object::Instantiate<Player>(enums::eLayerType::Player);
-        mPlayer->GetComponent<Transform>()->SetPosition({ 300.f, 350.f });
-        mPlayer->GetComponent<Transform>()->SetScale({ 1.f, 1.f });
-        mPlayer->GetComponent<Transform>()->SetRotation(0.f);
-        PlayerScript* plScript = mPlayer->AddComponent<PlayerScript>();
-        graphics::Texture* playerTex = Resources::Find<graphics::Texture>(L"Player");
-        //object::DontDestroyOnLoad(mPlayer);
-
-        Animator* playerAnimator = mPlayer->AddComponent<Animator>();
-        playerAnimator->CreateAnimation(L"Idle", playerTex,
-            Vector2(2000.f, 250.f), Vector2(250.f, 250.f), {125.f, 250.f}, 1, 0.1f);
-        playerAnimator->CreateAnimation(L"FrontGiveWater", playerTex,
-            Vector2(0.f, 8.f * 250.f), Vector2(250.f, 250.f), { 125.f, 250.f }, 12, 0.1f);
-        
-        playerAnimator->GetCompleteEvent(L"FrontGiveWater") = std::bind(&PlayerScript::AttackEffect, plScript);
-
-        playerAnimator->PlayAnimation(L"Idle", false);
-
-
-        /////// SAKUYA ////////
+         /////// SAKUYA ////////
         Sakuya* sakuya = object::Instantiate<Sakuya>(enums::eLayerType::Player);
-        
+        renderer::mainCamera->SetTarget(sakuya);
         sakuya->GetComponent<Transform>()->SetPosition({ 200.f, 600.f });
         sakuya->GetComponent<Transform>()->SetScale({ 3.f, 3.f });
         sakuya->GetComponent<Transform>()->SetRotation(0.f);
         SakuyaScript* sakuyaScript = sakuya->AddComponent<SakuyaScript>();
         graphics::Texture* sakuyaTex = Resources::Find<graphics::Texture>(L"SakuyaTexture");
-        
-        
         Animator* sakuyaAnimator = sakuya->AddComponent<Animator>();
         sakuyaAnimator->CreateAnimation(L"Idle", sakuyaTex,
             { 0.f, 0.f }, { 64.f, 64.f }, { 32.f, 64.f }, 6, 0.1f);
@@ -83,35 +61,27 @@ namespace jk
             { 0.f, 64.f * 1.f }, { 64.f, 64.f }, { 32.f, 64.f }, 16, 0.03f);
         sakuyaAnimator->CreateAnimation(L"EndRun", sakuyaTex,
             { 0.f, 64.f * 2.f }, { 64.f, 64.f }, { 32.f, 64.f }, 8, 0.03f);
-        sakuyaAnimator->CreateAnimation(L"Float", sakuyaTex,
-            { 0.f, 64.f * 7.f }, { 64.f, 64.f }, { 32.f, 64.f }, 5, 0.05f);
-        sakuyaAnimator->CreateAnimation(L"StopJump", sakuyaTex,
-            { 64.f, 64.f * 5.f }, { 64.f, 64.f }, { 32.f, 64.f }, 7, 0.05f);
         sakuyaAnimator->PlayAnimation(L"Idle", true);
         CircleCollider2D* boxCollider2d = sakuya->AddComponent<CircleCollider2D>();
         boxCollider2d->SetOffset({ -64.f, -64.f });
-        //boxCollider2d->SetSize({ 64.f, 64.f });
-        
-        Animator* temp = sakuya->GetComponent<Animator>();
+        Rigidbody* rgd = sakuya->AddComponent<Rigidbody>();
 
-        cameraComp->SetTarget(sakuya);
-        
-        //////////////
 
-        /////// NPC ////////
-        /*Sakuya* npc = object::Instantiate<Sakuya>(enums::eLayerType::Player);
+
+        Sakuya* npc = object::Instantiate<Sakuya>(enums::eLayerType::Player);
+        npc->GetComponent<Transform>()->SetPosition({ 400.f, 640.f });
+        npc->GetComponent<Transform>()->SetScale({ 3.f, 3.f });
         Animator* npcAnimator = npc->AddComponent<Animator>();
         npcAnimator->CreateAnimation(L"Idle", sakuyaTex,
             { 0.f, 0.f }, { 64.f, 64.f }, { 32.f, 64.f }, 6, 0.1f);
         npcAnimator->PlayAnimation(L"Idle", true);
-        CircleCollider2D* npcBoxCollider2d = npc->AddComponent<CircleCollider2D>();
-        npcBoxCollider2d->SetOffset({ -64.f, -64.f });
-        npc->GetComponent<Transform>()->SetPosition({ 0.f, 600.f });
-        npc->GetComponent<Transform>()->SetScale({ 3.f, 3.f });*/
-
+        CircleCollider2D* npcCollider2d = npc->AddComponent<CircleCollider2D>();
+        npcCollider2d->SetOffset({ -64.f, -64.f });
+        Rigidbody* npcRgd = npc->AddComponent<Rigidbody>();
 
         Scene::Initialize();
         object::DontDestroyOnLoad(sakuya);
+        
     }
     void PlayScene::Update()
     {
@@ -133,8 +103,11 @@ namespace jk
     }
     void PlayScene::OnEnter()
     {
+        Scene::OnEnter();
+        CollisionManager::CollistionLayerCheck(eLayerType::Player, eLayerType::Player, true);
     }
     void PlayScene::OnExit()
     {
+        Scene::OnExit();
     }
 }
