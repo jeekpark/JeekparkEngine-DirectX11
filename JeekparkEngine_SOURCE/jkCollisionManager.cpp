@@ -33,6 +33,7 @@ namespace jk
     }
     void CollisionManager::Render(HDC hdc)
     {
+
     }
     void CollisionManager::Clear()
     {
@@ -145,8 +146,8 @@ namespace jk
         Vector2 leftPos = leftTransform->GetPosition() + left->GetOffset();
         Vector2 rightPos = rightTransform->GetPosition() + right->GetOffset();
 
-        Vector2 leftSize = left->GetSize() * 100.f;
-        Vector2 rightSize = right->GetSize() * 100.f;
+        Vector2 leftSize = left->GetSize();
+        Vector2 rightSize = right->GetSize();
 
         enums::eColliderType leftType = left->GetColliderType();
         enums::eColliderType rightType = right->GetColliderType();
@@ -154,8 +155,10 @@ namespace jk
         if (leftType == enums::eColliderType::Box2D &&
             rightType == enums::eColliderType::Box2D)
         {
-            if (fabs(leftPos.x - rightPos.x) < (leftSize.x + rightSize.x) * 0.5f &&
-                fabs(leftPos.y - rightPos.y) < (leftSize.y + rightSize.y) * 0.5f)
+            if (leftPos.x < rightPos.x + rightSize.x &&
+                leftPos.x + leftSize.x > rightPos.x &&
+                leftPos.y < rightPos.y + rightSize.y &&
+                leftPos.y + leftSize.y > rightPos.y)
             {
                 return true;
             }

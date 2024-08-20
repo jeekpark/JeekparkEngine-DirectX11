@@ -15,6 +15,7 @@ namespace jk
         , mAnimator(nullptr)
         , mbLeftDirection(false)
         , mRunSpeed(600.f)
+        , mbIsStay(false)
     {
     }
     SakuyaScript::~SakuyaScript()
@@ -53,6 +54,12 @@ namespace jk
     }
     void SakuyaScript::Render(HDC hdc)
     {
+        if (mbIsStay)
+        {
+            wchar_t str[50] = L"Stay";
+            size_t len = wcsnlen_s(str, 50);
+            TextOut(hdc, 0, 0, str, (int)len);
+        }
     }
     void SakuyaScript::OnCollisionEnter(Collider* other)
     {
@@ -60,11 +67,11 @@ namespace jk
     }
     void SakuyaScript::OnCollisionStay(Collider* other)
     {
-        
+        mbIsStay = true;
     }
     void SakuyaScript::OnCollisionExit(Collider* other)
     {
-        
+        mbIsStay = false;
     }
     void SakuyaScript::AttackEffect()
     {

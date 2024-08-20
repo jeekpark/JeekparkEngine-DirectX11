@@ -40,8 +40,8 @@ namespace jk
         Rectangle(hdc,
             ownerPos.x + offset.x,
             ownerPos.y + offset.y,
-            ownerPos.x + offset.x + 100 * GetSize().x,
-            ownerPos.y + offset.y + 100 * GetSize().y
+            ownerPos.x + offset.x + GetSize().x,
+            ownerPos.y + offset.y + GetSize().y
         );
 
         SelectObject(hdc, oldBrush);

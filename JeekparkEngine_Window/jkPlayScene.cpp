@@ -22,6 +22,8 @@
 #include "jkApplication.h"
 #include "jkCollisionManager.h"
 #include "jkRigidbody.h"
+#include "jkFloor.h"
+#include "jkFloorScript.h"
 extern jk::Application app;
 
 namespace jk
@@ -62,22 +64,30 @@ namespace jk
         sakuyaAnimator->CreateAnimation(L"EndRun", sakuyaTex,
             { 0.f, 64.f * 2.f }, { 64.f, 64.f }, { 32.f, 64.f }, 8, 0.03f);
         sakuyaAnimator->PlayAnimation(L"Idle", true);
-        CircleCollider2D* boxCollider2d = sakuya->AddComponent<CircleCollider2D>();
-        boxCollider2d->SetOffset({ -64.f, -64.f });
+        BoxCollider2D* boxCollider2d = sakuya->AddComponent<BoxCollider2D>();
+        boxCollider2d->SetOffset({ -64.f * 3.f / 2.f, -64.f * 3.f });
+        boxCollider2d->SetSize({ 64.f * 3.f, 64.f * 3.f });
         Rigidbody* rgd = sakuya->AddComponent<Rigidbody>();
 
 
 
         Sakuya* npc = object::Instantiate<Sakuya>(enums::eLayerType::Player);
-        npc->GetComponent<Transform>()->SetPosition({ 400.f, 640.f });
+        npc->GetComponent<Transform>()->SetPosition({ 500.f, 640.f });
         npc->GetComponent<Transform>()->SetScale({ 3.f, 3.f });
         Animator* npcAnimator = npc->AddComponent<Animator>();
         npcAnimator->CreateAnimation(L"Idle", sakuyaTex,
             { 0.f, 0.f }, { 64.f, 64.f }, { 32.f, 64.f }, 6, 0.1f);
         npcAnimator->PlayAnimation(L"Idle", true);
-        CircleCollider2D* npcCollider2d = npc->AddComponent<CircleCollider2D>();
-        npcCollider2d->SetOffset({ -64.f, -64.f });
-        Rigidbody* npcRgd = npc->AddComponent<Rigidbody>();
+        BoxCollider2D* npcCollider2d = npc->AddComponent<BoxCollider2D>();
+        npcCollider2d->SetOffset({ -64.f * 3.f / 2.f, -64.f * 3.f });
+        npcCollider2d->SetSize({ 64.f * 3.f, 64.f * 3.f });
+        //Rigidbody* npcRgd = npc->AddComponent<Rigidbody>();
+   
+        /////// FLOOR ////////
+        GameObject* floor = object::Instantiate<GameObject>(enums::eLayerType::Floor, {0.f, 800.f});
+        BoxCollider2D* floorCollider = floor->AddComponent<BoxCollider2D>();
+        floorCollider->SetSize({ 1000.f, 10.f });
+        floor->AddComponent<FloorScript>();
 
         Scene::Initialize();
         object::DontDestroyOnLoad(sakuya);
@@ -105,6 +115,7 @@ namespace jk
     {
         Scene::OnEnter();
         CollisionManager::CollistionLayerCheck(eLayerType::Player, eLayerType::Player, true);
+        CollisionManager::CollistionLayerCheck(eLayerType::Player, eLayerType::Floor, true);
     }
     void PlayScene::OnExit()
     {

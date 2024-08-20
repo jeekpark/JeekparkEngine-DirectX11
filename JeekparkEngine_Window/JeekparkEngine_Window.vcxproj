@@ -133,8 +133,8 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="jkCameraScript.h" />
-    <ClInclude Include="jkCat.h" />
-    <ClInclude Include="jkCatScript.h" />
+    <ClInclude Include="jkFloor.h" />
+    <ClInclude Include="jkFloorScript.h" />
     <ClInclude Include="jkLoadScenes.h" />
     <ClInclude Include="jkPlayer.h" />
     <ClInclude Include="jkPlayerScript.h" />
@@ -148,8 +148,8 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="jkCameraScript.cpp" />
-    <ClCompile Include="jkCat.cpp" />
-    <ClCompile Include="jkCatScript.cpp" />
+    <ClCompile Include="jkFloor.cpp" />
+    <ClCompile Include="jkFloorScript.cpp" />
     <ClCompile Include="jkPlayer.cpp" />
     <ClCompile Include="jkPlayerScript.cpp" />
     <ClCompile Include="jkPlayScene.cpp" />

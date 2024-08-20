@@ -41,6 +41,7 @@ namespace jk
         bool mbLeftDirection;
         float mRunSpeed;
         class Animator* mAnimator;
+        bool mbIsStay;
 
     };
 

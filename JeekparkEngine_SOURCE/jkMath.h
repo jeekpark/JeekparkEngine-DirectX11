@@ -61,6 +61,21 @@ namespace jk::math
             x += other.x;
             y += other.y;
         }
+        void operator-=(Vector2 other)
+        {
+            x -= other.x;
+            y -= other.y;
+        }
+        void operator*=(Vector2 other)
+        {
+            x *= other.x;
+            y *= other.y;
+        }
+        void operator*=(float value)
+        {
+            x *= value;
+            y *= value;
+        }
         Vector2 operator-()
         {
             return Vector2(-x, -y);

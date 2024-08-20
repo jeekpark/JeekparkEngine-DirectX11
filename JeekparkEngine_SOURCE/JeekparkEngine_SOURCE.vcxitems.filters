@@ -79,7 +79,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)jkCollisionManager.cpp">
       <Filter>Collision</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)jkRigidbody.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jkRigidbody.cpp">
+      <Filter>Component\Rigidbody</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h">
@@ -169,7 +171,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)jkObject.h">
       <Filter>Object</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)jkRigidbody.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jkRigidbody.h">
+      <Filter>Component\Rigidbody</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">
@@ -228,6 +232,9 @@
     </Filter>
     <Filter Include="Object">
       <UniqueIdentifier>{fc15d434-5d8e-43f3-8c9d-e9d7df072782}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Component\Rigidbody">
+      <UniqueIdentifier>{85296406-9a83-45c5-a0e0-ec0b92e3d0f5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

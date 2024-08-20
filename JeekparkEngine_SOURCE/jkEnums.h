@@ -21,6 +21,7 @@ namespace jk::enums
         Tile,
         Animal,
         Player,
+        Floor,
         Particle,
         Max,
     };

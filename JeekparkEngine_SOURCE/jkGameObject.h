@@ -6,7 +6,7 @@
 
 namespace jk
 {
-    class GameObject
+    class GameObject : public Entity
     {
     public:
 
