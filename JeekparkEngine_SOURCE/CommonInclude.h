@@ -17,6 +17,8 @@
 #include <functional>
 #include <filesystem>
 #include <bitset>
+#include <stack>
+#include <queue>
 
 #include "jkMath.h"
 #include "jkEnums.h"

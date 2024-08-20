@@ -14,8 +14,6 @@
 #include "jkCamera.h"
 #include "jkRenderer.h"
 #include "jkAnimator.h"
-#include "jkCat.h"
-#include "jkCatScript.h"
 #include "jkBoxCollider2D.h"
 #include "jkSakuya.h"
 #include "jkSakuyaScript.h"

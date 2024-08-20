@@ -82,6 +82,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)jkRigidbody.cpp">
       <Filter>Component\Rigidbody</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jkUIManager.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jkUIBase.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h">
@@ -174,6 +176,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)jkRigidbody.h">
       <Filter>Component\Rigidbody</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jkUIManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jkUIBase.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">

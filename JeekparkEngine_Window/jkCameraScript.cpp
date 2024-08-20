@@ -4,8 +4,6 @@
 #include "jkTime.h"
 #include "jkGameObject.h"
 #include "jkAnimator.h"
-#include "jkCat.h"
-#include "jkCatScript.h"
 #include "jkObject.h"
 #include "jkResources.h"
 namespace jk

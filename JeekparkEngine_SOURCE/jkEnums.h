@@ -52,4 +52,13 @@ namespace jk::enums
         Down,
         None,
     };
+
+    enum class eUIType
+    {
+        None,
+        Title,
+        Main,
+        Game,
+        End,
+    };
 }
