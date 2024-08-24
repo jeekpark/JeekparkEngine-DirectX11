@@ -1,4 +1,4 @@
-#include "jkSakuyaScript.h"
+#include "jkInvokerScript.h"
 
 #include "jkGameObject.h"
 #include "jkComponent.h"
@@ -10,7 +10,7 @@
 #include "jkRigidbody.h"
 namespace jk
 {
-    SakuyaScript::SakuyaScript()
+    InvokerScript::InvokerScript()
         : mState(eState::Idle)
         , mAnimator(nullptr)
         , mbLeftDirection(false)
@@ -18,41 +18,41 @@ namespace jk
         , mbIsStay(false)
     {
     }
-    SakuyaScript::~SakuyaScript()
+    InvokerScript::~InvokerScript()
     {
     }
-    void SakuyaScript::Initialize()
+    void InvokerScript::Initialize()
     {
         mAnimator = GetOwner()->GetComponent<Animator>();
         mAnimator->PlayAnimation(L"Idle", true);
     }
-    void SakuyaScript::Update()
+    void InvokerScript::Update()
     {
         switch (mState)
         {
-        case jk::SakuyaScript::eState::Idle:
+        case jk::InvokerScript::eState::Idle:
             idle();
             break;
-        case jk::SakuyaScript::eState::StartRun:
+        case jk::InvokerScript::eState::StartRun:
             startRun();
             break;
-        case jk::SakuyaScript::eState::Run:
+        case jk::InvokerScript::eState::Run:
             run();
             break;
-        case jk::SakuyaScript::eState::EndRun:
+        case jk::InvokerScript::eState::EndRun:
             endRun();
             break;
-        case jk::SakuyaScript::eState::None:
+        case jk::InvokerScript::eState::None:
             break;
         default:
             assert(false);
             break;
         }
     }
-    void SakuyaScript::LateUpdate()
+    void InvokerScript::LateUpdate()
     {
     }
-    void SakuyaScript::Render(HDC hdc)
+    void InvokerScript::Render(HDC hdc)
     {
         if (mbIsStay)
         {
@@ -61,22 +61,22 @@ namespace jk
             TextOut(hdc, 0, 0, str, (int)len);
         }
     }
-    void SakuyaScript::OnCollisionEnter(Collider* other)
+    void InvokerScript::OnCollisionEnter(Collider* other)
     {
         
     }
-    void SakuyaScript::OnCollisionStay(Collider* other)
+    void InvokerScript::OnCollisionStay(Collider* other)
     {
         mbIsStay = true;
     }
-    void SakuyaScript::OnCollisionExit(Collider* other)
+    void InvokerScript::OnCollisionExit(Collider* other)
     {
         mbIsStay = false;
     }
-    void SakuyaScript::AttackEffect()
+    void InvokerScript::AttackEffect()
     {
     }
-    void SakuyaScript::idle()
+    void InvokerScript::idle()
     {
         if (Input::GetKeyDown(eKeyCode::Right) || Input::GetKeyDown(eKeyCode::Left))
         {
@@ -93,7 +93,7 @@ namespace jk
             return;
         }
     }
-    void SakuyaScript::startRun()
+    void InvokerScript::startRun()
     {
         if (Input::GetKeyUp(eKeyCode::Right) || Input::GetKeyUp(eKeyCode::Left))
         {
@@ -108,7 +108,7 @@ namespace jk
         }
 
     }
-    void SakuyaScript::run()
+    void InvokerScript::run()
     {
         if (Input::GetKeyUp(eKeyCode::Right) || Input::GetKeyUp(eKeyCode::Left))
         {
@@ -127,7 +127,7 @@ namespace jk
             rb->AddForce(Vector2(200.f, 0.f));
         }
     }
-    void SakuyaScript::endRun()
+    void InvokerScript::endRun()
     {
         if (Input::GetKey(eKeyCode::Right) || Input::GetKey(eKeyCode::Left))
         {

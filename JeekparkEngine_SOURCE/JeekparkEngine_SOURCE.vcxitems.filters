@@ -82,8 +82,19 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)jkRigidbody.cpp">
       <Filter>Component\Rigidbody</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)jkUIManager.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)jkUIBase.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jkUIBase.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jkUIManager.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jkUIButton.cpp">
+      <Filter>UI\Button</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jkFmod.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jkAudioListener.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jkAudioSource.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jkAudioClip.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h">
@@ -176,8 +187,19 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)jkRigidbody.h">
       <Filter>Component\Rigidbody</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)jkUIManager.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)jkUIBase.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jkUIBase.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jkUIManager.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jkUIButton.h">
+      <Filter>UI\Button</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jkFmod.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jkAudioListener.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jkAudioSource.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jkAudioClip.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">
@@ -239,6 +261,12 @@
     </Filter>
     <Filter Include="Component\Rigidbody">
       <UniqueIdentifier>{85296406-9a83-45c5-a0e0-ec0b92e3d0f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{ad3ff69e-c66e-445a-8f74-76c55f089ee6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI\Button">
+      <UniqueIdentifier>{97142fa2-ea3f-44da-9c5c-31db4b0a036e}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

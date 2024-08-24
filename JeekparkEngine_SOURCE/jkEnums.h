@@ -55,10 +55,7 @@ namespace jk::enums
 
     enum class eUIType
     {
-        None,
-        Title,
-        Main,
-        Game,
+        Button,
         End,
     };
 }

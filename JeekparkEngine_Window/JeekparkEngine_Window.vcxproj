@@ -135,29 +135,33 @@
     <ClInclude Include="jkCameraScript.h" />
     <ClInclude Include="jkFloor.h" />
     <ClInclude Include="jkFloorScript.h" />
+    <ClInclude Include="jkHero.h" />
     <ClInclude Include="jkLoadScenes.h" />
     <ClInclude Include="jkPlayer.h" />
     <ClInclude Include="jkPlayerScript.h" />
     <ClInclude Include="jkPlayScene.h" />
     <ClInclude Include="jkSakuya.h" />
-    <ClInclude Include="jkSakuyaScript.h" />
+    <ClInclude Include="jkInvokerScript.h" />
     <ClInclude Include="jkTile.h" />
     <ClInclude Include="jkTitleScene.h" />
     <ClInclude Include="jkLoadResources.h" />
     <ClInclude Include="jkToolScene.h" />
+    <ClInclude Include="jkWorldScene.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="jkCameraScript.cpp" />
     <ClCompile Include="jkFloor.cpp" />
     <ClCompile Include="jkFloorScript.cpp" />
+    <ClCompile Include="jkHero.cpp" />
     <ClCompile Include="jkPlayer.cpp" />
     <ClCompile Include="jkPlayerScript.cpp" />
     <ClCompile Include="jkPlayScene.cpp" />
     <ClCompile Include="jkSakuya.cpp" />
-    <ClCompile Include="jkSakuyaScript.cpp" />
+    <ClCompile Include="jkInvokerScript.cpp" />
     <ClCompile Include="jkTile.cpp" />
     <ClCompile Include="jkTitleScene.cpp" />
     <ClCompile Include="jkToolScene.cpp" />
+    <ClCompile Include="jkWorldScene.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

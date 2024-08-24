@@ -5,6 +5,8 @@
 #include "jkSceneManager.h"
 #include "jkResources.h"
 #include "jkCollisionManager.h"
+#include "jkUIManager.h"
+#include "jkFmod.h"
 
 namespace jk
 {
@@ -30,7 +32,9 @@ namespace jk
         createBuffer(width, height);
         initializeETC();
 
+        Fmod::Initialize();
         CollisionManager::Initialize();
+        UIManager::Initialize();
         SceneManager::Initialize();
     }
 
@@ -47,24 +51,30 @@ namespace jk
     {
         Input::Update();
         Time::Update();
+
         CollisionManager::Update();
+        UIManager::Update();
         SceneManager::Update();
     }
 
     void Application::LateUpdate()
     {
         CollisionManager::LateUpdate();
+        UIManager::LateUpdate();
         SceneManager::LateUpdate();
     }
 
     void Application::Render()
     {
         clearRenderTarget(mBackHdc);
-
         
         CollisionManager::Render(mBackHdc);
+        UIManager::Render(mBackHdc);
         SceneManager::Render(mBackHdc);
+
+        // for debug
         Time::Render(mBackHdc);
+
         copyRenderTarget(mBackHdc, mHdc);
     }
     void Application::Destroy()
@@ -74,6 +84,7 @@ namespace jk
     void Application::Release()
     {
         SceneManager::Release();
+        UIManager::Release();
         Resources::Release();
     }
 

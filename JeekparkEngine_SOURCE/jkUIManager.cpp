@@ -1,5 +1,6 @@
 #include "jkUIManager.h"
 
+#include "jkUIButton.h"
 
 namespace jk
 {
@@ -10,6 +11,8 @@ namespace jk
 
     void UIManager::Initialize()
     {
+        UIButton* button = new UIButton();
+        mUIs.insert(std::make_pair(eUIType::Button, button));
     }
 
     void UIManager::OnLoad(eUIType type)
@@ -61,15 +64,23 @@ namespace jk
 
     void UIManager::Render(HDC hdc)
     {
-        std::stack<UIBase*> uiBases = mUIBases;
-        while (!uiBases.empty())
+        if (mUIBases.size() <= 0)
         {
-            UIBase* uiBase = uiBases.top();
-            if (uiBase)
-            {
-                uiBase->Render(hdc);
-                uiBases.pop();
-            }
+            return;
+        }
+
+        std::stack<UIBase*> tempStack;
+        while (!mUIBases.empty())
+        {
+            UIBase* tempUIBase = mUIBases.top();
+            tempUIBase->Render(hdc);
+            tempStack.push(tempUIBase);
+            mUIBases.pop();
+        }
+        while (!tempStack.empty())
+        {
+            mUIBases.push(tempStack.top());
+            tempStack.pop();
         }
     }
 
@@ -104,6 +115,16 @@ namespace jk
         mActiveUI = nullptr;
     }
 
+    void UIManager::Release()
+    {
+        for (auto& iter : mUIs)
+        {
+            delete iter.second;
+            iter.second = nullptr;
+        }
+
+    }
+
     void UIManager::Push(eUIType type)
     {
         mRequestUiQueue.push(type);
@@ -116,12 +137,40 @@ namespace jk
             return;
         }
 
+        std::stack<UIBase*> tempStack;
+
         UIBase* uibase = nullptr;
         while (mUIBases.size() > 0)
         {
             uibase = mUIBases.top();
             mUIBases.pop();
-
+            if (uibase->GetType() != type)
+            {
+                tempStack.push(uibase);
+                continue;
+            }
+            
+            if (uibase->IsFullScreen())
+            {
+                std::stack<UIBase*> uiBases = mUIBases;
+                while (!uiBases.empty())
+                {
+                    UIBase* uiBase = uiBases.top();
+                    uiBases.pop();
+                    if (uiBase)
+                    {
+                        uiBase->Active();
+                        break;
+                    }
+                }
+            }
+            uibase->UIClear();
+        }
+        while (tempStack.size() > 0)
+        {
+            uibase = tempStack.top();
+            tempStack.pop();
+            mUIBases.push(uibase);
         }
     }
 

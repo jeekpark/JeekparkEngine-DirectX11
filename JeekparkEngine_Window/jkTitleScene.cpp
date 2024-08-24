@@ -25,7 +25,7 @@ namespace jk
         Scene::LateUpdate();
         if (Input::GetKeyDown(eKeyCode::N))
         {
-            SceneManager::LoadScene(L"PlayScene");
+            SceneManager::LoadScene(L"WorldScene");
         }
     }
     void TitleScene::Render(HDC hdc)

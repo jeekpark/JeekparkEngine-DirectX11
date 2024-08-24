@@ -22,6 +22,8 @@
 #include "jkRigidbody.h"
 #include "jkFloor.h"
 #include "jkFloorScript.h"
+#include "jkUIButton.h"
+#include "jkUIManager.h"
 extern jk::Application app;
 
 namespace jk
@@ -34,9 +36,6 @@ namespace jk
     }
     void PlayScene::Initialize()
     {
-        
-        
-
         GameObject* cameraObj = object::Instantiate<GameObject>(
             enums::eLayerType::None,
             { app.GetClientWidth() / 2.f, app.GetClientHeight() / 2.f}
@@ -50,7 +49,7 @@ namespace jk
         sakuya->GetComponent<Transform>()->SetPosition({ 200.f, 600.f });
         sakuya->GetComponent<Transform>()->SetScale({ 3.f, 3.f });
         sakuya->GetComponent<Transform>()->SetRotation(0.f);
-        SakuyaScript* sakuyaScript = sakuya->AddComponent<SakuyaScript>();
+        InvokerScript* sakuyaScript = sakuya->AddComponent<InvokerScript>();
         graphics::Texture* sakuyaTex = Resources::Find<graphics::Texture>(L"SakuyaTexture");
         Animator* sakuyaAnimator = sakuya->AddComponent<Animator>();
         sakuyaAnimator->CreateAnimation(L"Idle", sakuyaTex,
@@ -66,7 +65,8 @@ namespace jk
         boxCollider2d->SetOffset({ -64.f * 3.f / 2.f, -64.f * 3.f });
         boxCollider2d->SetSize({ 64.f * 3.f, 64.f * 3.f });
         Rigidbody* rgd = sakuya->AddComponent<Rigidbody>();
-
+        rgd->SetMass(.5f);
+        rgd->SetFriction(10.f);
 
 
         Sakuya* npc = object::Instantiate<Sakuya>(enums::eLayerType::Player);
@@ -86,6 +86,9 @@ namespace jk
         BoxCollider2D* floorCollider = floor->AddComponent<BoxCollider2D>();
         floorCollider->SetSize({ 1000.f, 10.f });
         floor->AddComponent<FloorScript>();
+
+        
+
 
         Scene::Initialize();
         object::DontDestroyOnLoad(sakuya);
@@ -114,9 +117,12 @@ namespace jk
         Scene::OnEnter();
         CollisionManager::CollistionLayerCheck(eLayerType::Player, eLayerType::Player, true);
         CollisionManager::CollistionLayerCheck(eLayerType::Player, eLayerType::Floor, true);
+
+        UIManager::Push(enums::eUIType::Button);
     }
     void PlayScene::OnExit()
     {
         Scene::OnExit();
+        UIManager::Pop(eUIType::Button);
     }
 }

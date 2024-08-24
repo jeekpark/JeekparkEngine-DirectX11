@@ -19,6 +19,7 @@ namespace jk
         void SetGround(bool ground) { mbGround = ground; }
         void SetVecloty(Vector2 velocity) { mVelocity = velocity; }
         Vector2 GetVelocity() { return mVelocity; }
+        void SetFriction(float friction) { mFriction = friction; }
 
 
 	private:

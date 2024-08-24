@@ -13,7 +13,7 @@ namespace jk
 		, mFriction(10.0f)
 		, mForce(Vector2::Zero)
 		, mVelocity(Vector2::Zero)
-        , mLimitedVelocity(Vector2(200.f, 1000.f))
+        , mLimitedVelocity(Vector2(2000.f, 10000.f))
 		, mGravity(Vector2(0.f, 800.f))
 		, mAccelation(Vector2::Zero)
 	{

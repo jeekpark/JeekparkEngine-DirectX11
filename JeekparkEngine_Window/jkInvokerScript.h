@@ -4,7 +4,7 @@
 
 namespace jk
 {
-    class SakuyaScript : public Script
+    class InvokerScript : public Script
     {
     public:
         enum class eState
@@ -16,8 +16,8 @@ namespace jk
             None,
         };
 
-        SakuyaScript();
-        ~SakuyaScript();
+        InvokerScript();
+        ~InvokerScript();
 
         void Initialize()override;
         void Update() override;
