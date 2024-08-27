@@ -47,11 +47,11 @@ namespace jk
     {
         if (mbMouseOn)
         {
-            Rectangle(hdc, mPosition.x, mPosition.y, mPosition.x + mSize.x, mPosition.y + mSize.y);
+            ::Rectangle(hdc, mPosition.x, mPosition.y, mPosition.x + mSize.x, mPosition.y + mSize.y);
         }
         else
         {
-            Rectangle(hdc, mPosition.x, mPosition.y, mPosition.x + mSize.x, mPosition.y + mSize.y + 100);
+            ::Rectangle(hdc, mPosition.x, mPosition.y, mPosition.x + mSize.x, mPosition.y + mSize.y + 100);
 
         }
         

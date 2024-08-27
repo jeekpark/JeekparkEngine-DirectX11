@@ -37,7 +37,7 @@ namespace jk
         HPEN greenPen = CreatePen(PS_SOLID, 2, RGB(0, 255, 0));
         HPEN oldPen = (HPEN)SelectObject(hdc, greenPen);
 
-        Rectangle(hdc,
+        ::Rectangle(hdc,
             ownerPos.x + offset.x,
             ownerPos.y + offset.y,
             ownerPos.x + offset.x + GetSize().x,

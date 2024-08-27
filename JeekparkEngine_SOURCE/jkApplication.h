@@ -1,8 +1,7 @@
 #pragma once
 
-#include "CommonInclude.h"
 #include "jkGameObject.h"
-
+#include "jkGraphicDevice_DX11.h"
 namespace jk
 {
     class Application
@@ -33,6 +32,8 @@ namespace jk
         void adjustWindowRect(HWND hwnd, UINT width, UINT height);
         void createBuffer(UINT width, UINT height);
         void initializeETC();
+
+        std::unique_ptr<graphics::GraphicDevice_DX11> mGraphicDevice;
 
         HWND mHwnd;
         HDC mHdc;

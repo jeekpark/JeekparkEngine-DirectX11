@@ -1,9 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Contents">
-      <UniqueIdentifier>{7b8c869b-d701-46d2-b46d-b91f965859ba}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Scenes">
       <UniqueIdentifier>{7391cd2c-97b3-4cbd-8bd5-524692283ecd}</UniqueIdentifier>
     </Filter>
@@ -13,13 +10,16 @@
     <Filter Include="Components">
       <UniqueIdentifier>{ffa756ff-ddc8-4b71-8c88-a43133259ad8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="GameObjects">
+      <UniqueIdentifier>{7b8c869b-d701-46d2-b46d-b91f965859ba}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Contents">
+      <UniqueIdentifier>{e7caf79f-b9a7-4213-90c2-0d70f144f25d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="jkLoadScenes.h">
       <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="jkPlayer.h">
-      <Filter>Contents</Filter>
     </ClInclude>
     <ClInclude Include="jkPlayScene.h">
       <Filter>Scenes</Filter>
@@ -31,7 +31,7 @@
       <Filter>Scripts</Filter>
     </ClInclude>
     <ClInclude Include="jkSakuya.h">
-      <Filter>Contents</Filter>
+      <Filter>GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="jkInvokerScript.h">
       <Filter>Scripts</Filter>
@@ -40,13 +40,13 @@
       <Filter>Scenes</Filter>
     </ClInclude>
     <ClInclude Include="jkTile.h">
-      <Filter>Contents</Filter>
+      <Filter>GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="jkCameraScript.h">
       <Filter>Scripts</Filter>
     </ClInclude>
     <ClInclude Include="jkFloor.h">
-      <Filter>Contents</Filter>
+      <Filter>GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="jkFloorScript.h">
       <Filter>Scripts</Filter>
@@ -55,16 +55,14 @@
       <Filter>Scripts</Filter>
     </ClInclude>
     <ClInclude Include="jkHero.h">
-      <Filter>Contents</Filter>
+      <Filter>GameObjects</Filter>
     </ClInclude>
     <ClInclude Include="jkWorldScene.h">
       <Filter>Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="jkInvokerSkill.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="jkPlayer.cpp">
-      <Filter>Contents</Filter>
-    </ClCompile>
     <ClCompile Include="jkPlayScene.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
@@ -75,7 +73,7 @@
       <Filter>Scripts</Filter>
     </ClCompile>
     <ClCompile Include="jkSakuya.cpp">
-      <Filter>Contents</Filter>
+      <Filter>GameObjects</Filter>
     </ClCompile>
     <ClCompile Include="jkInvokerScript.cpp">
       <Filter>Scripts</Filter>
@@ -84,22 +82,23 @@
       <Filter>Scenes</Filter>
     </ClCompile>
     <ClCompile Include="jkTile.cpp">
-      <Filter>Contents</Filter>
+      <Filter>GameObjects</Filter>
     </ClCompile>
     <ClCompile Include="jkCameraScript.cpp">
       <Filter>Scripts</Filter>
     </ClCompile>
     <ClCompile Include="jkFloor.cpp">
-      <Filter>Contents</Filter>
+      <Filter>GameObjects</Filter>
     </ClCompile>
     <ClCompile Include="jkFloorScript.cpp">
       <Filter>Scripts</Filter>
     </ClCompile>
     <ClCompile Include="jkHero.cpp">
-      <Filter>Contents</Filter>
+      <Filter>GameObjects</Filter>
     </ClCompile>
     <ClCompile Include="jkWorldScene.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="jkInvokerSkill.cpp" />
   </ItemGroup>
 </Project>

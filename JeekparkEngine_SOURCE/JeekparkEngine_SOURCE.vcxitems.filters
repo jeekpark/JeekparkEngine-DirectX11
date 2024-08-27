@@ -95,6 +95,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)jkAudioListener.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jkAudioSource.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jkAudioClip.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jkGraphicDevice_DX11.cpp">
+      <Filter>GraphicDevice</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h">
@@ -200,6 +203,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)jkAudioListener.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkAudioSource.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkAudioClip.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jkGraphicDevice_DX11.h">
+      <Filter>GraphicDevice</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">
@@ -267,6 +273,9 @@
     </Filter>
     <Filter Include="UI\Button">
       <UniqueIdentifier>{97142fa2-ea3f-44da-9c5c-31db4b0a036e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="GraphicDevice">
+      <UniqueIdentifier>{3f9ec2cf-f034-4f75-8519-1b3ce33b4591}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

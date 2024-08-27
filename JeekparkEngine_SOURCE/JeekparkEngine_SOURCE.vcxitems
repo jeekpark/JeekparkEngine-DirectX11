@@ -32,6 +32,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)jkEnums.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkFmod.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkGameObject.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jkGraphicDevice_DX11.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkInput.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkLayer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkMath.h" />
@@ -69,6 +70,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)jkEntity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jkFmod.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jkGameObject.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jkGraphicDevice_DX11.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jkInput.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jkLayer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jkMath.cpp" />

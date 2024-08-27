@@ -32,6 +32,9 @@ namespace jk
         createBuffer(width, height);
         initializeETC();
 
+        mGraphicDevice = std::make_unique<graphics::GraphicDevice_DX11>();
+        mGraphicDevice->Initialize();
+
         Fmod::Initialize();
         CollisionManager::Initialize();
         UIManager::Initialize();
@@ -66,8 +69,9 @@ namespace jk
 
     void Application::Render()
     {
-        clearRenderTarget(mBackHdc);
-        
+        //clearRenderTarget(mBackHdc);
+        mGraphicDevice->Draw();
+
         CollisionManager::Render(mBackHdc);
         UIManager::Render(mBackHdc);
         SceneManager::Render(mBackHdc);
@@ -75,7 +79,7 @@ namespace jk
         // for debug
         Time::Render(mBackHdc);
 
-        copyRenderTarget(mBackHdc, mHdc);
+        //copyRenderTarget(mBackHdc, mHdc);
     }
     void Application::Destroy()
     {
@@ -93,7 +97,7 @@ namespace jk
     {
         HBRUSH grayBrush = (HBRUSH)CreateSolidBrush(RGB(127, 127, 127));
         HBRUSH oldBrush = (HBRUSH)SelectObject(target, grayBrush);
-        Rectangle(target, -1, -1, mClientWidth + 1, mClientHeight + 1);
+        ::Rectangle(target, -1, -1, mClientWidth + 1, mClientHeight + 1);
 
         SelectObject(target, oldBrush);
         DeleteObject(grayBrush);

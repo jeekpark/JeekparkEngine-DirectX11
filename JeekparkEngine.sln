@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JeekparkEngine_Window", "Je
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JeekparkEngine_SOURCE", "JeekparkEngine_SOURCE\JeekparkEngine_SOURCE.vcxitems", "{B6572C50-035A-47CC-91B1-F55FFB28AF0A}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Shaders_SOURCE", "Shaders_SOURCE\Shaders_SOURCE.vcxitems", "{FCE916D6-146E-49EA-8E86-479EEFB72C69}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -43,5 +45,6 @@ Global
 	GlobalSection(SharedMSBuildProjectFiles) = preSolution
 		JeekparkEngine_SOURCE\JeekparkEngine_SOURCE.vcxitems*{4401aa7d-85c2-44b4-a28c-870255ba4a1f}*SharedItemsImports = 4
 		JeekparkEngine_SOURCE\JeekparkEngine_SOURCE.vcxitems*{b6572c50-035a-47cc-91b1-f55ffb28af0a}*SharedItemsImports = 9
+		Shaders_SOURCE\Shaders_SOURCE.vcxitems*{fce916d6-146e-49ea-8e86-479eefb72c69}*SharedItemsImports = 9
 	EndGlobalSection
 EndGlobal

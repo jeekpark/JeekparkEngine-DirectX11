@@ -120,7 +120,7 @@ namespace jk
                 );
             }
             ModifyWorldTransform(hdc, NULL, MWT_IDENTITY);
-            Rectangle(hdc, pos.x, pos.y, pos.x + 10, pos.y + 10);
+            ::Rectangle(hdc, pos.x, pos.y, pos.x + 10, pos.y + 10);
 
         }
         else if (type == graphics::Texture::eTextureType::Png)

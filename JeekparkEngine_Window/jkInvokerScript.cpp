@@ -13,9 +13,6 @@ namespace jk
     InvokerScript::InvokerScript()
         : mState(eState::Idle)
         , mAnimator(nullptr)
-        , mbLeftDirection(false)
-        , mRunSpeed(600.f)
-        , mbIsStay(false)
     {
     }
     InvokerScript::~InvokerScript()
@@ -54,12 +51,7 @@ namespace jk
     }
     void InvokerScript::Render(HDC hdc)
     {
-        if (mbIsStay)
-        {
-            wchar_t str[50] = L"Stay";
-            size_t len = wcsnlen_s(str, 50);
-            TextOut(hdc, 0, 0, str, (int)len);
-        }
+
     }
     void InvokerScript::OnCollisionEnter(Collider* other)
     {
@@ -67,86 +59,31 @@ namespace jk
     }
     void InvokerScript::OnCollisionStay(Collider* other)
     {
-        mbIsStay = true;
+
     }
     void InvokerScript::OnCollisionExit(Collider* other)
     {
-        mbIsStay = false;
+
     }
     void InvokerScript::AttackEffect()
     {
     }
     void InvokerScript::idle()
     {
-        if (Input::GetKeyDown(eKeyCode::Right) || Input::GetKeyDown(eKeyCode::Left))
-        {
-            mState = eState::StartRun;
-            if (Input::GetKeyDown(eKeyCode::Right))
-            {
-                mbLeftDirection = false;
-            }
-            else
-            {
-                mbLeftDirection = true;
-            }
-            mAnimator->PlayAnimation(L"StartRun", false, mbLeftDirection);
-            return;
-        }
+
     }
     void InvokerScript::startRun()
     {
-        if (Input::GetKeyUp(eKeyCode::Right) || Input::GetKeyUp(eKeyCode::Left))
-        {
-            mState = eState::Idle;
-            mAnimator->PlayAnimation(L"Idle", true, mbLeftDirection);
-            return;
-        }
-        if (mAnimator->IsComplete())
-        {
-            mState = eState::Run;
-            mAnimator->PlayAnimation(L"Run", true, mbLeftDirection);
-        }
+
 
     }
     void InvokerScript::run()
     {
-        if (Input::GetKeyUp(eKeyCode::Right) || Input::GetKeyUp(eKeyCode::Left))
-        {
-            mState = eState::EndRun;
-            mAnimator->PlayAnimation(L"EndRun", false, mbLeftDirection);
-            return;
-        }
-        Rigidbody* rb = GetOwner()->GetComponent<Rigidbody>();
 
-        if (mbLeftDirection)
-        {
-            rb->AddForce(Vector2(-200.f, 0.f));
-        }
-        else
-        {
-            rb->AddForce(Vector2(200.f, 0.f));
-        }
     }
     void InvokerScript::endRun()
     {
-        if (Input::GetKey(eKeyCode::Right) || Input::GetKey(eKeyCode::Left))
-        {
-            mState = eState::Run;
-            if (Input::GetKey(eKeyCode::Right))
-            {
-                mbLeftDirection = false;
-            }
-            else
-            {
-                mbLeftDirection = true;
-            }
-            mAnimator->PlayAnimation(L"Run", true, mbLeftDirection);
-        }
-        if (mAnimator->IsComplete())
-        {
-            mState = eState::Idle;
-            mAnimator->PlayAnimation(L"Idle", true, mbLeftDirection);
-        }
+
     }
 
 

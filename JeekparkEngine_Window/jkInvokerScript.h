@@ -38,11 +38,7 @@ namespace jk
 
     private:
         eState mState;
-        bool mbLeftDirection;
-        float mRunSpeed;
         class Animator* mAnimator;
-        bool mbIsStay;
-
     };
 
 }

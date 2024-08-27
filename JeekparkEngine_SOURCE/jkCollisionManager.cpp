@@ -174,7 +174,7 @@ namespace jk
             Vector2 leftCirclePos = leftPos + leftSize * 0.5f;
             Vector2 rightCirclePos = rightPos + rightSize * 0.5f;
 
-            float distance = (leftCirclePos - rightCirclePos).length();
+            float distance = (leftCirclePos - rightCirclePos).Length();
             if (distance < (leftSize.x + rightSize.x) * 0.5f)
             {
                 return true;

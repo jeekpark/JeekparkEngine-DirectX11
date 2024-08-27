@@ -28,7 +28,7 @@ namespace jk::graphics
 
         HBRUSH transparentBrush = (HBRUSH)GetStockObject(NULL_BRUSH);
         HBRUSH oldBrush = (HBRUSH)SelectObject(hdc, transparentBrush);
-        Rectangle(image->mHdc,
+        ::Rectangle(image->mHdc,
             -1,
             -1,
             image->GetWidth() + 1,

@@ -3,7 +3,7 @@
 #include "jkGameObject.h"
 #include "jkSpriteRenderer.h"
 #include "jkTransform.h"
-#include "jkPlayer.h"
+
 #include "jkInput.h"
 #include "jkTitleScene.h"
 #include "jkSceneManager.h"
@@ -16,7 +16,7 @@
 #include "jkAnimator.h"
 #include "jkBoxCollider2D.h"
 #include "jkSakuya.h"
-#include "jkSakuyaScript.h"
+#include "jkInvokerScript.h"
 #include "jkApplication.h"
 #include "jkCollisionManager.h"
 #include "jkRigidbody.h"
