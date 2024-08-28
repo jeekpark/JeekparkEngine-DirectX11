@@ -7,6 +7,7 @@
 #include "jkCollisionManager.h"
 #include "jkUIManager.h"
 #include "jkFmod.h"
+#include "jkRenderer.h"
 
 namespace jk
 {
@@ -33,6 +34,7 @@ namespace jk
         initializeETC();
 
         mGraphicDevice = std::make_unique<graphics::GraphicDevice_DX11>();
+        renderer::Initialize();
         mGraphicDevice->Initialize();
 
         Fmod::Initialize();
@@ -90,6 +92,7 @@ namespace jk
         SceneManager::Release();
         UIManager::Release();
         Resources::Release();
+        renderer::Release();
     }
 
 
