@@ -33,9 +33,12 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)jkFmod.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkGameObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkGraphicDevice_DX11.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jkGraphics.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkInput.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkLayer.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jkMaterial.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkMath.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jkMesh.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkResource.h" />
@@ -44,6 +47,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)jkScene.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkSceneManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkScript.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jkShader.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkSpriteRenderer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkTexture.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkTime.h" />
@@ -52,6 +56,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)jkUIBase.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkUIButton.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkUIManager.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jkVertexBuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)jkAnimation.cpp" />
@@ -73,7 +78,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)jkGraphicDevice_DX11.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jkInput.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jkLayer.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jkMaterial.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jkMath.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jkMesh.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jkRenderer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jkResource.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jkResources.cpp" />
@@ -81,6 +88,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)jkScene.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jkSceneManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jkScript.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jkShader.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jkSpriteRenderer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jkTexture.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jkTime.cpp" />
@@ -89,5 +97,6 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)jkUIBase.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jkUIButton.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jkUIManager.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jkVertexBuffer.cpp" />
   </ItemGroup>
 </Project>

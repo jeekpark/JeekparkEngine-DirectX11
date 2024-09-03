@@ -5,17 +5,16 @@
 #include "jkPlayScene.h"
 #include "jkToolScene.h"
 #include "jkWorldScene.h"
-
+#include "jkLoadingScene.h"
 namespace jk
 {
 
     void LoadScenes()
     {
+        SceneManager::CreateScene<LoadingScene>(L"LoadingScene");
         SceneManager::CreateScene<TitleScene>(L"TitleScene");
-        //SceneManager::CreateScene<PlayScene>(L"PlayScene");
         SceneManager::CreateScene<WorldScene>(L"WorldScene");
-        //SceneManager::CreateScene<ToolScene>(L"ToolScene");
-        //SceneManager::LoadScene(L"TitleScene");
-        SceneManager::LoadScene(L"WorldScene");
+
+        SceneManager::LoadScene(L"LoadingScene");
     }
 }

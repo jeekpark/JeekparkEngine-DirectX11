@@ -9,8 +9,6 @@
 #include <gdiplus.h>
 #pragma comment(lib, "gdiplus.lib")
 
-#include <wrl.h>
-
 #include <vector>
 #include <algorithm>
 #include <string>
@@ -21,6 +19,8 @@
 #include <bitset>
 #include <stack>
 #include <queue>
+#include <mutex>
+#include <thread>
 
 #include "jkMath.h"
 #include "jkEnums.h"

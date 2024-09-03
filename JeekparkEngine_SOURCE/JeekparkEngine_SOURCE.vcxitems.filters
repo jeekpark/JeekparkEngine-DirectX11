@@ -96,7 +96,19 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)jkAudioSource.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jkAudioClip.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jkGraphicDevice_DX11.cpp">
-      <Filter>GraphicDevice</Filter>
+      <Filter>Graphics\GraphicDevice</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jkMaterial.cpp">
+      <Filter>Resource\Material</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jkMesh.cpp">
+      <Filter>Resource\Mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jkShader.cpp">
+      <Filter>Resource\Graphics\Shader</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jkVertexBuffer.cpp">
+      <Filter>Graphics\GpuBuffer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -204,7 +216,22 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)jkAudioSource.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkAudioClip.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkGraphicDevice_DX11.h">
-      <Filter>GraphicDevice</Filter>
+      <Filter>Graphics\GraphicDevice</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jkGraphics.h">
+      <Filter>Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jkMaterial.h">
+      <Filter>Resource\Material</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jkMesh.h">
+      <Filter>Resource\Mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jkShader.h">
+      <Filter>Resource\Graphics\Shader</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jkVertexBuffer.h">
+      <Filter>Graphics\GpuBuffer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -274,8 +301,26 @@
     <Filter Include="UI\Button">
       <UniqueIdentifier>{97142fa2-ea3f-44da-9c5c-31db4b0a036e}</UniqueIdentifier>
     </Filter>
-    <Filter Include="GraphicDevice">
+    <Filter Include="Graphics">
+      <UniqueIdentifier>{ffae3ab4-862f-4fcf-9c04-24bb674b96cc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\GraphicDevice">
       <UniqueIdentifier>{3f9ec2cf-f034-4f75-8519-1b3ce33b4591}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Graphics">
+      <UniqueIdentifier>{1400d0f6-2f30-41a8-a5c7-9273daa3616c}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Material">
+      <UniqueIdentifier>{b383764b-66ff-4a5b-a0ac-377f73a10248}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Mesh">
+      <UniqueIdentifier>{e14a9bab-3acf-4b8e-b23c-e9dcd4d96a0b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Graphics\Shader">
+      <UniqueIdentifier>{ce1fbc98-881a-4057-bf9f-b4501605f38a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\GpuBuffer">
+      <UniqueIdentifier>{0cada7af-5400-4146-bde3-adbb18540fcf}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

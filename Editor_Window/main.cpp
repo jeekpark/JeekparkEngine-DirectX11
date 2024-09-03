@@ -8,7 +8,6 @@
 
 #include "..\JeekparkEngine_SOURCE\jkApplication.h"
 #include "..\JeekparkEngine_Window\jkLoadScenes.h"
-#include "..\JeekparkEngine_Window\jkLoadResources.h"
 #include "..\JeekparkEngine_Window\jkToolScene.h"
 #include "..\JeekparkEngine_SOURCE\jkTexture.h"
 #include "..\JeekparkEngine_SOURCE\jkResources.h"
@@ -132,9 +131,6 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
       0, 0, width, height, nullptr, nullptr, hInstance, nullptr);
 
-   //HWND toolhWnd = CreateWindowW(L"TILEWINDOW", L"TileWindow", WS_OVERLAPPEDWINDOW,
-   //    0, 0, width, height, nullptr, nullptr, hInstance, nullptr);
-
    app.Initialize(hWnd, width, height);
    if (!hWnd)
    {
@@ -144,27 +140,11 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
 
-   
-   
-
    Gdiplus::GdiplusStartup(&gpToken, &gpsi, nullptr);
 
    srand(time(0));
-   jk::LoadResources();
    jk::LoadScenes();
 
-   jk::graphics::Texture* tex 
-       = jk::Resources::Find<jk::graphics::Texture>(L"SpringFloor");
-
-   /*RECT rect = { 0, 0, tex->GetWidth(), tex->GetHeight() };
-   AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
-
-   UINT toolWidth = rect.right - rect.left;
-   UINT toolHeight = rect.bottom - rect.top;
-
-   SetWindowPos(toolhWnd, nullptr, 0, 0, toolWidth, toolHeight, SWP_NOMOVE);
-   ShowWindow(toolhWnd, nCmdShow);
-   UpdateWindow(toolhWnd);*/
    return TRUE;
 }
 

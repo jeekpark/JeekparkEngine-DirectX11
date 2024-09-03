@@ -137,6 +137,7 @@
     <ClInclude Include="jkFloorScript.h" />
     <ClInclude Include="jkHero.h" />
     <ClInclude Include="jkInvokerSkill.h" />
+    <ClInclude Include="jkLoadingScene.h" />
     <ClInclude Include="jkLoadScenes.h" />
     <ClInclude Include="jkPlayerScript.h" />
     <ClInclude Include="jkPlayScene.h" />
@@ -144,7 +145,6 @@
     <ClInclude Include="jkInvokerScript.h" />
     <ClInclude Include="jkTile.h" />
     <ClInclude Include="jkTitleScene.h" />
-    <ClInclude Include="jkLoadResources.h" />
     <ClInclude Include="jkToolScene.h" />
     <ClInclude Include="jkWorldScene.h" />
   </ItemGroup>
@@ -154,6 +154,7 @@
     <ClCompile Include="jkFloorScript.cpp" />
     <ClCompile Include="jkHero.cpp" />
     <ClCompile Include="jkInvokerSkill.cpp" />
+    <ClCompile Include="jkLoadingScene.cpp" />
     <ClCompile Include="jkPlayerScript.cpp" />
     <ClCompile Include="jkPlayScene.cpp" />
     <ClCompile Include="jkSakuya.cpp" />

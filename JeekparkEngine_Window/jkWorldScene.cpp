@@ -28,8 +28,8 @@ namespace jk
     }
     void WorldScene::Initialize()
     {
-        initCamera();
-        initPlayableHero();
+        //initCamera();
+        //initPlayableHero();
 
         Scene::Initialize();
     }

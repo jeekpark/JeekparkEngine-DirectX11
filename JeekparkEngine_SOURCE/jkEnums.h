@@ -26,13 +26,12 @@ namespace jk::enums
         Max,
     };
 
-    
-
     enum class eResourceType
     {
         Texture,
-        AudioClip,
         Animation,
+        AudioClip,
+        Shader,
         Prefab,
         End,
     };

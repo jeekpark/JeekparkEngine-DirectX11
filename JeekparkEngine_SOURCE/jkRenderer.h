@@ -3,24 +3,19 @@
 #include "jkCamera.h"
 #include "jkGraphicDevice_DX11.h"
 
+#include "jkVertexBuffer.h"
+
 namespace jk::renderer
 {
     extern Camera* mainCamera;
 
-    struct Vertex
-    {
-        Vector3 pos;
-        Vector4 color;
-    };
+    extern std::vector<graphics::Vertex> vertexes;
+    extern std::vector<UINT> indices;
 
-    extern Vertex vertexes[3];
-    extern ID3D11Buffer* vertexBuffer;
+    extern graphics::VertexBuffer vertexBuffer;
+    extern ID3D11Buffer* indexBuffer;
+    extern ID3D11Buffer* constantBuffer;
 
-    extern ID3DBlob* vsBlob;
-    extern ID3D11VertexShader* vsShader;
-
-    extern ID3DBlob* psBlob;
-    extern ID3D11PixelShader* psShader;
     extern ID3D11InputLayout* inputLayouts;
 
     void Initialize();
