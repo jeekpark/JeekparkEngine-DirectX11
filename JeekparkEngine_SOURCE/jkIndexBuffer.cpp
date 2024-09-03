@@ -10,7 +10,7 @@ namespace jk::graphics
 	}
 	bool IndexBuffer::Create(const std::vector<UINT>& indices)
 	{
-		desc.ByteWidth = CAST_UINT(sizeof(UINT)) * indices.size();
+		desc.ByteWidth = CAST_UINT(sizeof(UINT)* indices.size());
 		desc.BindFlags = D3D11_BIND_FLAG::D3D11_BIND_INDEX_BUFFER;
 		desc.Usage = D3D11_USAGE_DEFAULT;
 		desc.CPUAccessFlags = 0;

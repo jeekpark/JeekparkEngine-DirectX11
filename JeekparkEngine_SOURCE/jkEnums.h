@@ -29,6 +29,7 @@ namespace jk::enums
     enum class eResourceType
     {
         Texture,
+        Mesh,
         Animation,
         AudioClip,
         Shader,

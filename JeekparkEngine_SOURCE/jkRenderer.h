@@ -3,8 +3,8 @@
 #include "jkCamera.h"
 #include "jkGraphicDevice_DX11.h"
 
-#include "jkVertexBuffer.h"
-#include "jkIndexBuffer.h"
+#include "jkMesh.h"
+
 #include "jkConstantBuffer.h"
 
 using namespace jk::math;
@@ -17,8 +17,7 @@ namespace jk::renderer
     extern std::vector<graphics::Vertex> vertexes;
     extern std::vector<UINT> indices;
 
-    extern graphics::VertexBuffer vertexBuffer;
-    extern graphics::IndexBuffer indexBuffer;
+    extern Mesh* mesh;
     extern graphics::ConstantBuffer constantBuffers[(UINT)eCBType::End];
 
     extern ID3D11Buffer* constantBuffer;

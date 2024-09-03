@@ -11,6 +11,7 @@ namespace jk::graphics
 		Shader();
 		virtual ~Shader();
 
+		virtual HRESULT Save(const std::wstring& path) override;
 		virtual HRESULT Load(const std::wstring& path) override;
 
 		bool Create(const eShaderStage stage, const std::wstring& fileName);

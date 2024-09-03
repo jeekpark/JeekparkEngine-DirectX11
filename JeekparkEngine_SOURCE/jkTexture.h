@@ -20,6 +20,7 @@ namespace jk::graphics
         Texture();
         ~Texture();
 
+        virtual HRESULT Save(const std::wstring& path) override;
         virtual HRESULT Load(const std::wstring& path) override;
 
         UINT GetWidth() const { return mWidth; }
