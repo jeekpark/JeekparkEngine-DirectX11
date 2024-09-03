@@ -12,7 +12,9 @@ namespace jk::renderer
 	std::vector<UINT> indices;
 
 	graphics::VertexBuffer vertexBuffer;
-	ID3D11Buffer* indexBuffer = nullptr;
+	graphics::IndexBuffer indexBuffer;
+	graphics::ConstantBuffer constantBuffers[(UINT)eCBType::End] = {};
+
 	ID3D11Buffer* constantBuffer = nullptr;
 
 	ID3D11InputLayout* inputLayouts = nullptr;
@@ -50,16 +52,20 @@ namespace jk::renderer
 
 	}
 
+	void LoadConstantBuffers()
+	{
+		constantBuffers[(UINT)eCBType::Transform].Create(eCBType::Transform, sizeof(Vector4));
+	}
+
 	void Initialize()
     {
         LoadMesh();
 		LoadShaders();
+		LoadConstantBuffers();
 	}
 	void Release()
 	{
 		inputLayouts->Release();
-		indexBuffer->Release();
-		constantBuffer->Release();
 	}
 }
 

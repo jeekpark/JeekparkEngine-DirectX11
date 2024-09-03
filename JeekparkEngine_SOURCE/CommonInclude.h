@@ -1,5 +1,6 @@
 #pragma once
 
+
 #include <Windows.h>
 #include <mmsystem.h>
 #include <dinput.h>
@@ -24,3 +25,6 @@
 
 #include "jkMath.h"
 #include "jkEnums.h"
+
+#define CAST_UINT(value) static_cast<UINT>(value)
+#define CAST_FLOAT(value) static_cast<float>(value)

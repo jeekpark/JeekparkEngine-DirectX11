@@ -22,7 +22,7 @@ namespace jk
     void Transform::LateUpdate()
     {
     }
-    void Transform::Render(HDC hdc)
+    void Transform::Render()
     {
     }
 }

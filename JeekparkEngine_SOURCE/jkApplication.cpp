@@ -74,12 +74,11 @@ namespace jk
         //clearRenderTarget(mBackHdc);
         mGraphicDevice->Draw();
 
-        CollisionManager::Render(mBackHdc);
-        UIManager::Render(mBackHdc);
-        SceneManager::Render(mBackHdc);
-
-        // for debug
-        Time::Render(mBackHdc);
+        Time::Render();
+        CollisionManager::Render();
+        UIManager::Render();
+        SceneManager::Render();
+        
 
         //copyRenderTarget(mBackHdc, mHdc);
     }

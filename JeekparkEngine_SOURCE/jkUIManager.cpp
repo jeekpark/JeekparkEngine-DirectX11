@@ -62,7 +62,7 @@ namespace jk
         }
     }
 
-    void UIManager::Render(HDC hdc)
+    void UIManager::Render()
     {
         if (mUIBases.size() <= 0)
         {
@@ -73,7 +73,7 @@ namespace jk
         while (!mUIBases.empty())
         {
             UIBase* tempUIBase = mUIBases.top();
-            tempUIBase->Render(hdc);
+            tempUIBase->Render();
             tempStack.push(tempUIBase);
             mUIBases.pop();
         }

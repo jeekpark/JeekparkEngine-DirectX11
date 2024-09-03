@@ -109,11 +109,11 @@ namespace jk
 		mMousePosition.x = -1.0f;
 		mMousePosition.y = -1.0f;
 
-		if (0 < mousePos.x && mousePos.x < width)
-			mMousePosition.x = mousePos.x;
+		if (0U < CAST_UINT(mousePos.x) && CAST_UINT(mousePos.x) < width)
+			mMousePosition.x = CAST_FLOAT(mousePos.x);
 
-		if (0 < mousePos.y && mousePos.y < height)
-			mMousePosition.y = mousePos.y;
+		if (0U < CAST_UINT(mousePos.y) && CAST_UINT(mousePos.y) < height)
+			mMousePosition.y = CAST_FLOAT(mousePos.y);
 	}
 	void Input::clearKeys()
 	{

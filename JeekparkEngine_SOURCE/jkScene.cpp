@@ -40,11 +40,11 @@ namespace jk
             layer->LateUpdate();
         }
     }
-    void Scene::Render(HDC hdc)
+    void Scene::Render()
     {
         for (Layer* layer : mLayers)
         {
-            layer->Render(hdc);
+            layer->Render();
         }
     }
     void Scene::Destroy()

@@ -15,7 +15,7 @@ namespace jk
 		void OnInActive() override;
 		void OnUpdate() override;
 		void OnLateUpdate() override;
-		void OnRender(HDC hdc) override;
+		void OnRender() override;
 		void OnClear() override;
 
 		void ButtonClick();

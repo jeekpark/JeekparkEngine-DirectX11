@@ -22,10 +22,8 @@ namespace jk
     }
     void Camera::Initialize()
     {
-        RECT rect;
-        GetClientRect(app.GetHwnd(), &rect);
-        mResolution.x = rect.right - rect.left;
-        mResolution.y = rect.bottom - rect.top;
+        mResolution.x = CAST_FLOAT(app.GetClientWidth());
+        mResolution.y = CAST_FLOAT(app.GetClientHeight());
     }
     void Camera::Update()
     {
@@ -45,7 +43,7 @@ namespace jk
     {
         
     }
-    void Camera::Render(HDC hdc)
+    void Camera::Render()
     {
     }
 }

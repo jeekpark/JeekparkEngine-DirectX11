@@ -9,16 +9,16 @@ namespace jk
     {
     public:
         Component(enums::eComponentType type);
-        ~Component();
+        virtual ~Component();
 
         virtual void Initialize();
         virtual void Update();
         virtual void LateUpdate();
-        virtual void Render(HDC hdc);
+        virtual void Render();
 
         void SetOwner(GameObject* owner) { mOwner = owner; }
         GameObject* GetOwner() { return mOwner; }
-        enums::eComponentType GetComponentType() { return mComponentType; }
+        enums::eComponentType GetComponentType() const { return mComponentType; }
 
     private:
         GameObject* mOwner;

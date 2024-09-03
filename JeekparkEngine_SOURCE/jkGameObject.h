@@ -24,7 +24,7 @@ namespace jk
         virtual void Initialize();
         virtual void Update();
         virtual void LateUpdate();
-        virtual void Render(HDC hdc);
+        virtual void Render();
 
         template<typename T>
         T* AddComponent()
@@ -50,7 +50,7 @@ namespace jk
             return res;
         }
 
-        eState GetState() { return mState; }
+        eState GetState() const { return mState; }
 
         void SetActive(bool power)
         {
@@ -63,11 +63,11 @@ namespace jk
                 mState = eState::Paused;
             }
         }
-        bool IsActive() { return mState == eState::Active; }
-        bool IsDead() { return mState == eState::Dead; }
+        bool IsActive() const { return mState == eState::Active; }
+        bool IsDead() const { return mState == eState::Dead; }
         void Death() { mState = eState::Dead; }
         void SetLayerType(enums::eLayerType layer) { mLayerType = layer; }
-        enums::eLayerType GetLayerType() { return mLayerType; }
+        enums::eLayerType GetLayerType() const { return mLayerType; }
     private:
         void initializeTransform();
         

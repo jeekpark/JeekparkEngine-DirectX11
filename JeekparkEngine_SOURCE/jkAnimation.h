@@ -31,7 +31,7 @@ namespace jk
         HRESULT Load(const std::wstring& path) override;
 
         void Update();
-        void Render(HDC hdc);
+        void Render();
 
         void CreateAnimation(
             const std::wstring& name,
@@ -43,7 +43,7 @@ namespace jk
             float duration);
         void Reset();
 
-        bool IsComplete() { return mbComplete; }
+        bool IsComplete() const { return mbComplete; }
         void SetAnimator(class Animator* animator) { mAnimator = animator; }
         void SetVerticalFlip(bool verticalFlip) { mbVerticalFlip = verticalFlip; }
     private:

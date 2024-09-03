@@ -27,19 +27,7 @@ namespace jk
         sPrevCpuFrequency.QuadPart = sCurrentCpuFrequency.QuadPart;
     }
 
-    void Time::Render(HDC hdc)
+    void Time::Render()
     {
-        static float time = 0.f;
-
-        time += sDeltaTime;
-        float fps = 1.f / sDeltaTime;
-
-        wchar_t str[50] = L"";
-        swprintf_s(str, 50, L"FPS: %f", fps);
-        size_t len = wcsnlen_s(str, 50);
-
-        
-        
-        TextOut(hdc, 0, 20, str, (int)len);
     }
 }

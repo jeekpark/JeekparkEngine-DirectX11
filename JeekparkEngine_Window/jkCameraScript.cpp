@@ -52,7 +52,7 @@ namespace jk
 	{
 	}
 
-	void CameraScript::Render(HDC hdc)
+	void CameraScript::Render()
 	{
 	}
 

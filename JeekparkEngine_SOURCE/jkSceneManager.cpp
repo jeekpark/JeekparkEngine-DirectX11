@@ -35,10 +35,10 @@ namespace jk
         sActiveScene->LateUpdate();
         sDontDestroyOnLoad->LateUpdate();
     }
-    void SceneManager::Render(HDC hdc)
+    void SceneManager::Render()
     {
-        sActiveScene->Render(hdc);
-        sDontDestroyOnLoad->Render(hdc);
+        sActiveScene->Render();
+        sDontDestroyOnLoad->Render();
     }
     void SceneManager::Destroy()
     {

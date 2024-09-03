@@ -15,12 +15,12 @@ namespace jk
         void Initialize()override;
         void Update() override;
         void LateUpdate() override;
-        void Render(HDC hdc) override;
+        void Render() override;
 
         void SetTarget(GameObject* target) { mTarget = target; }
 
-        Vector2 WorldToScreenPoint(Vector2 pos) { return pos - mDistance; };
-        Vector2 ScreenToWorldPoint(Vector2 pos) { return pos + mDistance; };
+        Vector2 WorldToScreenPoint(Vector2 pos) const { return pos - mDistance; };
+        Vector2 ScreenToWorldPoint(Vector2 pos) const { return pos + mDistance; };
 
     private:
         

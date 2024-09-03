@@ -27,6 +27,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)jkCollider.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkCollisionManager.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkComponent.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jkConstantBuffer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkDontDestroyOnLoad.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkEntity.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkEnums.h" />
@@ -34,6 +35,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)jkGameObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkGraphicDevice_DX11.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkGraphics.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jkIndexBuffer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkInput.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkLayer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkMaterial.h" />
@@ -71,11 +73,13 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)jkCollider.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jkCollisionManager.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jkComponent.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jkConstantBuffer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jkDontDestroyOnLoad.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jkEntity.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jkFmod.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jkGameObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jkGraphicDevice_DX11.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jkIndexBuffer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jkInput.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jkLayer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jkMaterial.cpp" />

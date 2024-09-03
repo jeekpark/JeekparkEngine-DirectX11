@@ -8,7 +8,6 @@
 
 #include "..\JeekparkEngine_SOURCE\jkApplication.h"
 #include "..\JeekparkEngine_Window\jkLoadScenes.h"
-#include "..\JeekparkEngine_Window\jkToolScene.h"
 #include "..\JeekparkEngine_SOURCE\jkTexture.h"
 #include "..\JeekparkEngine_SOURCE\jkResources.h"
 
@@ -91,7 +90,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 //
 ATOM MyRegisterClass(HINSTANCE hInstance, const wchar_t* name, WNDPROC proc)
 {
-    WNDCLASSEXW wcex;
+    WNDCLASSEXW wcex = {};
 
     wcex.cbSize = sizeof(WNDCLASSEX);
 

@@ -45,12 +45,9 @@ namespace jk
             SceneManager::LoadScene(L"TitleScene");
         }
     }
-    void WorldScene::Render(HDC hdc)
+    void WorldScene::Render()
     {
-        Scene::Render(hdc);
-
-        wchar_t str[50] = L"World Scene";
-        TextOut(hdc, 0, 0, str, (int)wcsnlen_s(str, 50));
+        Scene::Render();
     }
     void WorldScene::OnEnter()
     {

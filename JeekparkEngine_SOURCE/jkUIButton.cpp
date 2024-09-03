@@ -43,18 +43,8 @@ namespace jk
     void UIButton::OnLateUpdate()
     {
     }
-    void UIButton::OnRender(HDC hdc)
+    void UIButton::OnRender()
     {
-        if (mbMouseOn)
-        {
-            ::Rectangle(hdc, mPosition.x, mPosition.y, mPosition.x + mSize.x, mPosition.y + mSize.y);
-        }
-        else
-        {
-            ::Rectangle(hdc, mPosition.x, mPosition.y, mPosition.x + mSize.x, mPosition.y + mSize.y + 100);
-
-        }
-        
     }
     void UIButton::OnClear()
     {

@@ -16,14 +16,13 @@ namespace jk
     }
     void CollisionManager::Update()
     {
-        Scene* scene = SceneManager::GetActiveScene();
         for (UINT row = 0; row < (UINT)eLayerType::Max; ++row)
         {
             for (UINT col = 0; col < (UINT)eLayerType::Max; ++col)
             {
                 if (mCollisionLayerMaxtirx[row][col] == true)
                 {
-                    LayerCollision(scene, (eLayerType)row, (eLayerType)col);
+                    LayerCollision((eLayerType)row, (eLayerType)col);
                 }
             }
         }
@@ -31,7 +30,7 @@ namespace jk
     void CollisionManager::LateUpdate()
     {
     }
-    void CollisionManager::Render(HDC hdc)
+    void CollisionManager::Render()
     {
 
     }
@@ -63,35 +62,35 @@ namespace jk
         }
         mCollisionLayerMaxtirx[row][col] = enable;
     }
-    void CollisionManager::LayerCollision(Scene* scene, eLayerType left, eLayerType right)
+    void CollisionManager::LayerCollision(eLayerType left, eLayerType right)
     {
-        const std::vector<GameObject*>& lefts = SceneManager::GetGameObjects((eLayerType)left);
-        const std::vector<GameObject*>& rights = SceneManager::GetGameObjects((eLayerType)right);
+        const std::vector<GameObject*>& leftObjs = SceneManager::GetGameObjects(left);
+        const std::vector<GameObject*>& rightObjs = SceneManager::GetGameObjects(right);
 
-        for (GameObject* left : lefts)
+        for (GameObject* leftObj : leftObjs)
         {
-            if (left->IsActive() == false)
+            if (leftObj->IsActive() == false)
             {
                 continue;
             }
-            Collider* leftCollider = left->GetComponent<Collider>();
+            Collider* leftCollider = leftObj->GetComponent<Collider>();
             if (leftCollider == nullptr)
             {
                 continue;
             }
 
-            for (GameObject* right : rights)
+            for (GameObject* rightObj : rightObjs)
             {
-                if (right->IsActive() == false)
+                if (rightObj->IsActive() == false)
                 {
                     continue;
                 }
-                Collider* rightCollider = right->GetComponent<Collider>();
+                Collider* rightCollider = rightObj->GetComponent<Collider>();
                 if (rightCollider == nullptr)
                 {
                     continue;
                 }
-                if (left == right)
+                if (leftObj == rightObj)
                 {
                     continue;
                 }

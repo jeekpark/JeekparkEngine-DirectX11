@@ -20,8 +20,8 @@ namespace jk
     {
         GameObject::LateUpdate();
     }
-    void Hero::Render(HDC hdc)
+    void Hero::Render()
     {
-        GameObject::Render(hdc);
+        GameObject::Render();
     }
 }

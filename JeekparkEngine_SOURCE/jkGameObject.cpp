@@ -63,7 +63,7 @@ namespace jk
         }
     }
 
-    void GameObject::Render(HDC hdc)
+    void GameObject::Render()
     {
         for (Component* comp : mComponents)
         {
@@ -71,7 +71,7 @@ namespace jk
             {
                 continue;
             }
-            comp->Render(hdc);
+            comp->Render();
         }
     }
 

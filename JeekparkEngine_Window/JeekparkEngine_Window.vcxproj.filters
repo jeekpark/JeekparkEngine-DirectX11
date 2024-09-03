@@ -21,35 +21,11 @@
     <ClInclude Include="jkLoadScenes.h">
       <Filter>Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="jkPlayScene.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="jkTitleScene.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="jkPlayerScript.h">
-      <Filter>Scripts</Filter>
-    </ClInclude>
-    <ClInclude Include="jkSakuya.h">
-      <Filter>GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="jkInvokerScript.h">
-      <Filter>Scripts</Filter>
-    </ClInclude>
-    <ClInclude Include="jkToolScene.h">
-      <Filter>Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="jkTile.h">
-      <Filter>GameObjects</Filter>
-    </ClInclude>
     <ClInclude Include="jkCameraScript.h">
       <Filter>Scripts</Filter>
     </ClInclude>
     <ClInclude Include="jkFloor.h">
       <Filter>GameObjects</Filter>
-    </ClInclude>
-    <ClInclude Include="jkFloorScript.h">
-      <Filter>Scripts</Filter>
     </ClInclude>
     <ClInclude Include="jkHero.h">
       <Filter>GameObjects</Filter>
@@ -57,41 +33,16 @@
     <ClInclude Include="jkWorldScene.h">
       <Filter>Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="jkInvokerSkill.h" />
     <ClInclude Include="jkLoadingScene.h">
       <Filter>Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="jkPlayScene.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="jkTitleScene.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="jkPlayerScript.cpp">
-      <Filter>Scripts</Filter>
-    </ClCompile>
-    <ClCompile Include="jkSakuya.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="jkInvokerScript.cpp">
-      <Filter>Scripts</Filter>
-    </ClCompile>
-    <ClCompile Include="jkToolScene.cpp">
-      <Filter>Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="jkTile.cpp">
-      <Filter>GameObjects</Filter>
-    </ClCompile>
     <ClCompile Include="jkCameraScript.cpp">
       <Filter>Scripts</Filter>
     </ClCompile>
     <ClCompile Include="jkFloor.cpp">
       <Filter>GameObjects</Filter>
-    </ClCompile>
-    <ClCompile Include="jkFloorScript.cpp">
-      <Filter>Scripts</Filter>
     </ClCompile>
     <ClCompile Include="jkHero.cpp">
       <Filter>GameObjects</Filter>
@@ -99,7 +50,6 @@
     <ClCompile Include="jkWorldScene.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="jkInvokerSkill.cpp" />
     <ClCompile Include="jkLoadingScene.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>

@@ -91,7 +91,7 @@ namespace jk
 	{
 	}
 
-	void Rigidbody::Render(HDC hdc)
+	void Rigidbody::Render()
 	{
 	}
 

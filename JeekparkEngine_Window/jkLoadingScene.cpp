@@ -40,7 +40,7 @@ namespace jk
     void LoadingScene::LateUpdate()
     {
     }
-    void LoadingScene::Render(HDC hdc)
+    void LoadingScene::Render()
     {
     }
     void LoadingScene::OnEnter()

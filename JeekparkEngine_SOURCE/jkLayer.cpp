@@ -47,7 +47,7 @@ namespace jk
             obj->LateUpdate();
         }
     }
-    void Layer::Render(HDC hdc)
+    void Layer::Render()
     {
         for (GameObject* obj : mGameObjects)
         {
@@ -57,7 +57,7 @@ namespace jk
             {
                 continue;
             }
-            obj->Render(hdc);
+            obj->Render();
         }
     }
     void Layer::Destroy()

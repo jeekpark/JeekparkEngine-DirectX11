@@ -19,12 +19,12 @@ namespace jk
         void Destroy();
         void Release();
 
-        HWND GetHwnd() { return mHwnd; }
-        HDC GetHdc() { return mHdc; }
-        UINT GetWidth() { return mWidth; }
-        UINT GetHeight() { return mHeight; }
-        UINT GetClientWidth() { return mClientWidth; }
-        UINT GetClientHeight() { return mClientHeight; }
+        HWND GetHwnd() const { return mHwnd; }
+        HDC GetHdc() const { return mHdc; }
+        UINT GetWidth() const { return mWidth; }
+        UINT GetHeight() const { return mHeight; }
+        UINT GetClientWidth() const { return mClientWidth; }
+        UINT GetClientHeight() const { return mClientHeight; }
 
     private:
         void clearRenderTarget(HDC target);

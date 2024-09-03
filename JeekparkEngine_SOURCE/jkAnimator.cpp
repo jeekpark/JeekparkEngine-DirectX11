@@ -51,12 +51,12 @@ namespace jk
     void Animator::LateUpdate()
     {
     }
-    void Animator::Render(HDC hdc)
+    void Animator::Render()
     {
-        if (mActiveAnimation)
+        /*if (mActiveAnimation)
         {
             mActiveAnimation->Render(hdc);
-        }
+        }*/
     }
 
     void Animator::CreateAnimation(
@@ -94,12 +94,12 @@ namespace jk
     }
 
     void Animator::CreateAnimationByFolder(
-        const std::wstring& name,
+        /*const std::wstring& name,
         const std::wstring& path,
         Vector2 offset,
-        float duration)
+        float duration*/)
     {
-        Animation* animation = nullptr;
+        /*Animation* animation = nullptr;
         animation = FindAnimation(name);
         if (animation != nullptr)
         {
@@ -139,7 +139,7 @@ namespace jk
             { 0.f, 0.f },
             images.size(),
             duration
-        );
+        );*/
     }
     Animation* Animator::FindAnimation(const std::wstring& name)
     {

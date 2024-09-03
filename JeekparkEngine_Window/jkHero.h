@@ -40,7 +40,7 @@ namespace jk
         void Initialize() override;
         void Update() override;
         void LateUpdate() override;
-        void Render(HDC hdc) override;
+        void Render() override;
 
         void SetStats(const Stats& stats) { mStats = stats; }
         const Stats& GetStats() const { return mStats; }
