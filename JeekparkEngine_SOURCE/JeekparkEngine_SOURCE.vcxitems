@@ -37,6 +37,7 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)jkGraphics.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkIndexBuffer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkInput.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)jkInputLayout.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkLayer.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkMaterial.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkMath.h" />
@@ -81,6 +82,7 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)jkGraphicDevice_DX11.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jkIndexBuffer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jkInput.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)jkInputLayout.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jkLayer.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jkMaterial.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jkMath.cpp" />

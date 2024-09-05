@@ -116,6 +116,9 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)jkIndexBuffer.cpp">
       <Filter>Graphics\GpuBuffer</Filter>
     </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jkInputLayout.cpp">
+      <Filter>Graphics\InputLayout</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="$(MSBuildThisFileDirectory)CommonInclude.h">
@@ -245,6 +248,9 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)jkIndexBuffer.h">
       <Filter>Graphics\GpuBuffer</Filter>
     </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jkInputLayout.h">
+      <Filter>Graphics\InputLayout</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="Common">
@@ -333,6 +339,9 @@
     </Filter>
     <Filter Include="Graphics\GpuBuffer">
       <UniqueIdentifier>{0cada7af-5400-4146-bde3-adbb18540fcf}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Graphics\InputLayout">
+      <UniqueIdentifier>{a37f659e-d970-4a41-bf59-fe2e80933d26}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

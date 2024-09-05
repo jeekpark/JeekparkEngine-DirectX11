@@ -37,6 +37,31 @@ namespace jk::graphics
 		End,
 	};
 
+	enum class eSamplerType
+	{
+		Point,
+		Linear,
+		Anisotropic,
+		PostProcess,
+		End,
+	};
+	enum class eRenderingMode
+	{
+		Opaque,
+		CutOut,
+		Transparent,
+		PostProcess,
+		End,
+	};
+	enum class eTextureType
+	{
+		Albedo,
+		Normal,
+		Specular,
+		Smoothness,
+		Metallic,
+		End,
+	};
 	struct GpuBuffer
 	{
 		Microsoft::WRL::ComPtr<ID3D11Buffer> buffer = nullptr;

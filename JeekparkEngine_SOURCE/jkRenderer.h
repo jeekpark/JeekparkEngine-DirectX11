@@ -3,7 +3,6 @@
 #include "jkCamera.h"
 #include "jkGraphicDevice_DX11.h"
 
-#include "jkMesh.h"
 
 #include "jkConstantBuffer.h"
 
@@ -14,12 +13,7 @@ namespace jk::renderer
 {
     extern Camera* mainCamera;
 
-    extern Mesh* mesh;
     extern graphics::ConstantBuffer constantBuffers[(UINT)eCBType::End];
-
-    extern ID3D11Buffer* constantBuffer;
-
-    extern ID3D11InputLayout* inputLayouts;
 
     void Initialize();
     void Release();

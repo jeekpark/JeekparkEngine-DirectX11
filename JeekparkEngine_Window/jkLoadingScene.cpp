@@ -4,6 +4,7 @@
 #include "jkResources.h"
 #include "jkTexture.h"
 #include "jkApplication.h"
+#include "jkRenderer.h"
 
 extern jk::Application app;
 
@@ -57,6 +58,7 @@ namespace jk
         m.lock();
         {
             Resources::Load<graphics::Texture>(L"Player", L"..\\Resources\\CloudOcean.png");
+            renderer::Initialize();
         }
         m.unlock();
 

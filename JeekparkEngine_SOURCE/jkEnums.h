@@ -30,6 +30,7 @@ namespace jk::enums
     {
         Texture,
         Mesh,
+        Material, 
         Animation,
         AudioClip,
         Shader,

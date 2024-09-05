@@ -5,6 +5,8 @@
 #include "jkShader.h"
 #include "jkResources.h"
 #include "jkTexture.h"
+#include "jkMesh.h"
+#include "jkMaterial.h"
 
 extern jk::Application app;
 
@@ -104,6 +106,14 @@ namespace jk::graphics
         return true;
     }
 
+    bool GraphicDevice_DX11::CreateSamplerState(const D3D11_SAMPLER_DESC* pSamplerDesc, ID3D11SamplerState** ppSamplerState)
+    {
+        if (FAILED(mDevice->CreateSamplerState(pSamplerDesc, ppSamplerState)))
+            return false;
+
+        return true;
+    }
+
     bool GraphicDevice_DX11::CreateVertexShader(const std::wstring& fileName, ID3DBlob** ppCode, ID3D11VertexShader** ppVertexShader)
     {
         DWORD shaderFlags = D3DCOMPILE_ENABLE_STRICTNESS;
@@ -191,6 +201,7 @@ namespace jk::graphics
 
         return true;
     }
+
     bool GraphicDevice_DX11::CreateShaderResourceView(ID3D11Resource* pResource, const D3D11_SHADER_RESOURCE_VIEW_DESC* pDesc, ID3D11ShaderResourceView** ppSRView)
     {
         if (FAILED(mDevice->CreateShaderResourceView(pResource, pDesc, ppSRView)))
@@ -198,6 +209,7 @@ namespace jk::graphics
 
         return true;
     }
+
     void GraphicDevice_DX11::SetDataGpuBuffer(ID3D11Buffer* buffer, void* data, UINT size)
     {
         D3D11_MAPPED_SUBRESOURCE sub = {};
@@ -205,6 +217,7 @@ namespace jk::graphics
         memcpy(sub.pData, data, size);
         mContext->Unmap(buffer, 0);
     }
+
     void GraphicDevice_DX11::SetShaderResource(eShaderStage stage, UINT startSlot, ID3D11ShaderResourceView** ppSRV)
     {
         if ((UINT)eShaderStage::VS & (UINT)stage)
@@ -225,10 +238,17 @@ namespace jk::graphics
         if ((UINT)eShaderStage::CS & (UINT)stage)
             mContext->CSSetShaderResources(startSlot, 1, ppSRV);
     }
+    
+    void GraphicDevice_DX11::BindInputLayout(ID3D11InputLayout* pInputLayout)
+    {
+        mContext->IASetInputLayout(pInputLayout);
+    }
+
     void GraphicDevice_DX11::BindPrimitiveTopology(const D3D11_PRIMITIVE_TOPOLOGY topology)
     {
         mContext->IASetPrimitiveTopology(topology);
     }
+
     void GraphicDevice_DX11::BindVS(ID3D11VertexShader* pVertexShader)
     {
         mContext->VSSetShader(pVertexShader, 0, 0);
@@ -284,6 +304,33 @@ namespace jk::graphics
         default:
             break;
         }
+    }
+
+    void GraphicDevice_DX11::BindSampler(eShaderStage stage, UINT StartSlot, UINT NumSamplers, ID3D11SamplerState* const* ppSamplers)
+    {
+        if (eShaderStage::VS == stage)
+            mContext->VSSetSamplers(StartSlot, NumSamplers, ppSamplers);
+
+        if (eShaderStage::HS == stage)
+            mContext->HSSetSamplers(StartSlot, NumSamplers, ppSamplers);
+
+        if (eShaderStage::DS == stage)
+            mContext->DSSetSamplers(StartSlot, NumSamplers, ppSamplers);
+
+        if (eShaderStage::GS == stage)
+            mContext->GSSetSamplers(StartSlot, NumSamplers, ppSamplers);
+
+        if (eShaderStage::PS == stage)
+            mContext->PSSetSamplers(StartSlot, NumSamplers, ppSamplers);
+    }
+
+    void GraphicDevice_DX11::BindSamplers(UINT StartSlot, UINT NumSamplers, ID3D11SamplerState* const* ppSamplers)
+    {
+        BindSampler(eShaderStage::VS, StartSlot, NumSamplers, ppSamplers);
+        BindSampler(eShaderStage::HS, StartSlot, NumSamplers, ppSamplers);
+        BindSampler(eShaderStage::DS, StartSlot, NumSamplers, ppSamplers);
+        BindSampler(eShaderStage::GS, StartSlot, NumSamplers, ppSamplers);
+        BindSampler(eShaderStage::PS, StartSlot, NumSamplers, ppSamplers);
     }
 
     void GraphicDevice_DX11::Initialize()
@@ -345,47 +392,6 @@ namespace jk::graphics
 
         if (CreateDepthStencilView(mDepthStencil.Get(), nullptr, mDepthStencilView.GetAddressOf()) == false)
             assert(NULL && "Create depthstencilview failed!");
-
-#pragma region inputLayout Desc
-        D3D11_INPUT_ELEMENT_DESC inputLayoutDesces[3] = {};
-
-        inputLayoutDesces[0].AlignedByteOffset = 0;
-        inputLayoutDesces[0].Format = DXGI_FORMAT_R32G32B32_FLOAT;
-        inputLayoutDesces[0].InputSlot = 0;
-        inputLayoutDesces[0].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
-        inputLayoutDesces[0].SemanticName = "POSITION";
-        inputLayoutDesces[0].SemanticIndex = 0;
-
-        inputLayoutDesces[1].AlignedByteOffset = 12;
-        inputLayoutDesces[1].Format = DXGI_FORMAT_R32G32B32A32_FLOAT;
-        inputLayoutDesces[1].InputSlot = 0;
-        inputLayoutDesces[1].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
-        inputLayoutDesces[1].SemanticName = "COLOR";
-        inputLayoutDesces[1].SemanticIndex = 0;
-
-        inputLayoutDesces[2].AlignedByteOffset = 28; //12 + 16
-        inputLayoutDesces[2].Format = DXGI_FORMAT_R32G32_FLOAT;
-        inputLayoutDesces[2].InputSlot = 0;
-        inputLayoutDesces[2].InputSlotClass = D3D11_INPUT_PER_VERTEX_DATA;
-        inputLayoutDesces[2].SemanticName = "TEXCOORD";
-        inputLayoutDesces[2].SemanticIndex = 0;
-#pragma endregion
-
-        graphics::Shader* triangle = Resources::Find<graphics::Shader>(L"TriangleShader");
-
-        if (CreateInputLayout(inputLayoutDesces, 2
-            , triangle->GetVSBlob()->GetBufferPointer()
-            , triangle->GetVSBlob()->GetBufferSize()
-            , &renderer::inputLayouts) == false)
-            assert(NULL && "Create input layout failed!");
-
-        graphics::Shader* sprite = Resources::Find<graphics::Shader>(L"SpriteShader");
-
-        if (!(CreateInputLayout(inputLayoutDesces, 3
-            , sprite->GetVSBlob()->GetBufferPointer()
-            , sprite->GetVSBlob()->GetBufferSize()
-            , &renderer::inputLayouts)))
-            assert(NULL && "Create input layout failed!");
     }
 
     void GraphicDevice_DX11::Draw()
@@ -404,26 +410,34 @@ namespace jk::graphics
         mContext->RSSetViewports(1, &viewPort);
         mContext->OMSetRenderTargets(1, mRenderTargetView.GetAddressOf(), mDepthStencilView.Get());
 
-        BindConstantBuffer(eShaderStage::VS, eCBType::Transform, renderer::constantBuffer);
 
-        mContext->IASetInputLayout(renderer::inputLayouts);
+        // draw rect
+        Mesh* mesh = Resources::Find<Mesh>(L"RectMesh");
+        mesh->Bind();
 
-        renderer::mesh->Bind();
-
-        Vector4 pos(0.0f, 0.0f, 0.0f, 1.0f);
+        Vector4 pos(-0.2f, 0.0f, 0.0f, 1.0f);
         renderer::constantBuffers[(UINT)eCBType::Transform].SetData(&pos);
         renderer::constantBuffers[(UINT)eCBType::Transform].Bind(eShaderStage::VS);
-        
-        
-        graphics::Shader* triangle = Resources::Find<graphics::Shader>(L"SpriteShader");
-        triangle->Bind();
 
-        graphics::Texture* texture = Resources::Find<graphics::Texture>(L"Player");
-        if (texture)
-            texture->Bind(eShaderStage::PS, 0);
+        Material* material = jk::Resources::Find<Material>(L"SpriteMaterial");
+        material->Bind();
 
         mContext->DrawIndexed(6, 0, 0);
 
+        // Draw Triangle
+        mesh = Resources::Find<Mesh>(L"TriangleMesh");
+        mesh->Bind();
+
+        pos = Vector4(0.2f, 0.0f, 0.0f, 1.0f);
+        renderer::constantBuffers[(UINT)eCBType::Transform].SetData(&pos);
+        renderer::constantBuffers[(UINT)eCBType::Transform].Bind(eShaderStage::VS);
+
+        material = jk::Resources::Find<Material>(L"TriangleMaterial");
+        material->Bind();
+
+        mContext->DrawIndexed(3, 0, 0);
+
+        // Present the backbuffer
         mSwapChain->Present(1, 0);
     }
 }

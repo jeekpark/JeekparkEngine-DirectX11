@@ -1,5 +1,6 @@
 #pragma once
 #include "jkResource.h"
+#include "jkInputLayout.h"
 #include "jkVertexBuffer.h"
 #include "jkIndexBuffer.h"
 
@@ -28,9 +29,12 @@ namespace jk
 
 		bool CreateVB(const std::vector<graphics::Vertex>& vertices);
 		bool CreateIB(const std::vector<UINT>& indices);
+		void SetVertexBufferParams(UINT vertexCount, D3D11_INPUT_ELEMENT_DESC* layout, const void* ShaderBytecodeWithInputSignature, SIZE_T BytecodeLength);
+
 		void Bind();
 
 	private:
+		graphics::InputLayout mInputLayout;
 		graphics::VertexBuffer mVB;
 		graphics::IndexBuffer mIB;
 
