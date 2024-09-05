@@ -3,21 +3,22 @@
 #include "jkSceneManager.h"
 #include "jkResources.h"
 #include "jkTexture.h"
+#include "jkApplication.h"
+
+extern jk::Application app;
+
 namespace jk
 {
     LoadingScene::LoadingScene()
         : mbLoadCompleted(false)
-        , mResourcesLoadThread(nullptr)
+        , mResourcesLoadThread()
         , mMutexExclusion()
     {
     }
     LoadingScene::~LoadingScene()
     {
-        if (mResourcesLoadThread != nullptr)
-        {
-            delete mResourcesLoadThread;
-            mResourcesLoadThread = nullptr;
-        }
+        delete mResourcesLoadThread;
+        mResourcesLoadThread = nullptr;
     }
     void LoadingScene::Initialize()
     {
@@ -25,23 +26,17 @@ namespace jk
     }
     void LoadingScene::Update()
     {
-        if (mbLoadCompleted)
-        {
-            //만약 메인쓰레드가 종료되는데 자식쓰레드가 남아있다면
-            //자식쓰레드를 메인쓰레드에 편입시켜 메인쓰레드가 종료되기전까지 block
-            mResourcesLoadThread->join();
-
-            //메인쓰레드와 완전 분리 시켜 독립적인 쓰레드 운영가능
-            //mResourcesLoad->detach();
-
-            SceneManager::LoadScene(L"WorldScene");
-        }
     }
     void LoadingScene::LateUpdate()
     {
     }
     void LoadingScene::Render()
     {
+        if (mbLoadCompleted)
+        {
+            mResourcesLoadThread->join();
+            SceneManager::LoadScene(L"WorldScene");
+        }
     }
     void LoadingScene::OnEnter()
     {
@@ -51,14 +46,20 @@ namespace jk
     }
     void LoadingScene::resourcesLoad(std::mutex& m)
     {
+        while (true)
+        {
+            if (app.IsLoaded() == true)
+            {
+                break;
+            }
+        }
+
         m.lock();
         {
-            Resources::Load<graphics::Texture>(L"Cat", L"..\\Resources\\ChickenAlpha.bmp");
-            Resources::Load<graphics::Texture>(L"Player", L"..\\Resources\\Player.bmp");
-            Resources::Load<graphics::Texture>(L"SpringFloor", L"..\\Resources\\SpringFloor.bmp");
-            mbLoadCompleted = true;
+            Resources::Load<graphics::Texture>(L"Player", L"..\\Resources\\CloudOcean.png");
         }
         m.unlock();
-        
+
+        mbLoadCompleted = true;
     }
 }

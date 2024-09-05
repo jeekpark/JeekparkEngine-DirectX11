@@ -20,6 +20,8 @@ namespace jk
         , mClientHeight(0U)
         , mBackBitmap(nullptr)
         , mBackHdc(nullptr)
+        , mbLoaded(false)
+        , mGraphicDevice(nullptr)
     {
     }
 
@@ -29,9 +31,8 @@ namespace jk
 
     void Application::Initialize(HWND hwnd, UINT width, UINT height)
     {
-        adjustWindowRect(hwnd, width, height);
-        createBuffer(width, height);
-        initializeETC();
+        AdjustWindowRect(hwnd, width, height);
+        InitializeEtc();
 
         mGraphicDevice = std::make_unique<graphics::GraphicDevice_DX11>();
         renderer::Initialize();
@@ -42,9 +43,37 @@ namespace jk
         UIManager::Initialize();
         SceneManager::Initialize();
     }
+    void Application::AdjustWindowRect(HWND hwnd, UINT width, UINT height)
+    {
+        mHwnd = hwnd;
+        mHdc = GetDC(hwnd);
 
+        RECT rect = { 0, 0, (LONG)width, (LONG)height };
+        ::AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
+
+        mWidth = rect.right - rect.left;
+        mHeight = rect.bottom - rect.top;
+
+        SetWindowPos(hwnd, nullptr, 0, 0, mWidth, mHeight, 0);
+        ShowWindow(hwnd, true);
+
+        RECT clientRect;
+        GetClientRect(mHwnd, &clientRect);
+        mClientWidth = clientRect.right - clientRect.left;
+        mClientHeight = clientRect.bottom - clientRect.top;
+    }
+
+    void Application::InitializeEtc()
+    {
+        Input::Initialize();
+        Time::Initialize();
+    }
     void Application::Run()
     {
+        if (mbLoaded == false)
+        {
+            mbLoaded = true;
+        }
         Update();
         LateUpdate();
         Render();
@@ -71,16 +100,10 @@ namespace jk
 
     void Application::Render()
     {
-        //clearRenderTarget(mBackHdc);
-        mGraphicDevice->Draw();
-
         Time::Render();
         CollisionManager::Render();
         UIManager::Render();
         SceneManager::Render();
-        
-
-        //copyRenderTarget(mBackHdc, mHdc);
     }
     void Application::Destroy()
     {
@@ -92,60 +115,5 @@ namespace jk
         UIManager::Release();
         Resources::Release();
         renderer::Release();
-    }
-
-
-    void Application::clearRenderTarget(HDC target)
-    {
-        HBRUSH grayBrush = (HBRUSH)CreateSolidBrush(RGB(127, 127, 127));
-        HBRUSH oldBrush = (HBRUSH)SelectObject(target, grayBrush);
-        ::Rectangle(target, -1, -1, mClientWidth + 1, mClientHeight + 1);
-
-        SelectObject(target, oldBrush);
-        DeleteObject(grayBrush);
-    }
-
-    void Application::copyRenderTarget(HDC source, HDC dest)
-    {
-        BitBlt(dest, 0, 0, mWidth, mHeight, source, 0, 0, SRCCOPY);
-    }
-
-    void Application::adjustWindowRect(HWND hwnd, UINT width, UINT height)
-    {
-        mHwnd = hwnd;
-        mHdc = GetDC(hwnd);
-        RECT rect = { 0, 0, (LONG)width, (LONG)height };
-        AdjustWindowRect(&rect, WS_OVERLAPPEDWINDOW, false);
-        mWidth = rect.right - rect.left;
-        mHeight = rect.bottom - rect.top;
-        SetWindowPos(
-            hwnd,
-            nullptr,
-            1500,
-            0,
-            mWidth,
-            mHeight,
-            0U
-        );
-        ShowWindow(hwnd, true);
-
-        RECT clientRect;
-        GetClientRect(mHwnd, &clientRect);
-        mClientWidth = clientRect.right - clientRect.left;
-        mClientHeight = clientRect.bottom - clientRect.top;
-    }
-
-    void Application::createBuffer(UINT width, UINT height)
-    {
-        mBackBitmap = CreateCompatibleBitmap(mHdc, width, height);
-        mBackHdc = CreateCompatibleDC(mHdc);
-        HBITMAP oldBitmap = (HBITMAP)SelectObject(mBackHdc, mBackBitmap);
-        DeleteObject(oldBitmap);
-    }
-
-    void Application::initializeETC()
-    {
-        Input::Initialize();
-        Time::Initialize();
     }
 }

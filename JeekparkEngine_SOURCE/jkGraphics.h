@@ -15,6 +15,7 @@ namespace jk::graphics
 	{
 		math::Vector3 pos;
         math::Vector4 color;
+		math::Vector2 uv;
 	};
 
 	enum class eShaderStage

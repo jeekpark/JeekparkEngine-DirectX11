@@ -11,6 +11,9 @@ namespace jk
         ~Application();
 
         void Initialize(HWND hwnd, UINT width, UINT height);
+        void AdjustWindowRect(HWND hwnd, UINT width, UINT height);
+        void InitializeEtc();
+
         void Run();
 
         void Update();
@@ -18,6 +21,9 @@ namespace jk
         void Render();
         void Destroy();
         void Release();
+
+        bool IsLoaded() const { return mbLoaded; }
+        void IsLoaded(bool load) { mbLoaded = load; }
 
         HWND GetHwnd() const { return mHwnd; }
         HDC GetHdc() const { return mHdc; }
@@ -27,12 +33,8 @@ namespace jk
         UINT GetClientHeight() const { return mClientHeight; }
 
     private:
-        void clearRenderTarget(HDC target);
-        void copyRenderTarget(HDC source, HDC dest);
-        void adjustWindowRect(HWND hwnd, UINT width, UINT height);
-        void createBuffer(UINT width, UINT height);
-        void initializeETC();
 
+        bool mbLoaded;
         std::unique_ptr<graphics::GraphicDevice_DX11> mGraphicDevice;
 
         HWND mHwnd;

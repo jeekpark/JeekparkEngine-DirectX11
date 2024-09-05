@@ -1,6 +1,9 @@
 #pragma once
 
+#include <DirectXTex.h>
+
 #include "jkResource.h"
+#include "jkGraphicDevice_DX11.h"
 
 namespace jk::graphics
 {
@@ -8,32 +11,21 @@ namespace jk::graphics
     class Texture : public Resource
     {
     public:
-        enum class eTextureType
-        {
-            Bmp,
-            Png,
-            None,
-        };
-
-        static Texture* Create(const std::wstring& name, UINT width, UINT height);
-
         Texture();
         ~Texture();
 
         virtual HRESULT Save(const std::wstring& path) override;
         virtual HRESULT Load(const std::wstring& path) override;
 
-        UINT GetWidth() const { return mWidth; }
-        void SetWidth(UINT width) { mWidth = width; }
-        UINT GetHeight() const { return mHeight; }
-        void SetHeight(UINT height) { mHeight = height; }
-
+        void Bind(eShaderStage stage, UINT startSlot);
     private:
-        bool mbAlpha;
-        eTextureType mTextureType;
+        ScratchImage mImage;
 
-        UINT mWidth;
-        UINT mHeight;
+        D3D11_TEXTURE2D_DESC mDesc;
+        Microsoft::WRL::ComPtr<ID3D11Texture2D> mTexture;
+
+        Microsoft::WRL::ComPtr<ID3D11ShaderResourceView> mSRV;
+        Microsoft::WRL::ComPtr<ID3D11RenderTargetView> mRTV;
     };
 
 }

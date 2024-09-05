@@ -23,7 +23,10 @@ namespace jk::graphics
         bool CreateInputLayout(const D3D11_INPUT_ELEMENT_DESC* pInputElementDescs, UINT NumElements
             , const void* pShaderBytecodeWithInputSignature, SIZE_T BytecodeLength, ID3D11InputLayout** ppInputLayout);
         bool CreateBuffer(const D3D11_BUFFER_DESC* pDesc, const D3D11_SUBRESOURCE_DATA* pInitialData, ID3D11Buffer** ppBuffer);
-        void SetDataBuffer(ID3D11Buffer* buffer, void* data, UINT size);
+        bool CreateShaderResourceView(ID3D11Resource* pResource, const D3D11_SHADER_RESOURCE_VIEW_DESC* pDesc, ID3D11ShaderResourceView** ppSRView);
+
+        void SetDataGpuBuffer(ID3D11Buffer* buffer, void* data, UINT size);
+        void SetShaderResource(eShaderStage stage, UINT startSlot, ID3D11ShaderResourceView** ppSRV);
 
         void BindPrimitiveTopology(const D3D11_PRIMITIVE_TOPOLOGY topology);
         void BindVS(ID3D11VertexShader* pVertexShader);
@@ -35,6 +38,8 @@ namespace jk::graphics
         void Initialize();
 
         void Draw();
+    public:
+        Microsoft::WRL::ComPtr<ID3D11Device> GetID3D11Device() { return mDevice; }
     private:
         Microsoft::WRL::ComPtr<ID3D11Device> mDevice;
         Microsoft::WRL::ComPtr<ID3D11DeviceContext> mContext;

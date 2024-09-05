@@ -130,6 +130,10 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
       0, 0, width, height, nullptr, nullptr, hInstance, nullptr);
 
+   HRESULT hr = CoInitializeEx(nullptr, COINIT_MULTITHREADED);
+   if (FAILED(hr))
+       assert(false);
+
    app.Initialize(hWnd, width, height);
    if (!hWnd)
    {
@@ -141,7 +145,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    Gdiplus::GdiplusStartup(&gpToken, &gpsi, nullptr);
 
-   srand(time(0));
+   srand(CAST_UINT(time(0)));
    jk::LoadScenes();
 
    return TRUE;
