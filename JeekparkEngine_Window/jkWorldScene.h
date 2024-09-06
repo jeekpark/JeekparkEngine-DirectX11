@@ -18,9 +18,7 @@ namespace jk
         void OnEnter() override;
         void OnExit() override;
     private:
-
-        void initCamera();
-        void initPlayableHero();
+        class Hero* mPlayer;
     };
 
 }

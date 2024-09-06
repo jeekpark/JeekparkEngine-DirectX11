@@ -137,6 +137,7 @@
     <ClInclude Include="jkHero.h" />
     <ClInclude Include="jkLoadingScene.h" />
     <ClInclude Include="jkLoadScenes.h" />
+    <ClInclude Include="jkTitleScene.h" />
     <ClInclude Include="jkWorldScene.h" />
   </ItemGroup>
   <ItemGroup>
@@ -144,6 +145,7 @@
     <ClCompile Include="jkFloor.cpp" />
     <ClCompile Include="jkHero.cpp" />
     <ClCompile Include="jkLoadingScene.cpp" />
+    <ClCompile Include="jkTitleScene.cpp" />
     <ClCompile Include="jkWorldScene.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

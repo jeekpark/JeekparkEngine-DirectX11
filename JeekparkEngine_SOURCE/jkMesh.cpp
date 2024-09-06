@@ -54,6 +54,7 @@ namespace jk
 	void Mesh::Bind()
 	{
 		mInputLayout.Bind();
+
 		mVB.Bind();
 		mIB.Bind();
 

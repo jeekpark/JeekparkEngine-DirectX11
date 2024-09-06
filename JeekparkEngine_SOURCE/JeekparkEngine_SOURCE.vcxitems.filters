@@ -91,10 +91,8 @@
     <ClCompile Include="$(MSBuildThisFileDirectory)jkUIButton.cpp">
       <Filter>UI\Button</Filter>
     </ClCompile>
-    <ClCompile Include="$(MSBuildThisFileDirectory)jkFmod.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jkAudioListener.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jkAudioSource.cpp" />
-    <ClCompile Include="$(MSBuildThisFileDirectory)jkAudioClip.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)jkGraphicDevice_DX11.cpp">
       <Filter>Graphics\GraphicDevice</Filter>
     </ClCompile>
@@ -118,6 +116,12 @@
     </ClCompile>
     <ClCompile Include="$(MSBuildThisFileDirectory)jkInputLayout.cpp">
       <Filter>Graphics\InputLayout</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jkFmod.cpp">
+      <Filter>Fmod</Filter>
+    </ClCompile>
+    <ClCompile Include="$(MSBuildThisFileDirectory)jkAudioClip.cpp">
+      <Filter>Resource\Audio</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -220,10 +224,8 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)jkUIButton.h">
       <Filter>UI\Button</Filter>
     </ClInclude>
-    <ClInclude Include="$(MSBuildThisFileDirectory)jkFmod.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkAudioListener.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkAudioSource.h" />
-    <ClInclude Include="$(MSBuildThisFileDirectory)jkAudioClip.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)jkGraphicDevice_DX11.h">
       <Filter>Graphics\GraphicDevice</Filter>
     </ClInclude>
@@ -250,6 +252,12 @@
     </ClInclude>
     <ClInclude Include="$(MSBuildThisFileDirectory)jkInputLayout.h">
       <Filter>Graphics\InputLayout</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jkFmod.h">
+      <Filter>Fmod</Filter>
+    </ClInclude>
+    <ClInclude Include="$(MSBuildThisFileDirectory)jkAudioClip.h">
+      <Filter>Resource\Audio</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -342,6 +350,12 @@
     </Filter>
     <Filter Include="Graphics\InputLayout">
       <UniqueIdentifier>{a37f659e-d970-4a41-bf59-fe2e80933d26}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fmod">
+      <UniqueIdentifier>{b0480ba8-8ae4-4c28-8435-61e2fb275980}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource\Audio">
+      <UniqueIdentifier>{31606d87-3664-4069-926a-3b8fb7c69820}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
 </Project>

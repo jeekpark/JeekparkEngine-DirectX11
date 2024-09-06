@@ -13,8 +13,10 @@ namespace jk
         {
             T* scene = new T();
             scene->SetName(name);
+            Scene* prevScene = SceneManager::GetActiveScene();
             sActiveScene = scene;
             scene->Initialize();
+            sActiveScene = prevScene;
             sScene.insert(std::make_pair(name, scene));
             return scene;
         }
@@ -29,6 +31,7 @@ namespace jk
         static void Render();
         static void Destroy();
         static void Release();
+        
     private:
         static std::map<std::wstring, Scene*> sScene;
         static Scene* sActiveScene;

@@ -7,6 +7,23 @@ namespace jk
     Scene* SceneManager::sActiveScene = nullptr;
     Scene* SceneManager::sDontDestroyOnLoad = nullptr;
 
+    Scene* SceneManager::LoadScene(const std::wstring& name)
+    {
+        if (sActiveScene)
+        {
+            sActiveScene->OnExit();
+        }
+        auto iter = sScene.find(name);
+
+        if (iter == sScene.end())
+        {
+            return nullptr;
+        }
+
+        sActiveScene = iter->second;
+        sActiveScene->OnEnter();
+        return iter->second;
+    }
     std::vector<GameObject*> SceneManager::GetGameObjects(enums::eLayerType layer)
     {
         std::vector<GameObject*> gameObjects
@@ -45,23 +62,7 @@ namespace jk
         sActiveScene->Destroy();
         sDontDestroyOnLoad->Destroy();
     }
-    Scene* SceneManager::LoadScene(const std::wstring& name)
-    {
-        if (sActiveScene)
-        {
-            sActiveScene->OnExit();
-        }
-        auto iter = sScene.find(name);
-
-        if (iter == sScene.end())
-        {
-            return nullptr;
-        }
-
-        sActiveScene = iter->second;
-        sActiveScene->OnEnter();
-        return iter->second;
-    }
+    
 
     void SceneManager::Release()
     {

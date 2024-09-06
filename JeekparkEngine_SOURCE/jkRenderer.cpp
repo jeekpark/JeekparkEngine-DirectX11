@@ -3,7 +3,6 @@
 #include "jkGraphicDevice_DX11.h"
 #include "jkResources.h"
 #include "jkShader.h"
-
 #include "jkMesh.h"
 #include "jkMaterial.h"
 

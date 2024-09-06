@@ -11,7 +11,7 @@ namespace jk
     {
         SceneManager::CreateScene<LoadingScene>(L"LoadingScene");
         //SceneManager::CreateScene<TitleScene>(L"TitleScene");
-        SceneManager::CreateScene<WorldScene>(L"WorldScene");
+        //SceneManager::CreateScene<WorldScene>(L"WorldScene");
 
         SceneManager::LoadScene(L"LoadingScene");
     }

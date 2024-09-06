@@ -36,6 +36,9 @@
     <ClInclude Include="jkLoadingScene.h">
       <Filter>Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="jkTitleScene.h">
+      <Filter>Scenes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="jkCameraScript.cpp">
@@ -51,6 +54,9 @@
       <Filter>Scenes</Filter>
     </ClCompile>
     <ClCompile Include="jkLoadingScene.cpp">
+      <Filter>Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="jkTitleScene.cpp">
       <Filter>Scenes</Filter>
     </ClCompile>
   </ItemGroup>

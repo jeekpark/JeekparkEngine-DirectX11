@@ -4,14 +4,15 @@
 #include "jkTransform.h"
 #include "jkTexture.h"
 #include "jkRenderer.h"
-
+#include "jkResources.h"
 
 namespace jk
 {
     SpriteRenderer::SpriteRenderer()
         : Component(enums::eComponentType::SpriteRenderer)
-        , mTexture(nullptr)
-        , mSize(Vector2::One)
+        , mSprite(nullptr)
+        , mMaterial(nullptr)
+        , mMesh(nullptr)
     {
     }
     SpriteRenderer::~SpriteRenderer()
@@ -19,6 +20,7 @@ namespace jk
     }
     void SpriteRenderer::Initialize()
     {
+        mMesh = Resources::Find<Mesh>(L"RectMesh");
     }
     void SpriteRenderer::Update()
     {
@@ -28,7 +30,17 @@ namespace jk
     }
     void SpriteRenderer::Render()
     {
-        assert(mTexture != nullptr);
+        if (mMesh)
+            mMesh->Bind();
+
+        if (mMaterial)
+            mMaterial->BindShader();
+
+        if (mSprite)
+            mSprite->Bind(eShaderStage::PS, (UINT)eTextureType::Albedo);
+
+        if (mMesh)
+            graphics::GetDevice()->DrawIndexed(mMesh->GetIndexCount(), 0, 0);
     }
 
 }

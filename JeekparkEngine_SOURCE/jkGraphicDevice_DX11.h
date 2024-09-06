@@ -21,8 +21,7 @@ namespace jk::graphics
         bool CreateSamplerState(const D3D11_SAMPLER_DESC* pSamplerDesc, ID3D11SamplerState** ppSamplerState);
         bool CreateVertexShader(const std::wstring& fileName, ID3DBlob** ppCode, ID3D11VertexShader** ppVertexShader);
         bool CreatePixelShader(const std::wstring& fileName, ID3DBlob** ppCode, ID3D11PixelShader** ppPixelShader);
-        bool CreateInputLayout(const D3D11_INPUT_ELEMENT_DESC* pInputElementDescs, UINT NumElements
-            , const void* pShaderBytecodeWithInputSignature, SIZE_T BytecodeLength, ID3D11InputLayout** ppInputLayout);
+        bool CreateInputLayout(const D3D11_INPUT_ELEMENT_DESC* pInputElementDescs, UINT NumElements, const void* pShaderBytecodeWithInputSignature, SIZE_T BytecodeLength, ID3D11InputLayout** ppInputLayout);
         bool CreateBuffer(const D3D11_BUFFER_DESC* pDesc, const D3D11_SUBRESOURCE_DATA* pInitialData, ID3D11Buffer** ppBuffer);
         bool CreateShaderResourceView(ID3D11Resource* pResource, const D3D11_SHADER_RESOURCE_VIEW_DESC* pDesc, ID3D11ShaderResourceView** ppSRView);
 
@@ -38,10 +37,17 @@ namespace jk::graphics
         void BindConstantBuffer(eShaderStage stage, eCBType type, ID3D11Buffer* buffer);
         void BindSampler(eShaderStage stage, UINT StartSlot, UINT NumSamplers, ID3D11SamplerState* const* ppSamplers);
         void BindSamplers(UINT StartSlot, UINT NumSamplers, ID3D11SamplerState* const* ppSamplers);
+        void BindViewPort();
+        void BindRenderTargets(UINT NumViews = 1, ID3D11RenderTargetView* const* ppRenderTargetViews = nullptr, ID3D11DepthStencilView* pDepthStencilView = nullptr);
+        void BindDefaultRenderTarget();
+
+        void ClearRenderTargetView();
+        void ClearDepthStencilView();
 
         void Initialize();
-
         void Draw();
+        void DrawIndexed(UINT IndexCount, UINT StartIndexLocation, INT BaseVertexLocation);
+        void Present();
     public:
         Microsoft::WRL::ComPtr<ID3D11Device> GetID3D11Device() { return mDevice; }
     private:
@@ -52,9 +58,7 @@ namespace jk::graphics
         Microsoft::WRL::ComPtr<ID3D11Texture2D> mDepthStencil;
         Microsoft::WRL::ComPtr<ID3D11DepthStencilView> mDepthStencilView;
         Microsoft::WRL::ComPtr<IDXGISwapChain> mSwapChain;
-
         Microsoft::WRL::ComPtr<ID3D11SamplerState> mSamplers;
-
     };
 
 

@@ -3,13 +3,17 @@
 
 #include "jkComponent.h"
 
+namespace jk::object
+{
+    void Destory(GameObject* gameObject);
+}
 
 namespace jk
 {
     class GameObject : public Entity
     {
     public:
-
+        friend void object::Destory(GameObject* obj);
 
         enum class eState
         {
@@ -65,13 +69,12 @@ namespace jk
         }
         bool IsActive() const { return mState == eState::Active; }
         bool IsDead() const { return mState == eState::Dead; }
-        void Death() { mState = eState::Dead; }
         void SetLayerType(enums::eLayerType layer) { mLayerType = layer; }
         enums::eLayerType GetLayerType() const { return mLayerType; }
     private:
         void initializeTransform();
         
-        
+        void death() { mState = eState::Dead; }
 
     private:
         std::vector<Component*> mComponents;

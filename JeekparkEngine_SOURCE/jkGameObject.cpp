@@ -4,6 +4,15 @@
 #include "jkTime.h"
 #include "jkTransform.h"
 
+namespace jk::object
+{
+    void Destory(GameObject* gameObject)
+    {
+        if (gameObject != nullptr)
+            gameObject->death();
+    }
+}
+
 namespace jk
 {
     GameObject::GameObject()

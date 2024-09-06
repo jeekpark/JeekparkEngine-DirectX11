@@ -11,12 +11,13 @@
 #include "jkSceneManager.h"
 
 #include "jkHero.h"
-
+#include "jkSpriteRenderer.h"
 extern jk::Application app;
 
 namespace jk
 {
     WorldScene::WorldScene()
+        : mPlayer(nullptr)
     {
     }
     WorldScene::~WorldScene()
@@ -26,6 +27,12 @@ namespace jk
     }
     void WorldScene::Initialize()
     {
+        mPlayer = object::Instantiate<Hero>(enums::eLayerType::Player);
+        object::DontDestroyOnLoad(mPlayer);
+
+        SpriteRenderer* sr = mPlayer->AddComponent<SpriteRenderer>();
+        sr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial"));
+        sr->SetSprite(Resources::Find<graphics::Texture>(L"Player"));
         Scene::Initialize();
     }
     void WorldScene::Update()
@@ -43,7 +50,7 @@ namespace jk
     void WorldScene::Render()
     {
         Scene::Render();
-        graphics::GetDevice()->Draw();
+        //graphics::GetDevice()->Draw();
     }
     void WorldScene::OnEnter()
     {

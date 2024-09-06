@@ -5,7 +5,9 @@
 #include "jkTexture.h"
 #include "jkApplication.h"
 #include "jkRenderer.h"
-
+#include "jkSceneManager.h"
+#include "jkWorldScene.h"
+#include "jkTitleScene.h"
 extern jk::Application app;
 
 namespace jk
@@ -59,6 +61,9 @@ namespace jk
         {
             Resources::Load<graphics::Texture>(L"Player", L"..\\Resources\\CloudOcean.png");
             renderer::Initialize();
+            SceneManager::CreateScene<TitleScene>(L"TitleScene");
+            SceneManager::CreateScene<WorldScene>(L"WorldScene");
+            
         }
         m.unlock();
 

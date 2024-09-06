@@ -332,6 +332,40 @@ namespace jk::graphics
         BindSampler(eShaderStage::GS, StartSlot, NumSamplers, ppSamplers);
         BindSampler(eShaderStage::PS, StartSlot, NumSamplers, ppSamplers);
     }
+    
+    void GraphicDevice_DX11::BindViewPort()
+    {
+        D3D11_VIEWPORT viewPort =
+        {
+            0, 0,
+            CAST_FLOAT(app.GetClientWidth()),
+            CAST_FLOAT(app.GetClientHeight()),
+            0.0f, 1.0f
+        };
+
+        mContext->RSSetViewports(1, &viewPort);
+    }
+
+    void GraphicDevice_DX11::BindRenderTargets(UINT NumViews, ID3D11RenderTargetView* const* ppRenderTargetViews, ID3D11DepthStencilView* pDepthStencilView)
+    {
+        mContext->OMSetRenderTargets(NumViews, ppRenderTargetViews, pDepthStencilView);
+    }
+
+    void GraphicDevice_DX11::BindDefaultRenderTarget()
+    {
+        mContext->OMSetRenderTargets(1, mRenderTargetView.GetAddressOf(), mDepthStencilView.Get());
+    }
+
+    void GraphicDevice_DX11::ClearRenderTargetView()
+    {
+        FLOAT backgroundColor[4] = { 0.2f, 0.2f, 0.2f, 1.0f };
+        mContext->ClearRenderTargetView(mRenderTargetView.Get(), backgroundColor);
+    }
+
+    void GraphicDevice_DX11::ClearDepthStencilView()
+    {
+        mContext->ClearDepthStencilView(mDepthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
+    }
 
     void GraphicDevice_DX11::Initialize()
     {
@@ -396,48 +430,34 @@ namespace jk::graphics
 
     void GraphicDevice_DX11::Draw()
     {
-        FLOAT backgroundColor[4] = { .5f, 0.5f, .5f, 1.0f };
-        mContext->ClearRenderTargetView(mRenderTargetView.Get(), backgroundColor);
-        mContext->ClearDepthStencilView(mDepthStencilView.Get(), D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.f, 0);
-
-        D3D11_VIEWPORT viewPort =
-        {
-            0, 0,
-            CAST_FLOAT(app.GetClientWidth()),
-            CAST_FLOAT(app.GetClientHeight()),
-            0.0f, 1.0f
-        };
-        mContext->RSSetViewports(1, &viewPort);
-        mContext->OMSetRenderTargets(1, mRenderTargetView.GetAddressOf(), mDepthStencilView.Get());
-
-
-        // draw rect
+        // Draw Rect
         Mesh* mesh = Resources::Find<Mesh>(L"RectMesh");
         mesh->Bind();
-
         Vector4 pos(-0.2f, 0.0f, 0.0f, 1.0f);
         renderer::constantBuffers[(UINT)eCBType::Transform].SetData(&pos);
         renderer::constantBuffers[(UINT)eCBType::Transform].Bind(eShaderStage::VS);
-
         Material* material = jk::Resources::Find<Material>(L"SpriteMaterial");
         material->Bind();
-
         mContext->DrawIndexed(6, 0, 0);
-
         // Draw Triangle
         mesh = Resources::Find<Mesh>(L"TriangleMesh");
         mesh->Bind();
-
         pos = Vector4(0.2f, 0.0f, 0.0f, 1.0f);
         renderer::constantBuffers[(UINT)eCBType::Transform].SetData(&pos);
         renderer::constantBuffers[(UINT)eCBType::Transform].Bind(eShaderStage::VS);
-
         material = jk::Resources::Find<Material>(L"TriangleMaterial");
         material->Bind();
 
         mContext->DrawIndexed(3, 0, 0);
+    }
 
-        // Present the backbuffer
+    void GraphicDevice_DX11::DrawIndexed(UINT IndexCount, UINT StartIndexLocation, INT BaseVertexLocation)
+    {
+        mContext->DrawIndexed(IndexCount, StartIndexLocation, BaseVertexLocation);
+    }
+
+    void GraphicDevice_DX11::Present()
+    {
         mSwapChain->Present(1, 0);
     }
 }

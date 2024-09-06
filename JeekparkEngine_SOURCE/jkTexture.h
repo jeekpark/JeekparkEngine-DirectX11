@@ -1,6 +1,8 @@
 #pragma once
 
 #include <DirectXTex.h>
+#include <DirectXTex.inl>
+#include <DirectXTexEXR.h>
 
 #include "jkResource.h"
 #include "jkGraphicDevice_DX11.h"

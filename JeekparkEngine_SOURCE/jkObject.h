@@ -35,11 +35,6 @@ namespace jk::object
         return gameObject;
     };
 
-    static void Destroy(GameObject* obj)
-    {
-        obj->Death();
-    }
-
     static void DontDestroyOnLoad(GameObject* obj)
     {
         Scene* activeScene = SceneManager::GetActiveScene();
