@@ -28,11 +28,12 @@ namespace jk
     void WorldScene::Initialize()
     {
         mPlayer = object::Instantiate<Hero>(enums::eLayerType::Player);
-        object::DontDestroyOnLoad(mPlayer);
+        //object::DontDestroyOnLoad(mPlayer);
 
         SpriteRenderer* sr = mPlayer->AddComponent<SpriteRenderer>();
-        sr->SetMaterial(Resources::Find<Material>(L"SpriteMaterial"));
         sr->SetSprite(Resources::Find<graphics::Texture>(L"Player"));
+        
+        
         Scene::Initialize();
     }
     void WorldScene::Update()

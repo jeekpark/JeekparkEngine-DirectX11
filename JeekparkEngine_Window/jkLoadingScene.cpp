@@ -35,11 +35,13 @@ namespace jk
     }
     void LoadingScene::Render()
     {
+        mMutexExclusion.lock();
         if (mbLoadCompleted)
         {
             mResourcesLoadThread->join();
             SceneManager::LoadScene(L"WorldScene");
         }
+        mMutexExclusion.unlock();
     }
     void LoadingScene::OnEnter()
     {
@@ -59,14 +61,15 @@ namespace jk
 
         m.lock();
         {
+            
             Resources::Load<graphics::Texture>(L"Player", L"..\\Resources\\CloudOcean.png");
             renderer::Initialize();
             SceneManager::CreateScene<TitleScene>(L"TitleScene");
             SceneManager::CreateScene<WorldScene>(L"WorldScene");
-            
+            mbLoadCompleted = true;
         }
         m.unlock();
 
-        mbLoadCompleted = true;
+        
     }
 }

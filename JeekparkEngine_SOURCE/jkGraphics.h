@@ -60,6 +60,7 @@ namespace jk::graphics
 		Specular,
 		Smoothness,
 		Metallic,
+		Sprite,
 		End,
 	};
 	struct GpuBuffer
